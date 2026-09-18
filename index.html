@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>つうしんコンパス | スマホ・Wi-Fi・SIM・光回線を迷わず選ぶ</title>
+<meta name="description" content="スマホ料金、Wi-Fi、格安SIM、光回線。たくさんある通信サービスから、自分に合うものを見つけるための入り口です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="13" fill="none" stroke="#0f6e8c" stroke-width="2"></circle>
+        <polygon points="16,7 20,16 16,16" fill="#ff6b4a"></polygon>
+        <polygon points="16,25 12,16 16,16" fill="#0f6e8c"></polygon>
+        <circle cx="16" cy="16" r="2" fill="#16232e"></circle>
+      </svg>
+      <span class="brand-name">つうしんコンパス</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav class="site-nav">
+      <a href="#menu">診断メニュー</a>
+      <a href="#about">このサイトについて</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">通信サービス選びの入り口</p>
+        <h1>スマホ料金、Wi-Fi、SIM、光回線。<br>迷ったら、ここから。</h1>
+        <p class="hero-lead">
+          種類が多すぎて、どこから比べればいいか分からない。
+          そんな通信サービス選びを、専門用語なしで進められるように整理しました。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#menu">診断メニューを見る</a>
+          <a class="btn btn-ghost" href="#about">このサイトについて</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg viewBox="0 0 320 320" role="img" aria-label="通信サービスの方角を示すコンパスのイラスト">
+          <circle cx="160" cy="160" r="112" fill="none" stroke="#dfe7ec" stroke-width="2"></circle>
+          <circle cx="160" cy="160" r="76" fill="none" stroke="#dfe7ec" stroke-width="1"></circle>
+          <polygon points="160,66 180,160 160,160" fill="#ff6b4a"></polygon>
+          <polygon points="160,254 140,160 160,160" fill="#0f6e8c"></polygon>
+          <circle cx="160" cy="160" r="7" fill="#16232e"></circle>
+          <path d="M 226 96 A 96 96 0 0 1 254 160" stroke="#2fb897" stroke-width="5" fill="none" stroke-linecap="round"></path>
+          <path d="M 240 76 A 122 122 0 0 1 276 160" stroke="#e2984a" stroke-width="5" fill="none" stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="section-head">
+        <h2>気になるところから選んでください</h2>
+        <p>4つの入り口を用意しました。今の悩みに近いものから進めます。</p>
+      </div>
+
+      <div class="card-grid">
+
+        <a class="diag-card" data-accent="teal" href="smartphone.html">
+          <svg class="diag-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="14" y="6" width="20" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"></rect>
+            <line x1="20" y1="34" x2="28" y2="34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+            <text x="24" y="20" text-anchor="middle" font-size="13" fill="currentColor" font-family="sans-serif">¥</text>
+          </svg>
+          <h3>スマホ料金診断</h3>
+          <p>今の料金、高すぎるかも。いくつかの質問に答えるだけで、合ったプランの傾向が分かります。</p>
+          <span class="diag-cta">料金を診断する</span>
+        </a>
+
+        <a class="diag-card" data-accent="mint" href="wifi.html">
+          <svg class="diag-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M8 20a24 24 0 0 1 32 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M15 27a14 14 0 0 1 18 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="24" cy="34" r="3" fill="currentColor"></circle>
+          </svg>
+          <h3>Wi-Fi診断</h3>
+          <p>自宅用のWi-Fi、何を基準に選べばいいか迷っていませんか。使い方に合わせてご案内します。</p>
+          <span class="diag-cta">Wi-Fiを診断する</span>
+        </a>
+
+        <a class="diag-card" data-accent="coral" href="sim.html">
+          <svg class="diag-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M12 6h18l6 6v30a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"></path>
+            <rect x="16" y="18" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <line x1="24" y1="18" x2="24" y2="30" stroke="currentColor" stroke-width="2"></line>
+          </svg>
+          <h3>格安SIM比較</h3>
+          <p>大手キャリアからの乗り換えを検討中の方へ。料金やデータ容量の違いを整理します。</p>
+          <span class="diag-cta">格安SIMを比較する</span>
+        </a>
+
+        <a class="diag-card" data-accent="amber" href="hikari.html">
+          <svg class="diag-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="10" y="20" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"></rect>
+            <line x1="24" y1="23" x2="34" y2="23" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+            <line x1="24" y1="27" x2="34" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+            <path d="M36 18l6-6M36 25h8M36 32l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+          <h3>光回線比較</h3>
+          <p>自宅のインターネット回線を選ぶ・見直したい方へ。エリアや速度の基本から確認できます。</p>
+          <span class="diag-cta">光回線を比較する</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>このサイトについて</h2>
+        <p>通信サービスは選択肢が多く、比較サイトごとに言葉や基準もばらばら。ここでは順番に進むだけで整理できるようにしています。</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-item">
+          <p class="trust-num">01</p>
+          <h3>専門用語なしで進める</h3>
+          <p>「データ容量」や「回線速度」といった言葉も、必要な場面でその都度かみくだいて説明します。</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-num">02</p>
+          <h3>特定の会社に偏らない</h3>
+          <p>まずは選び方の基準そのものを整理することを目的にしています。</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-num">03</p>
+          <h3>スマホでも進めやすい</h3>
+          <p>移動中や隙間時間でも、片手でひと通り確認できる画面幅で作っています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-name">つうしんコンパス</p>
+    <p class="footer-note">本サイトは通信サービス選びの参考情報を提供するものです。掲載内容は今後追加・変更されます。</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

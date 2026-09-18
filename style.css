@@ -1,0 +1,480 @@
+/* ==========================================================================
+   つうしんコンパス - 共通スタイル
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --bg: #f7f9fb;
+  --surface: #ffffff;
+  --ink: #16232e;
+  --ink-soft: #4b5b68;
+  --line: #dfe7ec;
+
+  --teal: #0f6e8c;      /* ブランド基調色 / スマホ料金 */
+  --teal-dark: #0b5570;
+  --mint: #2fb897;      /* Wi-Fi */
+  --coral: #ff6b4a;     /* CTA / 格安SIM */
+  --coral-dark: #e2532f;
+  --amber: #e2984a;     /* 光回線 */
+
+  /* Type */
+  --font-head: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-body: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+
+  /* Layout */
+  --container: 1080px;
+  --radius-s: 10px;
+  --radius-m: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+a {
+  color: var(--teal);
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 15px;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 64px 0 72px;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-copy {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: hero-reveal 0.7s ease-out forwards;
+}
+
+.hero-visual {
+  opacity: 0;
+  animation: hero-fade 1s ease-out 0.2s forwards;
+}
+
+@keyframes hero-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-eyebrow {
+  font-size: 14px;
+  color: var(--teal-dark);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  max-width: 16ch;
+}
+
+.hero-lead {
+  margin-top: 20px;
+  font-size: 17px;
+  max-width: 42ch;
+}
+
+.hero-actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: var(--radius-s);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--coral);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--coral-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* ---------- Menu / Cards ---------- */
+
+.menu {
+  padding: 24px 0 72px;
+}
+
+.section-head {
+  max-width: 56ch;
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  font-size: clamp(22px, 3vw, 28px);
+}
+
+.section-head p {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.diag-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent, var(--teal));
+  border-radius: var(--radius-m);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+.diag-card:hover,
+.diag-card:focus-visible {
+  border-color: var(--accent, var(--teal));
+}
+
+.diag-card[data-accent="teal"] { --accent: var(--teal); }
+.diag-card[data-accent="mint"] { --accent: var(--mint); }
+.diag-card[data-accent="coral"] { --accent: var(--coral); }
+.diag-card[data-accent="amber"] { --accent: var(--amber); }
+
+.diag-icon {
+  width: 44px;
+  height: 44px;
+  color: var(--accent, var(--teal));
+}
+
+.diag-card h3 {
+  font-size: 19px;
+  color: var(--ink);
+}
+
+.diag-card p {
+  font-size: 14.5px;
+  flex-grow: 1;
+}
+
+.diag-cta {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--accent, var(--teal));
+}
+
+/* ---------- Trust section ---------- */
+
+.trust {
+  padding: 56px 0 72px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.trust-item h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.trust-item p {
+  font-size: 14.5px;
+}
+
+.trust-num {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding: 36px 0;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.footer-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ---------- Placeholder pages (準備中) ---------- */
+
+.placeholder {
+  padding: 96px 0;
+  text-align: center;
+}
+
+.placeholder .container {
+  max-width: 560px;
+}
+
+.placeholder-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  color: var(--teal);
+}
+
+.placeholder h1 {
+  font-size: clamp(24px, 4vw, 30px);
+}
+
+.placeholder p {
+  margin-top: 16px;
+  font-size: 15.5px;
+}
+
+.placeholder .btn {
+  margin-top: 32px;
+}
+
+/* ---------- Mobile nav ---------- */
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.nav-toggle svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+  }
+  .hero-visual {
+    order: -1;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px 16px;
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header {
+    position: relative;
+  }
+
+  .hero {
+    padding: 40px 0 48px;
+  }
+
+  .menu {
+    padding: 16px 0 48px;
+  }
+}
