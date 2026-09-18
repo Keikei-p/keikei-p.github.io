@@ -372,19 +372,21 @@ img, svg {
 .option-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .option-btn {
   font-family: var(--font-body);
-  font-size: 15.5px;
+  font-size: 17px;
   font-weight: 500;
   text-align: left;
   color: var(--ink);
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--radius-s);
-  padding: 16px 18px;
+  padding: 22px 22px;
+  min-height: 60px;
+  line-height: 1.4;
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
@@ -641,7 +643,9 @@ img, svg {
   }
 
   .option-btn {
-    padding: 15px 16px;
+    padding: 20px 18px;
+    font-size: 16.5px;
+    min-height: 56px;
   }
 
   .result-actions {
