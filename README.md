@@ -1,1 +1,1 @@
-# thushin-compas
+# tushin-compas
