@@ -1,0 +1,240 @@
+/* 比較ページ(格安SIM・光回線)共通の追加スタイル
+   style.css の後に読み込みます。cmp- で始まるクラスだけを定義しています。 */
+
+:root {
+  --cm-teal: #0f6e8c;
+  --cm-coral: #ff6b4a;
+  --cm-coral-text: #c2401f;
+  --cm-amber-text: #9a5b12;
+  --cm-ink: #16232e;
+  --cm-sub: #51636f;
+  --cm-line: #dfe7ec;
+  --cm-tint: #eef5f8;
+  --cm-match: #fff1ec;
+}
+
+.cmp-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* セクション */
+.cmp-section { margin-top: 44px; }
+.cmp-section:first-of-type { margin-top: 28px; }
+
+.cmp-h2 {
+  margin: 0 0 8px;
+  padding-left: 12px;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  border-left: 5px solid var(--cm-teal);
+}
+.cmp-lead { margin: 0 0 16px; color: var(--cm-sub); }
+.cmp-note { margin: 10px 0 0; font-size: 0.85rem; color: var(--cm-sub); }
+.cmp-hint { margin: 2px 0 0; font-size: 0.85rem; color: var(--cm-sub); }
+
+/* 比較表 */
+.cmp-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--cm-line);
+  border-radius: 12px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+.cmp-scroll:focus-visible { outline: 3px solid var(--cm-coral); outline-offset: 2px; }
+
+.cmp-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.cmp-table th,
+.cmp-table td {
+  padding: 12px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--cm-line);
+  background: #fff;
+}
+.cmp-table tbody tr:last-child th,
+.cmp-table tbody tr:last-child td { border-bottom: 0; }
+
+.cmp-table thead th {
+  font-weight: 700;
+  color: var(--cm-ink);
+  background: var(--cm-tint);
+  border-top: 4px solid transparent;
+}
+.cmp-table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 8.5em;
+  min-width: 8.5em;
+  font-weight: 700;
+  color: var(--cm-teal);
+  background: #fff;
+  box-shadow: 1px 0 0 var(--cm-line);
+}
+.cmp-table thead .cmp-corner { position: sticky; left: 0; z-index: 2; box-shadow: 1px 0 0 var(--cm-line); }
+
+.cmp-table .is-match { background: var(--cm-match); }
+.cmp-table thead .is-match { background: #ffe0d6; border-top-color: var(--cm-coral); }
+
+.cmp-mark { font-weight: 700; }
+.cmp-mark-3 { color: var(--cm-teal); }
+.cmp-mark-2 { color: var(--cm-teal); }
+.cmp-mark-1 { color: var(--cm-amber-text); }
+
+/* 条件でしぼる */
+.cmp-filter { display: grid; gap: 18px; }
+.cmp-field { margin: 0; padding: 0; border: 0; min-width: 0; }
+.cmp-field legend {
+  padding: 0;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.cmp-opts { display: grid; gap: 8px; margin-top: 8px; }
+
+.cmp-opt { display: block; cursor: pointer; }
+.cmp-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.cmp-opt span {
+  display: block;
+  min-height: 48px;
+  padding: 11px 14px;
+  border: 2px solid var(--cm-line);
+  border-radius: 12px;
+  background: #fff;
+  line-height: 1.6;
+}
+.cmp-opt:hover span { border-color: var(--cm-teal); }
+.cmp-opt input:checked + span {
+  border-color: var(--cm-teal);
+  background: var(--cm-tint);
+  font-weight: 700;
+}
+.cmp-opt input:focus-visible + span {
+  outline: 3px solid var(--cm-coral);
+  outline-offset: 2px;
+}
+
+/* 結果 */
+.cmp-answer {
+  margin-top: 22px;
+  padding: 18px 18px 16px;
+  border: 2px solid var(--cm-line);
+  border-radius: 14px;
+  background: #fff;
+}
+.cmp-answer p { margin: 0; }
+.cmp-answer p + p { margin-top: 8px; }
+.cmp-answer-wait { color: var(--cm-sub); }
+.cmp-answer-kicker { font-size: 0.9rem; color: var(--cm-sub); }
+.cmp-answer-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; color: var(--cm-teal); }
+.cmp-answer-tag { font-weight: 700; color: var(--cm-coral-text); }
+.cmp-answer-sub { margin: 16px 0 6px; font-size: 1rem; }
+.cmp-reasons { margin: 0; padding-left: 1.3em; }
+.cmp-reasons li + li { margin-top: 4px; }
+.cmp-answer-also { font-weight: 700; }
+.cmp-answer-note { font-size: 0.85rem; color: var(--cm-sub); }
+
+/* 目安・流れ */
+.cmp-guide,
+.cmp-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.cmp-guide li {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--cm-line);
+  border-radius: 12px;
+  background: #fff;
+}
+.cmp-guide strong { color: var(--cm-teal); }
+
+.cmp-steps { counter-reset: step; }
+.cmp-steps li {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px 12px 56px;
+  border: 1px solid var(--cm-line);
+  border-radius: 12px;
+  background: #fff;
+}
+.cmp-steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--cm-teal);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  line-height: 30px;
+}
+.cmp-steps strong { color: var(--cm-ink); }
+
+/* 確認リスト */
+.cmp-checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.cmp-check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--cm-line);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  line-height: 1.6;
+}
+.cmp-check input {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  accent-color: var(--cm-teal);
+}
+.cmp-check input:focus-visible { outline: 3px solid var(--cm-coral); outline-offset: 2px; }
+.cmp-check:has(input:checked) { background: var(--cm-tint); border-color: var(--cm-teal); }
+.cmp-check-count { margin: 12px 0 0; font-weight: 700; color: var(--cm-sub); }
+.cmp-check-count.is-done { color: var(--cm-teal); }
+
+/* よくある疑問 */
+.cmp-faq { display: grid; gap: 8px; }
+.cmp-faq details {
+  border: 1px solid var(--cm-line);
+  border-radius: 12px;
+  background: #fff;
+}
+.cmp-faq summary {
+  padding: 13px 14px;
+  font-weight: 700;
+  line-height: 1.6;
+  cursor: pointer;
+}
+.cmp-faq summary:focus-visible { outline: 3px solid var(--cm-coral); outline-offset: 2px; border-radius: 12px; }
+.cmp-faq details p { margin: 0; padding: 0 14px 14px; color: var(--cm-ink); }
+
+/* リンク */
+.cmp-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (min-width: 640px) {
+  .cmp-h2 { font-size: 1.45rem; }
+  .cmp-opts { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+}

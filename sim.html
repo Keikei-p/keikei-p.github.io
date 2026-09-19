@@ -4,62 +4,389 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>格安SIM比較 | つうしんコンパス</title>
-<meta name="description" content="料金やデータ容量を条件別に比較できる機能を準備しています。">
+<meta name="description" content="大手キャリアから乗り換えるとき、格安SIM・サブブランド・大手キャリアのどれが合うかを、表と条件の絞り込みで比べられます。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="compare.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="container">
-    <a class="brand" href="index.html">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="13" fill="none" stroke="#0f6e8c" stroke-width="2"></circle>
-        <polygon points="16,7 20,16 16,16" fill="#ff6b4a"></polygon>
-        <polygon points="16,25 12,16 16,16" fill="#0f6e8c"></polygon>
-        <circle cx="16" cy="16" r="2" fill="#16232e"></circle>
-      </svg>
-      <span class="brand-name">つうしんコンパス</span>
-    </a>
-
-    <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
-
-    <nav class="site-nav">
-      <a href="index.html#menu">診断メニュー</a>
-      <a href="index.html#about">このサイトについて</a>
-    </nav>
-  </div>
+<div class="container">
+<a class="brand" href="index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+<circle cx="16" cy="16" r="13" fill="none" stroke="#0f6e8c" stroke-width="2"></circle>
+<polygon points="16,7 20,16 16,16" fill="#ff6b4a"></polygon>
+<polygon points="16,25 12,16 16,16" fill="#0f6e8c"></polygon>
+<circle cx="16" cy="16" r="2" fill="#16232e"></circle>
+</svg>
+<span class="brand-name">つうしんコンパス</span>
+</a>
+<button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+<line x1="3" y1="6" x2="21" y2="6"></line>
+<line x1="3" y1="12" x2="21" y2="12"></line>
+<line x1="3" y1="18" x2="21" y2="18"></line>
+</svg>
+</button>
+<nav class="site-nav">
+<a href="index.html#menu">診断メニュー</a>
+<a href="index.html#about">このサイトについて</a>
+</nav>
+</div>
 </header>
 
 <main>
-  <section class="placeholder">
-    <div class="container">
-      <svg class="placeholder-icon" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
-        <path d="M24 15v9l7 4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-      <h1>格安SIM比較は準備中です</h1>
-      <p>料金やデータ容量を条件別に比較できる機能を準備しています。<br>公開までもうしばらくお待ちください。</p>
-      <a class="btn btn-primary" href="index.html">トップページに戻る</a>
-    </div>
-  </section>
+<section class="diag-shell">
+<div class="container container-narrow">
+
+<div class="diag-page-head">
+<h1>格安SIM比較</h1>
+<p>大手キャリアから乗り換えるとき、どのタイプが合うのか。3つのタイプを表で比べて、条件で絞り込めます。</p>
+</div>
+
+<section class="cmp-section" aria-labelledby="cmp-t-title">
+<h2 class="cmp-h2" id="cmp-t-title">3つのタイプをくらべる</h2>
+<p class="cmp-lead">「格安SIM」と一口に言っても、選び方は大きく3タイプに分かれます。</p>
+<div class="cmp-scroll" tabindex="0" role="region" aria-label="3つのタイプをくらべる（横にスクロールできます）">
+<table class="cmp-table">
+<thead><tr><th scope="col" class="cmp-corner"><span class="cmp-sr">項目</span></th>
+<th scope="col" data-col="0">格安SIM(MVNO)</th>
+<th scope="col" data-col="1">サブブランド・オンライン専用プラン</th>
+<th scope="col" data-col="2">大手キャリアの通常プラン</th>
+</tr></thead><tbody>
+<tr><th scope="row">月額料金の傾向</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-3">◎</span> 安くなりやすい</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-2">○</span> 中くらい</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-1">△</span> 高めになりやすい</td>
+</tr>
+<tr><th scope="row">混み合う時間帯の速度</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-1">△</span> お昼などに遅くなることがある</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-2">○</span> 比較的安定しやすい</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-3">◎</span> 安定しやすい</td>
+</tr>
+<tr><th scope="row">店舗でのサポート</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-1">△</span> オンライン中心。店舗は少なめ</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-2">○</span> 店舗で相談できる場合もある</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-3">◎</span> 全国の店舗で相談しやすい</td>
+</tr>
+<tr><th scope="row">申し込みの手軽さ</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-2">○</span> オンラインで完結。手続きは自分で行う</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-2">○</span> オンラインでも店頭でも選べる場合が多い</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-3">◎</span> 店頭・オンラインどちらも選べる</td>
+</tr>
+<tr><th scope="row">容量の選びやすさ</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-3">◎</span> 少量から大容量まで細かく選べることが多い</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-2">○</span> 決まったプランから選ぶ</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-2">○</span> 大容量のプランが中心</td>
+</tr>
+<tr><th scope="row">向いている人</th>
+<td data-col="0">とにかく月額をおさえたい人</td>
+<td data-col="1">料金と安定感のバランスを見たい人</td>
+<td data-col="2">安心とサポートを重視する人</td>
+</tr>
+</tbody></table></div>
+<p class="cmp-note">◎○△は一般的な傾向をもとにした目安です。会社やプランによって内容は異なります。</p>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-f-title">
+<h2 class="cmp-h2" id="cmp-f-title">条件でしぼる</h2>
+<p class="cmp-lead">5つの質問に答えると、合いそうなタイプが表の中で色づきます。</p>
+<div class="cmp-filter" id="cmp-filter"></div>
+<div class="cmp-answer" id="cmp-answer" aria-live="polite"></div>
+<button type="button" class="back-link" id="cmp-reset" hidden>選びなおす</button>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-g-title">
+<h2 class="cmp-h2" id="cmp-g-title">データ量の目安</h2>
+<p class="cmp-lead">自宅のWi-Fiで使う分は含めず、スマホの回線だけで使うデータ量の目安です。</p>
+<ul class="cmp-guide">
+<li><strong>〜3GBほど</strong><span>メッセージ、地図、Webサイトの閲覧が中心の人</span></li>
+<li><strong>5〜10GBほど</strong><span>SNSや音楽もよく使うが、動画はあまり見ない人</span></li>
+<li><strong>20GB前後</strong><span>外出先でも動画を日常的に見る人</span></li>
+<li><strong>30GB以上</strong><span>動画や大きなデータをよく使う人、テザリングを使う人</span></li>
+</ul>
+<p class="cmp-note">動画は画質によって、1時間で数百MB〜1.5GBほど使います。あくまで目安なので、まずは今の使用量をスマホの設定画面などで確認してみてください。</p>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-c-title">
+<h2 class="cmp-h2" id="cmp-c-title">乗り換え前の確認リスト</h2>
+<p class="cmp-lead">申し込む前に、この6つを確認しておくと手続きがスムーズです。</p>
+<ul class="cmp-checks" id="cmp-checklist">
+<li><label class="cmp-check"><input type="checkbox" id="chk-0"><span>今の端末が、乗り換え先の回線で使えるか(対応する周波数・SIMロック解除)を確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-1"><span>電話番号を引き継ぐための手続き(MNP予約番号の取得)を確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-2"><span>今の契約の解約にかかる費用や、端末の分割払いの残りを確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-3"><span>キャリアメールが使えなくなる場合に備えて、連絡先や登録先の変更を考えた</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-4"><span>支払い方法(クレジットカードなど)を用意できるか確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-5"><span>今月のデータ使用量を、スマホの設定画面などで確認した</span></label></li>
+</ul>
+<p class="cmp-check-count" id="cmp-check-count" aria-live="polite">0 / 6 確認済み</p>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-q-title">
+<h2 class="cmp-h2" id="cmp-q-title">よくある疑問</h2>
+<div class="cmp-faq">
+<details><summary>格安SIMは、なぜ安いのですか?</summary><p>実店舗を少なくしたり、大手キャリアの回線を借りて運営したりして、費用をおさえている会社が多いためです。その分、サポートは主にオンラインになることが多いです。</p></details>
+<details><summary>乗り換えると、電話番号は変わりますか?</summary><p>「MNP」という手続きをすれば、今の電話番号をそのまま使えることがほとんどです。乗り換え元で予約番号を取得してから申し込みます。</p></details>
+<details><summary>eSIMとは何ですか?</summary><p>物理的なSIMカードの代わりに、端末に内蔵されたSIMへ契約情報を書き込む方式です。対応する端末が必要で、申し込みから使い始めるまでが早いことがあります。</p></details>
+<details><summary>家族で乗り換えるときの注意点は?</summary><p>家族割などの割引は、乗り換え元と乗り換え先のどちらでも条件が変わることがあります。全員分の総額で比べるのがおすすめです。</p></details>
+</div></section>
+<section class="cmp-section cmp-links-section" aria-labelledby="cmp-l-title">
+<h2 class="cmp-h2" id="cmp-l-title">あわせて確認する</h2>
+<div class="cmp-links">
+<a class="btn btn-primary" href="smartphone.html">スマホ料金診断をする</a>
+<a class="btn btn-ghost" href="wifi.html">自宅のWi-Fiも診断する</a>
+<a class="btn btn-ghost" href="index.html#menu">診断メニューに戻る</a>
+</div></section>
+
+</div>
+</section>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p class="footer-name">つうしんコンパス</p>
-    <p class="footer-note">本サイトは通信サービス選びの参考情報を提供するものです。掲載内容は今後追加・変更されます。</p>
-  </div>
+<div class="container">
+<p class="footer-name">つうしんコンパス</p>
+<p class="footer-note">掲載内容は一般的な傾向をもとにした目安です。料金・プラン・条件は変わることがあるため、申し込み前に各社の公式サイトでご確認ください。</p>
+</div>
 </footer>
 
+<script type="application/json" id="cmp-config">
+{
+ "types": [
+  {
+   "name": "格安SIM(MVNO)",
+   "tagline": "料金をおさえたい人向け",
+   "message": "月額をおさえやすい反面、お昼どきなど混み合う時間は速度が落ちることがあります。データ量と通話オプションを合わせた「総額」で比べるのがコツです。"
+  },
+  {
+   "name": "サブブランド・オンライン専用プラン",
+   "tagline": "料金と安定感のバランスをとりたい人向け",
+   "message": "大手キャリアの回線を使うので通信が安定しやすく、料金は中間くらいです。店舗で相談できるかどうかは、ブランドやプランによって違います。"
+  },
+  {
+   "name": "大手キャリアの通常プラン",
+   "tagline": "安心とサポートを重視したい人向け",
+   "message": "通信品質と店舗サポートの安心感が魅力です。料金は高めになりやすいので、使っていない容量やオプションがないか見直すと差が縮まることがあります。"
+  }
+ ],
+ "tieOrder": [
+  1,
+  0,
+  2
+ ],
+ "questions": [
+  {
+   "legend": "1か月に使うデータ量は?",
+   "options": [
+    {
+     "label": "少なめ(〜5GBほど)",
+     "p": [
+      3,
+      1,
+      0
+     ],
+     "w": {
+      "0": "データ量が少なめなら、細かく容量を選べる格安SIMで料金をおさえやすいです。"
+     }
+    },
+    {
+     "label": "ふつう(10〜20GBほど)",
+     "p": [
+      3,
+      2,
+      1
+     ],
+     "w": {
+      "0": "10〜20GBほどでも、格安SIMなら手ごろなプランが見つかることがあります。",
+      "1": "10〜20GBほどなら、サブブランドの中容量プランが選びやすいです。"
+     }
+    },
+    {
+     "label": "多い(30GB以上)",
+     "p": [
+      1,
+      3,
+      2
+     ],
+     "w": {
+      "1": "大容量でも、サブブランドなら通信の安定感と料金のバランスがとれます。",
+      "2": "大容量を安定して使うなら、大手キャリアのプランも選択肢です。"
+     }
+    },
+    {
+     "label": "よくわからない",
+     "p": [
+      2,
+      2,
+      1
+     ],
+     "w": {
+      "0": "使用量が読めないときは、容量を細かく選べる格安SIMで様子を見る手もあります。",
+      "1": "使用量が読めないときは、中間の料金帯のサブブランドも選びやすいです。"
+     }
+    }
+   ],
+   "hint": "自宅のWi-Fiで使う分は含めません。"
+  },
+  {
+   "legend": "電話(通話)はどのくらい使いますか?",
+   "options": [
+    {
+     "label": "ほとんど使わない(アプリ通話が中心)",
+     "p": [
+      3,
+      2,
+      0
+     ],
+     "w": {
+      "0": "通話が少なければ、通話オプションなしで料金をおさえやすいです。",
+      "1": "通話が少なければ、サブブランドの基本プランでも足りやすいです。"
+     }
+    },
+    {
+     "label": "ときどき使う",
+     "p": [
+      2,
+      2,
+      2
+     ],
+     "w": {
+      "0": "ときどきの通話なら、通話オプションを足しても総額をおさえやすいです。"
+     }
+    },
+    {
+     "label": "よく使う(長電話・仕事で使う)",
+     "p": [
+      1,
+      2,
+      3
+     ],
+     "w": {
+      "1": "通話が多くても、かけ放題を付けられるサブブランドもあります。",
+      "2": "通話をよく使うなら、通話定額が充実している大手のプランも選択肢です。"
+     }
+    }
+   ]
+  },
+  {
+   "legend": "手続きやサポートは?",
+   "options": [
+    {
+     "label": "オンラインで自分で手続きできる",
+     "p": [
+      3,
+      2,
+      0
+     ],
+     "w": {
+      "0": "手続きをオンラインで自分でできるなら、格安SIMの手軽さを活かせます。",
+      "1": "オンライン中心でも、サブブランドのオンライン専用プランなら手軽です。"
+     }
+    },
+    {
+     "label": "店舗で相談できると安心",
+     "p": [
+      0,
+      1,
+      4
+     ],
+     "w": {
+      "1": "店舗で相談できる場合もあるので、近くに窓口があるか確認しましょう。",
+      "2": "全国の店舗で相談できる安心感があります。"
+     }
+    },
+    {
+     "label": "どちらでもよい",
+     "p": [
+      2,
+      2,
+      2
+     ],
+     "w": {}
+    }
+   ]
+  },
+  {
+   "legend": "お昼などの混み合う時間帯の速度は?",
+   "options": [
+    {
+     "label": "あまり気にしない",
+     "p": [
+      4,
+      1,
+      0
+     ],
+     "w": {
+      "0": "お昼などの速度低下があまり気にならないなら、格安SIMで料金をおさえやすいです。"
+     }
+    },
+    {
+     "label": "できれば安定していてほしい",
+     "p": [
+      1,
+      3,
+      2
+     ],
+     "w": {
+      "1": "通信の安定感を求めるなら、大手の回線を使うサブブランドが有力です。",
+      "2": "通信の安定感では、大手キャリアの通常プランが安心です。"
+     }
+    },
+    {
+     "label": "仕事や学業で止まると困る",
+     "p": [
+      0,
+      3,
+      3
+     ],
+     "w": {
+      "1": "止まると困る使い方なら、大手の回線を使うサブブランドが有力です。",
+      "2": "止まると困る使い方なら、大手キャリアの通常プランが安心です。"
+     }
+    }
+   ]
+  },
+  {
+   "legend": "いちばん大事にしたいことは?",
+   "options": [
+    {
+     "label": "料金の安さ",
+     "p": [
+      4,
+      1,
+      0
+     ],
+     "w": {
+      "0": "料金をいちばん大事にするなら、格安SIMが向いています。"
+     }
+    },
+    {
+     "label": "料金と安心のバランス",
+     "p": [
+      1,
+      3,
+      1
+     ],
+     "w": {
+      "1": "料金と通信の安定感のバランスは、サブブランドが取りやすいです。"
+     }
+    },
+    {
+     "label": "安心感・サポート",
+     "p": [
+      0,
+      2,
+      4
+     ],
+     "w": {
+      "1": "安心感を重視しつつ料金も見るなら、サブブランドも候補です。",
+      "2": "安心感とサポートを最優先するなら、大手キャリアのプランが向いています。"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <script src="script.js"></script>
+<script src="compare.js"></script>
 </body>
 </html>

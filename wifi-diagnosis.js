@@ -3,9 +3,9 @@
   'use strict';
 
   // タイプの並び: 0 = 光回線, 1 = ホームルーター, 2 = モバイルWi-Fi
+  var TIE_ORDER = [1, 0, 2];      // 同点のときの優先順(ホームルーター → 光回線 → モバイル)
+  var NEEDLE_ANGLE = [-55, 0, 55]; // 結果画面でコンパスの針が向く角度
   var KEYS = ['H', 'R', 'M'];
-  var TIE_ORDER = [1, 0, 2];       // 同点のときの優先順(ホームルーター → 光回線 → モバイル)
-  var NEEDLE_ANGLE = [-55, 0, 55]; // 結果のコンパスの針が向く角度(左=光 / 上=置く / 右=持つ)
 
   var TYPES = [
     {
@@ -38,7 +38,7 @@
         '電波状況によって使い心地が変わります',
         'プランによっては、大量の通信で速度制限がかかることがあります'
       ],
-      next: { href: 'smartphone.html', label: 'スマホ料金診断もしてみる' }
+      next: { href: 'smartphone.html', label: 'スマホ料金診断で通信費をまとめて見直す' }
     },
     {
       name: 'モバイルWi-Fi(持ち運び型)',
@@ -54,7 +54,7 @@
         '充電が必要で、長時間使うとバッテリーが減ります',
         '家族みんなで動画をよく見る使い方には向きにくいです'
       ],
-      next: { href: 'sim.html', label: '格安SIMもチェックする' }
+      next: { href: 'sim.html', label: '格安SIMもあわせてチェックする' }
     }
   ];
 
@@ -169,32 +169,36 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var el = {
-    quiz: $('quiz'), result: $('result'),
-    qCurrent: $('q-current'), qTotal: $('q-total'),
-    track: $('progress-track'), fill: $('progress-fill'),
-    title: $('question-title'), hint: $('q-hint'),
-    options: $('option-list'), back: $('back-btn'),
-    compass: $('result-compass'), type: $('result-type'),
-    tagline: $('result-tagline'), desc: $('result-desc'),
-    extra: $('result-extra'), next: $('result-next'), retry: $('retry-btn')
+    intro: $('intro'), quiz: $('quiz'), result: $('result'),
+    start: $('start-btn'), back: $('back-btn'),
+    qNum: $('q-num'), qText: $('q-text'), qHint: $('q-hint'),
+    choices: $('choices'), progress: $('progress'), progressBar: $('progress-bar'),
+    introCompass: $('intro-compass'), quizCompass: $('quiz-compass'),
+    resultBody: $('result-body')
   };
 
   /* ---------- コンパス(SVG) ---------- */
 
-  function compassSVG() {
-    var i, a, marks = '';
-    var glyphs = ['光', '置', '持'];
-    for (i = 0; i < 3; i++) {
-      a = NEEDLE_ANGLE[i] * Math.PI / 180;
-      marks += '<text class="mark" data-type="' + i + '" x="' + (100 + 76 * Math.sin(a)).toFixed(1) +
-        '" y="' + (100 - 76 * Math.cos(a)).toFixed(1) + '">' + glyphs[i] + '</text>';
+  function compassSVG(labeled) {
+    var i, a, ticks = '', marks = '';
+    for (i = 0; i < 24; i++) {
+      var major = i % 6 === 0;
+      ticks += '<line class="tick' + (major ? ' tick-major' : '') + '" x1="100" y1="' + (major ? 8 : 11) +
+        '" x2="100" y2="18" transform="rotate(' + (i * 15) + ' 100 100)"/>';
+    }
+    if (labeled) {
+      var glyphs = ['光', '置', '持'];
+      for (i = 0; i < 3; i++) {
+        a = NEEDLE_ANGLE[i] * Math.PI / 180;
+        marks += '<text class="mark" data-type="' + i + '" x="' + (100 + 74 * Math.sin(a)).toFixed(1) +
+          '" y="' + (100 - 74 * Math.cos(a)).toFixed(1) + '">' + glyphs[i] + '</text>';
+      }
     }
     return '<svg viewBox="0 0 200 200" role="presentation" focusable="false">' +
-      '<circle class="ring" cx="100" cy="100" r="94"/>' +
-      '<circle class="ring-inner" cx="100" cy="100" r="56"/>' + marks +
+      '<circle class="ring" cx="100" cy="100" r="94"/>' + ticks + marks +
       '<g class="needle">' +
-        '<polygon class="needle-head" points="100,36 109,100 91,100"/>' +
-        '<polygon class="needle-tail" points="100,150 109,100 91,100"/>' +
+        '<polygon class="needle-head" points="100,36 108,100 92,100"/>' +
+        '<polygon class="needle-tail" points="100,150 108,100 92,100"/>' +
       '</g>' +
       '<circle class="hub" cx="100" cy="100" r="7"/>' +
     '</svg>';
@@ -205,34 +209,47 @@
     if (n) { n.style.transform = 'rotate(' + deg + 'deg)'; }
   }
 
-  /* ---------- 質問 ---------- */
+  /* ---------- 画面の切り替え ---------- */
+
+  function show(section) {
+    el.intro.hidden = section !== 'intro';
+    el.quiz.hidden = section !== 'quiz';
+    el.result.hidden = section !== 'result';
+  }
+
+  function start() {
+    state.step = 0;
+    state.answers = [];
+    show('quiz');
+    renderQuestion();
+  }
 
   function renderQuestion() {
     var q = QUESTIONS[state.step];
-    var num = state.step + 1;
+    el.qNum.textContent = '質問 ' + (state.step + 1) + ' / ' + TOTAL;
+    el.qText.textContent = q.text;
+    el.qHint.textContent = q.hint || '';
+    el.qHint.hidden = !q.hint;
+    el.progressBar.style.width = (state.step / TOTAL * 100) + '%';
+    el.progress.setAttribute('aria-valuenow', String(state.step));
+    setNeedle(el.quizCompass, -120 + 240 * state.step / TOTAL);
 
-    el.qCurrent.textContent = String(num);
-    el.qTotal.textContent = String(TOTAL);
-    el.fill.style.width = (num / TOTAL * 100) + '%';
-    el.track.setAttribute('aria-valuenow', String(num));
-    el.title.textContent = q.text;
-    el.hint.textContent = q.hint || '';
-    el.hint.hidden = !q.hint;
-    el.back.hidden = state.step === 0;
-
-    el.options.innerHTML = '';
+    el.choices.innerHTML = '';
     q.options.forEach(function (opt, i) {
+      var li = document.createElement('li');
       var b = document.createElement('button');
       b.type = 'button';
-      b.className = 'wifi-option';
+      b.className = 'choice';
       b.textContent = opt.label;
       b.setAttribute('data-i', String(i));
       if (state.answers[state.step] === i) {
         b.classList.add('is-selected');
         b.setAttribute('aria-pressed', 'true');
       }
-      el.options.appendChild(b);
+      li.appendChild(b);
+      el.choices.appendChild(li);
     });
+    el.qText.focus();
   }
 
   function choose(i) {
@@ -240,27 +257,19 @@
     if (state.step < TOTAL - 1) {
       state.step += 1;
       renderQuestion();
-      el.title.focus();
     } else {
       showResult();
     }
   }
 
   function goBack() {
-    if (state.step > 0) {
+    if (state.step === 0) {
+      show('intro');
+      el.start.focus();
+    } else {
       state.step -= 1;
       renderQuestion();
-      el.title.focus();
     }
-  }
-
-  function restart() {
-    state.step = 0;
-    state.answers = [];
-    el.result.hidden = true;
-    el.quiz.hidden = false;
-    renderQuestion();
-    el.title.focus();
   }
 
   /* ---------- 集計と結果 ---------- */
@@ -275,7 +284,7 @@
   }
 
   function listHTML(items, cls) {
-    return '<ul class="wifi-list ' + cls + '">' +
+    return '<ul class="list ' + cls + '">' +
       items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>';
   }
 
@@ -307,49 +316,55 @@
 
     var bars = order.map(function (k, idx) {
       var ratio = scores[k] / topScore;
-      return '<li class="wifi-score' + (idx === 0 ? ' is-top' : '') + '">' +
-        '<div class="wifi-score-head"><span class="wifi-score-name">' + TYPES[k].name + '</span>' +
-        '<span class="wifi-score-label">' + scoreLabel(ratio, idx === 0) + '</span></div>' +
-        '<div class="wifi-meter" aria-hidden="true"><span style="width:' + Math.max(6, Math.round(ratio * 100)) + '%"></span></div>' +
+      return '<li class="score-row' + (idx === 0 ? ' is-top' : '') + '">' +
+        '<div class="score-head"><span class="score-name">' + TYPES[k].name + '</span>' +
+        '<span class="score-label">' + scoreLabel(ratio, idx === 0) + '</span></div>' +
+        '<div class="meter" aria-hidden="true"><span style="width:' + Math.max(6, Math.round(ratio * 100)) + '%"></span></div>' +
         '</li>';
     }).join('');
 
-    el.type.textContent = t.name;
-    el.tagline.textContent = t.tagline;
-    el.desc.textContent = t.desc;
-    el.next.setAttribute('href', t.next.href);
-    el.next.textContent = t.next.label;
+    el.resultBody.innerHTML =
+      '<div class="compass compass-xl" id="result-compass" aria-hidden="true">' + compassSVG(true) + '</div>' +
+      '<p class="result-kicker">あなたに合いそうなのは</p>' +
+      '<h2 id="result-title" tabindex="-1">' + t.name + '</h2>' +
+      '<p class="tagline">' + t.tagline + '</p>' +
+      '<p class="result-desc">' + t.desc + '</p>' +
+      '<div class="block"><h3>このタイプが合いそうな理由</h3>' + listHTML(collectReasons(top), 'list-ok') + '</div>' +
+      '<div class="block"><h3>このタイプの良いところ</h3>' + listHTML(t.good, 'list-ok') + '</div>' +
+      '<div class="block block-note"><h3>契約前に確認したいこと</h3>' + listHTML(t.caution, 'list-note') + '</div>' +
+      '<div class="block"><h3>3タイプの比べ方</h3><ul class="scores">' + bars + '</ul></div>' +
+      '<div class="actions">' +
+        '<a class="btn-primary" href="' + t.next.href + '">' + t.next.label + '</a>' +
+        '<button type="button" class="btn-ghost" id="retry-btn">もう一度診断する</button>' +
+      '</div>';
 
-    el.extra.innerHTML =
-      '<div class="wifi-block"><h3>このタイプが合いそうな理由</h3>' + listHTML(collectReasons(top), 'wifi-list-ok') + '</div>' +
-      '<div class="wifi-block"><h3>このタイプの良いところ</h3>' + listHTML(t.good, 'wifi-list-ok') + '</div>' +
-      '<div class="wifi-block wifi-block-note"><h3>契約前に確認したいこと</h3>' + listHTML(t.caution, 'wifi-list-note') + '</div>' +
-      '<div class="wifi-block"><h3>3タイプの比べ方</h3><ul class="wifi-scores">' + bars + '</ul></div>';
+    show('result');
 
-    el.compass.innerHTML = compassSVG();
-    var win = el.compass.querySelector('.mark[data-type="' + top + '"]');
+    var compass = $('result-compass');
+    var win = compass.querySelector('.mark[data-type="' + top + '"]');
     if (win) { win.classList.add('mark-win'); }
-
-    el.quiz.hidden = true;
-    el.result.hidden = false;
-
-    // 針を中央から、合うタイプの方向へ動かす
+    // 針を中央から勝ったタイプの方向へ動かす
     window.requestAnimationFrame(function () {
-      window.requestAnimationFrame(function () { setNeedle(el.compass, NEEDLE_ANGLE[top]); });
+      window.requestAnimationFrame(function () { setNeedle(compass, NEEDLE_ANGLE[top]); });
     });
 
-    el.result.scrollIntoView({ block: 'start' });
-    el.type.focus({ preventScroll: true });
+    $('retry-btn').addEventListener('click', function () {
+      show('intro');
+      el.start.focus();
+    });
+    $('result-title').focus();
   }
 
   /* ---------- 初期化 ---------- */
 
-  el.options.addEventListener('click', function (e) {
-    var btn = e.target.closest ? e.target.closest('.wifi-option') : null;
+  el.introCompass.innerHTML = compassSVG(false);
+  el.quizCompass.innerHTML = compassSVG(false);
+  setNeedle(el.introCompass, 20);
+
+  el.start.addEventListener('click', start);
+  el.back.addEventListener('click', goBack);
+  el.choices.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.choice') : null;
     if (btn) { choose(parseInt(btn.getAttribute('data-i'), 10)); }
   });
-  el.back.addEventListener('click', goBack);
-  el.retry.addEventListener('click', restart);
-
-  renderQuestion();
 })();

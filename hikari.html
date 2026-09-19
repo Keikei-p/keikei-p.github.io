@@ -4,62 +4,362 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>光回線比較 | つうしんコンパス</title>
-<meta name="description" content="エリアや速度から自分に合う回線を比較できる機能を準備しています。">
+<meta name="description" content="光コラボ・独自回線・ケーブルテレビ系の3タイプを表で比べ、住まいや使い方の条件で絞り込めます。申し込み前の確認リスト付き。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="compare.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="container">
-    <a class="brand" href="index.html">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="13" fill="none" stroke="#0f6e8c" stroke-width="2"></circle>
-        <polygon points="16,7 20,16 16,16" fill="#ff6b4a"></polygon>
-        <polygon points="16,25 12,16 16,16" fill="#0f6e8c"></polygon>
-        <circle cx="16" cy="16" r="2" fill="#16232e"></circle>
-      </svg>
-      <span class="brand-name">つうしんコンパス</span>
-    </a>
-
-    <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
-
-    <nav class="site-nav">
-      <a href="index.html#menu">診断メニュー</a>
-      <a href="index.html#about">このサイトについて</a>
-    </nav>
-  </div>
+<div class="container">
+<a class="brand" href="index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+<circle cx="16" cy="16" r="13" fill="none" stroke="#0f6e8c" stroke-width="2"></circle>
+<polygon points="16,7 20,16 16,16" fill="#ff6b4a"></polygon>
+<polygon points="16,25 12,16 16,16" fill="#0f6e8c"></polygon>
+<circle cx="16" cy="16" r="2" fill="#16232e"></circle>
+</svg>
+<span class="brand-name">つうしんコンパス</span>
+</a>
+<button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+<line x1="3" y1="6" x2="21" y2="6"></line>
+<line x1="3" y1="12" x2="21" y2="12"></line>
+<line x1="3" y1="18" x2="21" y2="18"></line>
+</svg>
+</button>
+<nav class="site-nav">
+<a href="index.html#menu">診断メニュー</a>
+<a href="index.html#about">このサイトについて</a>
+</nav>
+</div>
 </header>
 
 <main>
-  <section class="placeholder">
-    <div class="container">
-      <svg class="placeholder-icon" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
-        <path d="M24 15v9l7 4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-      <h1>光回線比較は準備中です</h1>
-      <p>エリアや速度から自分に合う回線を比較できる機能を準備しています。<br>公開までもうしばらくお待ちください。</p>
-      <a class="btn btn-primary" href="index.html">トップページに戻る</a>
-    </div>
-  </section>
+<section class="diag-shell">
+<div class="container container-narrow">
+
+<div class="diag-page-head">
+<h1>光回線比較</h1>
+<p>光回線は、会社を選ぶ前に「回線のタイプ」を知ると選びやすくなります。3つのタイプを表で比べて、条件で絞り込めます。</p>
+</div>
+
+<section class="cmp-section" aria-labelledby="cmp-t-title">
+<h2 class="cmp-h2" id="cmp-t-title">3つのタイプをくらべる</h2>
+<p class="cmp-lead">光回線は、どの回線設備を使うかによって、大きく3タイプに分けて考えられます。</p>
+<div class="cmp-scroll" tabindex="0" role="region" aria-label="3つのタイプをくらべる（横にスクロールできます）">
+<table class="cmp-table">
+<thead><tr><th scope="col" class="cmp-corner"><span class="cmp-sr">項目</span></th>
+<th scope="col" data-col="0">光コラボ</th>
+<th scope="col" data-col="1">独自回線</th>
+<th scope="col" data-col="2">ケーブルテレビ系</th>
+</tr></thead><tbody>
+<tr><th scope="row">提供エリア</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-3">◎</span> 全国に広く対応している</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-1">△</span> エリアが限られることが多い</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-1">△</span> 地域ごとに提供会社が異なる</td>
+</tr>
+<tr><th scope="row">速度の傾向</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-2">○</span> 光回線として十分。混む時間帯は変わることも</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-3">◎</span> 速さを出しやすいプランが多い</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-1">△</span> プランや設備によって差が大きい</td>
+</tr>
+<tr><th scope="row">開通までの手軽さ</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-3">◎</span> フレッツ光からなら、工事なしの「転用」ができることも</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-1">△</span> 新しく工事が必要になることが多い</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-1">△</span> 工事が必要になることが多い</td>
+</tr>
+<tr><th scope="row">集合住宅での使いやすさ</th>
+<td data-col="0"><span class="cmp-mark cmp-mark-2">○</span> 建物の設備しだい。対応する物件は多い</td>
+<td data-col="1"><span class="cmp-mark cmp-mark-1">△</span> 建物が対応していないと申し込めないことがある</td>
+<td data-col="2"><span class="cmp-mark cmp-mark-2">○</span> 建物にテレビ用の回線があれば使える場合がある</td>
+</tr>
+<tr><th scope="row">料金の見方</th>
+<td data-col="0">会社ごとの料金やセット割の幅が大きい</td>
+<td data-col="1">スマホとのセット割の条件が決め手になりやすい</td>
+<td data-col="2">テレビやスマホとのセットで変わる</td>
+</tr>
+<tr><th scope="row">向いている人</th>
+<td data-col="0">選択肢の多さと乗り換えやすさを重視する人</td>
+<td data-col="1">速度を重視し、エリア内に住んでいる人</td>
+<td data-col="2">地域のケーブル会社のサービスを使いたい人</td>
+</tr>
+</tbody></table></div>
+<p class="cmp-note">◎○△は一般的な傾向をもとにした目安です。お住まいの地域や建物によって、選べるタイプが変わります。</p>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-f-title">
+<h2 class="cmp-h2" id="cmp-f-title">条件でしぼる</h2>
+<p class="cmp-lead">5つの質問に答えると、合いそうなタイプが表の中で色づきます。</p>
+<div class="cmp-filter" id="cmp-filter"></div>
+<div class="cmp-answer" id="cmp-answer" aria-live="polite"></div>
+<button type="button" class="back-link" id="cmp-reset" hidden>選びなおす</button>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-s-title">
+<h2 class="cmp-h2" id="cmp-s-title">申し込みから開通までの流れ</h2>
+<p class="cmp-lead">光回線は、申し込んですぐには使えません。おおまかな流れを知っておくと安心です。</p>
+<ol class="cmp-steps">
+<li><strong>提供エリアを確認する</strong><span>住所を入れて、その回線が使えるか確認します。集合住宅では、建物の設備も確認します。</span></li>
+<li><strong>申し込む</strong><span>プランやオプション、レンタル機器を選んで申し込みます。</span></li>
+<li><strong>工事の日程を決める</strong><span>工事に立ち会える日を調整します。転用など、工事が不要な場合もあります。</span></li>
+<li><strong>工事をする</strong><span>光ファイバーを引き込む工事を行います。所要時間は住まいによって変わります。</span></li>
+<li><strong>機器をつないで開通</strong><span>ルーターなどをつなぎ、設定が終われば使えるようになります。</span></li>
+</ol>
+<p class="cmp-note">申し込みから開通までは、早くて2週間ほど。引っ越しシーズンなどの繁忙期は、1〜2か月以上かかることもあります。今の回線を解約する時期は、開通日を見てから決めると安心です。</p>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-c-title">
+<h2 class="cmp-h2" id="cmp-c-title">申し込み前の確認リスト</h2>
+<p class="cmp-lead">申し込む前に、この6つを確認しておくと、あとで困りにくくなります。</p>
+<ul class="cmp-checks" id="cmp-checklist">
+<li><label class="cmp-check"><input type="checkbox" id="chk-0"><span>住所で、提供エリアを各社の公式サイトで確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-1"><span>集合住宅の場合、建物にどの回線が入っているか管理会社や大家さんに確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-2"><span>賃貸の場合、工事に許可が必要かどうか確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-3"><span>今の回線の解約費用や、契約の更新月を確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-4"><span>スマホとのセット割が使えるか、対象の条件を確認した</span></label></li>
+<li><label class="cmp-check"><input type="checkbox" id="chk-5"><span>ルーターなどの機器がレンタルか購入か、月額に含まれるかを確認した</span></label></li>
+</ul>
+<p class="cmp-check-count" id="cmp-check-count" aria-live="polite">0 / 6 確認済み</p>
+</section>
+<section class="cmp-section" aria-labelledby="cmp-q-title">
+<h2 class="cmp-h2" id="cmp-q-title">よくある疑問</h2>
+<div class="cmp-faq">
+<details><summary>光コラボと「フレッツ光」は何が違うのですか?</summary><p>フレッツ光は、NTT東日本・西日本が提供する光回線サービスです。光コラボは、その回線設備を使って、他の会社が独自の料金プランやサービスを組み合わせて提供するものです。</p></details>
+<details><summary>「転用」「事業者変更」とは何ですか?</summary><p>フレッツ光から光コラボへ切り替えることを「転用」、光コラボ同士で切り替えることを「事業者変更」と呼びます。どちらも、工事なしでできる場合が多いです。</p></details>
+<details><summary>賃貸でも申し込めますか?</summary><p>建物の設備や、大家さん・管理会社の許可によって変わります。まずは建物にどの回線が入っているか、工事してよいかを確認しましょう。</p></details>
+<details><summary>速度が遅いと感じたら?</summary><p>回線そのものだけでなく、ルーターの置き場所や古さ、混み合う時間帯、Wi-Fiのつなぎ方が原因のこともあります。まずはルーターの再起動や、有線でのつなぎ方を試してみてください。</p></details>
+</div></section>
+<section class="cmp-section cmp-links-section" aria-labelledby="cmp-l-title">
+<h2 class="cmp-h2" id="cmp-l-title">あわせて確認する</h2>
+<div class="cmp-links">
+<a class="btn btn-primary" href="wifi.html">Wi-Fi診断をする</a>
+<a class="btn btn-ghost" href="smartphone.html">スマホ料金診断をする</a>
+<a class="btn btn-ghost" href="index.html#menu">診断メニューに戻る</a>
+</div></section>
+
+</div>
+</section>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p class="footer-name">つうしんコンパス</p>
-    <p class="footer-note">本サイトは通信サービス選びの参考情報を提供するものです。掲載内容は今後追加・変更されます。</p>
-  </div>
+<div class="container">
+<p class="footer-name">つうしんコンパス</p>
+<p class="footer-note">掲載内容は一般的な傾向をもとにした目安です。提供エリア・料金・条件は変わることがあるため、申し込み前に各社の公式サイトでご確認ください。</p>
+</div>
 </footer>
 
+<script type="application/json" id="cmp-config">
+{
+ "types": [
+  {
+   "name": "光コラボ",
+   "tagline": "全国に広く、乗り換えやすい定番タイプ",
+   "message": "NTTの光回線設備を使うタイプで、対応エリアが広いのが特徴です。いまフレッツ光を使っているなら、「転用」という手続きで工事なしに切り替えられることがあります。"
+  },
+  {
+   "name": "独自回線",
+   "tagline": "速度を重視する人向け",
+   "message": "事業者が自社の光ファイバー網で提供するタイプです。速度を出しやすいプランが多い一方、提供エリアや建物によっては申し込めません。まず住所で対応できるか確認しましょう。"
+  },
+  {
+   "name": "ケーブルテレビ系",
+   "tagline": "地域のケーブル会社を使いたい人向け",
+   "message": "地域のケーブルテレビ会社が提供するインターネットです。テレビとセットで使える場合もあります。プランの内容や速度は会社ごとの差が大きいので、提供会社ごとに確認が必要です。"
+  }
+ ],
+ "tieOrder": [
+  0,
+  1,
+  2
+ ],
+ "questions": [
+  {
+   "legend": "お住まいのタイプは?",
+   "options": [
+    {
+     "label": "戸建て",
+     "p": [
+      2,
+      3,
+      0
+     ],
+     "w": {
+      "0": "戸建てなら、光コラボも独自回線も工事を進めやすいです。",
+      "1": "戸建てなら、独自回線の引き込み工事も進めやすいです。"
+     }
+    },
+    {
+     "label": "集合住宅(マンション・アパート)",
+     "p": [
+      3,
+      1,
+      3
+     ],
+     "w": {
+      "0": "集合住宅では、建物にNTTの回線が入っていて光コラボが選べることが多いです。",
+      "2": "建物にテレビ用の回線があれば、ケーブルテレビ系が使える場合もあります。"
+     }
+    },
+    {
+     "label": "よくわからない",
+     "p": [
+      2,
+      1,
+      1
+     ],
+     "w": {
+      "0": "住まいの設備がわからないときは、対応範囲の広い光コラボから確認するのが確実です。"
+     }
+    }
+   ]
+  },
+  {
+   "legend": "今のネット回線は?",
+   "options": [
+    {
+     "label": "光回線を使っていない(新しく申し込む)",
+     "p": [
+      1,
+      2,
+      2
+     ],
+     "w": {}
+    },
+    {
+     "label": "光回線を使っていて、乗り換えたい",
+     "p": [
+      3,
+      2,
+      1
+     ],
+     "w": {
+      "0": "いまの回線がフレッツ光系なら、工事なしで切り替えられる「転用」の対象かもしれません。"
+     }
+    },
+    {
+     "label": "よくわからない",
+     "p": [
+      2,
+      1,
+      1
+     ],
+     "w": {}
+    }
+   ]
+  },
+  {
+   "legend": "速度や安定性は?",
+   "options": [
+    {
+     "label": "ふつうに使えればよい",
+     "p": [
+      2,
+      1,
+      3
+     ],
+     "w": {
+      "0": "ふつうの使い方なら、対応範囲が広く選択肢の多い光コラボで十分なことが多いです。",
+      "2": "ふつうの使い方なら、地域のケーブルテレビ系も選べます。"
+     }
+    },
+    {
+     "label": "動画や在宅ワークで安定させたい",
+     "p": [
+      3,
+      3,
+      1
+     ],
+     "w": {
+      "0": "動画や在宅ワークでも、光コラボで足りるケースは多いです。",
+      "1": "動画や在宅ワークなら、速度を出しやすい独自回線も候補です。"
+     }
+    },
+    {
+     "label": "ゲームやWeb会議で最重視したい",
+     "p": [
+      1,
+      4,
+      0
+     ],
+     "w": {
+      "1": "速度と安定性を最優先するなら、独自回線のプランを確認する価値があります。"
+     }
+    }
+   ]
+  },
+  {
+   "legend": "お住まいの地域は?",
+   "options": [
+    {
+     "label": "都市部",
+     "p": [
+      2,
+      4,
+      1
+     ],
+     "w": {
+      "0": "都市部でも、光コラボなら安心して選べます。",
+      "1": "都市部なら、独自回線の提供エリア内である可能性が高いです。"
+     }
+    },
+    {
+     "label": "郊外・地方",
+     "p": [
+      2,
+      0,
+      4
+     ],
+     "w": {
+      "0": "郊外や地方では、対応範囲の広い光コラボが選びやすいです。",
+      "2": "地域によっては、地元のケーブルテレビ会社のサービスが選べます。"
+     }
+    },
+    {
+     "label": "わからない",
+     "p": [
+      2,
+      1,
+      1
+     ],
+     "w": {
+      "0": "エリアがわからないときは、光コラボ、独自回線の順に確認していくと確実です。"
+     }
+    }
+   ]
+  },
+  {
+   "legend": "開通までのスピードは?",
+   "options": [
+    {
+     "label": "なるべく早く使いたい・工事の手間を減らしたい",
+     "p": [
+      3,
+      0,
+      1
+     ],
+     "w": {
+      "0": "工事なしで切り替えられる場合があり、開通までが早くなりやすいです。"
+     }
+    },
+    {
+     "label": "工事の日程はゆっくりでもよい",
+     "p": [
+      2,
+      3,
+      3
+     ],
+     "w": {
+      "1": "工事を待てるなら、独自回線の新規工事も選べます。",
+      "0": "日程に余裕があれば、選べる光コラボの幅が広がります。"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <script src="script.js"></script>
+<script src="compare.js"></script>
 </body>
 </html>
