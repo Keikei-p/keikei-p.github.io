@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wi-Fi診断 | つうしんコンパス</title>
+  <meta name="description" content="7つの質問に答えるだけで、光回線・ホームルーター・モバイルWi-Fiのどれが自分に合いそうかがわかる診断です。">
+  <link rel="stylesheet" href="wifi.css">
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">つうしんコンパス</a>
+      <nav aria-label="サイト内メニュー">
+        <ul class="nav-list">
+          <li><a href="smartphone.html">スマホ料金</a></li>
+          <li><a href="wifi.html" aria-current="page">Wi-Fi</a></li>
+          <li><a href="sim.html">格安SIM</a></li>
+          <li><a href="hikari.html">光回線</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+
+    <!-- はじめに -->
+    <section id="intro" class="panel intro" aria-labelledby="intro-title">
+      <div class="compass compass-lg" id="intro-compass" aria-hidden="true"></div>
+      <h1 id="intro-title">Wi-Fi診断</h1>
+      <p class="lead">7つの質問に答えると、光回線・ホームルーター・モバイルWi-Fiのどれが合いそうかがわかります。1分ほどで終わります。</p>
+      <ul class="type-preview">
+        <li><strong>光回線</strong>自宅に回線を引いて使う</li>
+        <li><strong>ホームルーター</strong>コンセントにつなぐだけ</li>
+        <li><strong>モバイルWi-Fi</strong>持ち歩いて使う</li>
+      </ul>
+      <button type="button" class="btn-primary" id="start-btn">診断をはじめる</button>
+      <p class="fine">回答はこのページ内だけで処理され、保存や送信はされません。</p>
+    </section>
+
+    <!-- 質問 -->
+    <section id="quiz" class="panel" hidden aria-labelledby="q-text">
+      <div class="quiz-top">
+        <div class="compass compass-sm" id="quiz-compass" aria-hidden="true"></div>
+        <div class="quiz-meta">
+          <p class="q-num" id="q-num" aria-live="polite"></p>
+          <div class="progress" id="progress" role="progressbar" aria-label="診断の進み具合" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0">
+            <span id="progress-bar"></span>
+          </div>
+        </div>
+      </div>
+      <h2 class="q-text" id="q-text" tabindex="-1"></h2>
+      <p class="q-hint" id="q-hint" hidden></p>
+      <ul class="choices" id="choices"></ul>
+      <div class="quiz-nav">
+        <button type="button" class="text-btn" id="back-btn">もどる</button>
+      </div>
+    </section>
+
+    <!-- 結果 -->
+    <section id="result" class="panel result" hidden aria-labelledby="result-title">
+      <div id="result-body"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>この診断は回答をもとにした目安です。特定のサービスや料金をおすすめするものではありません。提供エリア・料金・契約条件は、各社の公式サイトでご確認ください。</p>
+      <p><a href="index.html">トップページへ戻る</a></p>
+    </div>
+  </footer>
+
+  <script src="wifi-diagnosis.js"></script>
+</body>
+</html>
