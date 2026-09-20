@@ -111,6 +111,25 @@
     }).filter(Boolean);
   }
 
+  function freshness(service, maxDays) {
+    var raw = service && service.checkedAt;
+    if (!raw || !/^\d{4}-\d{2}-\d{2}$/.test(String(raw))) {
+      return { state: 'unknown', label: '情報確認日 未登録' };
+    }
+
+    var checked = new Date(String(raw) + 'T00:00:00');
+    if (Number.isNaN(checked.getTime())) {
+      return { state: 'unknown', label: '情報確認日 未登録' };
+    }
+
+    var days = Math.floor((Date.now() - checked.getTime()) / 86400000);
+    var limit = Number(maxDays || 90);
+
+    if (days < 0) return { state: 'unknown', label: '確認日 ' + raw };
+    if (days > limit) return { state: 'stale', label: '要再確認：' + raw + ' 時点' };
+    return { state: 'fresh', label: '確認済み：' + raw };
+  }
+
   function externalUrl(service) {
     if (!service) return '';
     return service.affiliateUrl || service.officialUrl || '';
@@ -127,6 +146,7 @@
     discountLabel: discountLabel,
     quickFacts: quickFacts,
     sourceItems: sourceItems,
+    freshness: freshness,
     externalUrl: externalUrl
   };
 })();
