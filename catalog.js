@@ -3,7 +3,8 @@
   'use strict';
 
   var roots = document.querySelectorAll('[data-catalog-kind]');
-  if (!roots.length) return;
+  var u = window.TCServiceUtils;
+  if (!roots.length || !u) return;
 
   function textValue(value, fallback) {
     return value == null || value === '' ? fallback : String(value);
@@ -20,11 +21,6 @@
       .map(function (x) { return String(x).toLowerCase(); });
 
     return values.some(function (value) { return allowed.indexOf(value) >= 0; });
-  }
-
-  function fact(label, value) {
-    if (value == null || value === '') return '';
-    return '<div class="catalog-fact"><dt>' + label + '</dt><dd>' + value + '</dd></div>';
   }
 
   roots.forEach(function (root) {
@@ -64,9 +60,19 @@
         var top = document.createElement('div');
         top.className = 'catalog-card-top';
 
+        var titleWrap = document.createElement('div');
         var title = document.createElement('h3');
         title.textContent = service.name;
-        top.appendChild(title);
+        titleWrap.appendChild(title);
+
+        if (service.carrier || service.network) {
+          var carrier = document.createElement('p');
+          carrier.className = 'catalog-carrier';
+          carrier.textContent = service.carrier || service.network;
+          titleWrap.appendChild(carrier);
+        }
+
+        top.appendChild(titleWrap);
 
         var badge = document.createElement('span');
         badge.className = 'catalog-badge';
@@ -75,18 +81,53 @@
 
         card.appendChild(top);
 
+        var price = document.createElement('div');
+        price.className = 'catalog-price';
+        var priceLabel = document.createElement('span');
+        priceLabel.textContent = '料金目安';
+        var priceValue = document.createElement('strong');
+        priceValue.textContent = u.priceLabel(service);
+        price.appendChild(priceLabel);
+        price.appendChild(priceValue);
+        card.appendChild(price);
+
         var summary = document.createElement('p');
         summary.className = 'catalog-summary';
         summary.textContent = service.summary || '特徴・条件を確認中です。';
         card.appendChild(summary);
 
-        var dl = document.createElement('dl');
-        dl.className = 'catalog-facts';
-        dl.innerHTML =
-          fact('提供元', service.carrier || service.network) +
-          fact('料金', service.priceLabel || (service.monthlyPrice == null ? '公式情報確認後に掲載' : String(service.monthlyPrice))) +
-          fact('確認日', service.checkedAt || '未登録');
-        card.appendChild(dl);
+        var factList = document.createElement('div');
+        factList.className = 'catalog-chips';
+        u.quickFacts(service).slice(0, 4).forEach(function (fact) {
+          var chip = document.createElement('span');
+          chip.className = 'catalog-chip';
+          chip.textContent = fact.label + '：' + fact.value;
+          factList.appendChild(chip);
+        });
+        if (factList.children.length) card.appendChild(factList);
+
+        if (Array.isArray(service.suitableFor) && service.suitableFor.length) {
+          var fit = document.createElement('p');
+          fit.className = 'catalog-fit';
+          fit.innerHTML = '<strong>向いている人：</strong>';
+          fit.appendChild(document.createTextNode(service.suitableFor[0]));
+          card.appendChild(fit);
+        }
+
+        if (Array.isArray(service.cautions) && service.cautions.length) {
+          var caution = document.createElement('p');
+          caution.className = 'catalog-caution';
+          caution.innerHTML = '<strong>注意：</strong>';
+          caution.appendChild(document.createTextNode(service.cautions[0]));
+          card.appendChild(caution);
+        }
+
+        if (service.checkedAt) {
+          var checked = document.createElement('p');
+          checked.className = 'catalog-checked';
+          checked.textContent = '情報確認日：' + service.checkedAt;
+          card.appendChild(checked);
+        }
 
         var actions = document.createElement('div');
         actions.className = 'catalog-actions';
@@ -97,14 +138,15 @@
         detail.textContent = '詳しく見る';
         actions.appendChild(detail);
 
-        var external = service.affiliateUrl || service.officialUrl;
+        var external = u.externalUrl(service);
         if (external) {
           var official = document.createElement('a');
           official.className = 'btn btn-primary';
           official.href = external;
           official.target = '_blank';
-          official.rel = 'sponsored noopener noreferrer';
+          official.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
           official.textContent = '公式サイトで確認する';
+          official.setAttribute('data-track', 'catalog-official-click');
           actions.appendChild(official);
         }
 
