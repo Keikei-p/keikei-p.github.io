@@ -204,14 +204,18 @@ if (!config || !config.projectId) {
   function startAdsListener() {
     if (unsubscribe) unsubscribe();
 
-    const q = dbModule.query(
-      dbModule.collection(db, 'affiliate_ads'),
-      dbModule.orderBy('service_id'),
-      dbModule.orderBy('priority', 'desc')
-    );
+    const q = dbModule.collection(db, 'affiliate_ads');
 
     unsubscribe = dbModule.onSnapshot(q, snapshot => {
-      ads = snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() }));
+      ads = snapshot.docs
+        .map(doc => ({ id: doc.id, data: doc.data() }))
+        .sort((a, b) => {
+          const serviceCompare = String(a.data.service_id || '').localeCompare(
+            String(b.data.service_id || ''),
+            'ja'
+          );
+          return serviceCompare || Number(b.data.priority || 0) - Number(a.data.priority || 0);
+        });
       render();
     }, error => {
       list.innerHTML = '<div class="admin-card admin-error">広告一覧を取得できません: ' +
