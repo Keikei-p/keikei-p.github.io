@@ -1433,3 +1433,28 @@ button {
 @media (max-width: 600px) {
   .switch-note-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ASP発行広告コードの共通表示 */
+.affiliate-code-placement {
+  width: 100%;
+  margin: 8px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.affiliate-code-placement a {
+  display: inline-block;
+  max-width: 100%;
+}
+.affiliate-code-placement img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.affiliate-code-placement.is-compact {
+  margin: 4px 0;
+}
+.affiliate-code-placement.is-compact img {
+  max-width: min(100%, 420px);
+}
