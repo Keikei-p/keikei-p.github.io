@@ -3,7 +3,8 @@
  * 重要:
  * - サイト内のページへASP URLを直接書かない。
  * - 同じ service_id に複数ASPの広告を登録できる。
- * - is_active=true かつ affiliate_url がある広告だけが広告リンク候補になる。
+ * - is_active=true で affiliate_url または affiliate_code がある広告が広告候補になる。
+ * - affiliate_code がある場合は、発行元の広告コードを改変せず優先表示する。
  * - priority は数値が大きいほど優先。
  * - 有効広告がない場合は official_url / サービスマスターの公式URLへフォールバック。
  *
@@ -24,6 +25,8 @@ window.TC_AFFILIATE_MASTER = {
       category: "fiber",
       provider: "KDDI",
       affiliate_url: "",
+      affiliate_code: "",
+      render_mode: "url",
       official_url: "https://www.au.com/internet/auhikari_1g/",
       display_name: "auひかり",
       description: "",
@@ -42,6 +45,8 @@ window.TC_AFFILIATE_MASTER = {
       category: "fiber",
       provider: "KDDI",
       affiliate_url: "",
+      affiliate_code: "",
+      render_mode: "url",
       official_url: "https://www.au.com/internet/auhikari_1g/",
       display_name: "auひかり",
       description: "",
@@ -60,6 +65,8 @@ window.TC_AFFILIATE_MASTER = {
       category: "fiber",
       provider: "KDDI",
       affiliate_url: "",
+      affiliate_code: "",
+      render_mode: "url",
       official_url: "https://www.au.com/internet/auhikari_1g/",
       display_name: "auひかり",
       description: "",
