@@ -1,0 +1,149 @@
+/* 診断結果からサービス候補を最大3件表示する共通処理 */
+(function () {
+  'use strict';
+
+  function catalogFor(kind) {
+    var catalog = window.TC_SERVICE_CATALOG || {};
+    return Array.isArray(catalog[kind]) ? catalog[kind] : [];
+  }
+
+  function getScore(service, profile, tags) {
+    var fit = service.fit || {};
+    var score = Number(fit[profile] || 0);
+
+    (tags || []).forEach(function (tag) {
+      score += Number(fit[tag] || 0);
+    });
+
+    return score;
+  }
+
+  function safeText(value) {
+    return value == null ? '' : String(value);
+  }
+
+  function createReasonList(service, profile, tags) {
+    var reasons = [];
+    var reasonMap = service.matchReasons || {};
+
+    if (reasonMap[profile]) {
+      reasons.push(reasonMap[profile]);
+    }
+
+    (tags || []).forEach(function (tag) {
+      if (reasonMap[tag] && reasons.indexOf(reasonMap[tag]) === -1) {
+        reasons.push(reasonMap[tag]);
+      }
+    });
+
+    if (!reasons.length && Array.isArray(service.suitableFor)) {
+      reasons = service.suitableFor.slice(0, 2);
+    }
+
+    return reasons.slice(0, 3);
+  }
+
+  function renderEmpty(root) {
+    root.innerHTML =
+      '<div class="recommend-empty">' +
+        '<strong>候補サービスは現在準備中です</strong>' +
+        '<p>サービス情報を登録すると、診断結果に合う候補がここへ最大3件表示されます。</p>' +
+      '</div>';
+  }
+
+  function render(detail) {
+    var root = document.getElementById('service-recommendations');
+    if (!root) return;
+
+    var kind = detail.kind;
+    var profile = detail.profile;
+    var tags = detail.tags || [];
+    var services = catalogFor(kind);
+
+    if (!services.length) {
+      renderEmpty(root);
+      return;
+    }
+
+    var ranked = services
+      .filter(function (service) { return service && service.id && service.name; })
+      .map(function (service) {
+        return {
+          service: service,
+          score: getScore(service, profile, tags)
+        };
+      })
+      .sort(function (a, b) {
+        return b.score - a.score || safeText(a.service.name).localeCompare(safeText(b.service.name), 'ja');
+      })
+      .slice(0, 3);
+
+    if (!ranked.length) {
+      renderEmpty(root);
+      return;
+    }
+
+    root.classList.add('has-items');
+    root.innerHTML = '';
+
+    ranked.forEach(function (entry, index) {
+      var service = entry.service;
+      var card = document.createElement('article');
+      card.className = 'recommend-card';
+
+      var rank = document.createElement('span');
+      rank.className = 'recommend-rank';
+      rank.textContent = '候補 ' + (index + 1);
+
+      var title = document.createElement('h4');
+      title.textContent = service.name;
+
+      var summary = document.createElement('p');
+      summary.className = 'recommend-summary';
+      summary.textContent = service.summary || 'サービスの詳細情報を確認できます。';
+
+      card.appendChild(rank);
+      card.appendChild(title);
+      card.appendChild(summary);
+
+      var reasons = createReasonList(service, profile, tags);
+      if (reasons.length) {
+        var list = document.createElement('ul');
+        list.className = 'recommend-reasons';
+        reasons.forEach(function (reason) {
+          var li = document.createElement('li');
+          li.textContent = reason;
+          list.appendChild(li);
+        });
+        card.appendChild(list);
+      }
+
+      var actions = document.createElement('div');
+      actions.className = 'recommend-actions';
+
+      var detailLink = document.createElement('a');
+      detailLink.className = 'btn btn-ghost';
+      detailLink.href = 'service.html?id=' + encodeURIComponent(service.id);
+      detailLink.textContent = '詳しく見る';
+      actions.appendChild(detailLink);
+
+      var externalUrl = service.affiliateUrl || service.officialUrl;
+      if (externalUrl) {
+        var officialLink = document.createElement('a');
+        officialLink.className = 'btn btn-primary';
+        officialLink.href = externalUrl;
+        officialLink.target = '_blank';
+        officialLink.rel = 'sponsored noopener noreferrer';
+        officialLink.textContent = '公式サイトで確認する';
+        actions.appendChild(officialLink);
+      }
+
+      card.appendChild(actions);
+      root.appendChild(card);
+    });
+  }
+
+  document.addEventListener('tc:diagnosis-result', function (event) {
+    render(event.detail || {});
+  });
+})();
