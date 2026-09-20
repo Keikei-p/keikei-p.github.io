@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAffiliateAdmin() {
+      return request.auth != null
+        && request.auth.token.admin == true;
+    }
+
+    // 報酬額など内部情報を含む管理者専用コレクション。
+    match /affiliate_ads/{adId} {
+      allow read, create, update, delete: if isAffiliateAdmin();
+    }
+
+    // 公開サイトが読むためのサニタイズ済み広告データ。
+    // admin.js は有効かつURLがある広告だけここへ同期する。
+    match /affiliate_public/{adId} {
+      allow read: if true;
+      allow create, update, delete: if isAffiliateAdmin();
+    }
+
+    // 現時点では他コレクションを使用していないためデフォルト拒否。
+    // 別機能でFirestoreを使う場合は、その機能のルールを明示的に追加する。
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
