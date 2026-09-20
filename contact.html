@@ -48,16 +48,20 @@
 
     <section class="content-card">
       <h2>お問い合わせフォーム</h2>
-      <p>必要事項を入力すると、お使いのメールアプリから送信できる形式でお問い合わせ内容を作成します。</p>
+      <p>必要事項を入力して送信してください。運営者のメールアドレスは公開せず、内容は管理画面で確認します。</p>
 
       <div id="contact-unavailable" class="content-note" hidden>
-        お問い合わせ先の設定を確認しています。
+        お問い合わせフォームを利用できません。時間をおいて再度お試しください。
       </div>
 
-      <form id="contact-form" class="contact-form" hidden>
+      <form id="contact-form" class="contact-form">
         <label>
           お名前・ハンドルネーム
           <input type="text" id="contact-name" maxlength="100" autocomplete="name" required>
+        </label>
+        <label>
+          返信先メールアドレス（任意）
+          <input type="email" id="contact-reply-email" maxlength="200" autocomplete="email" placeholder="返信が必要な場合のみ">
         </label>
         <label>
           お問い合わせ種別
@@ -76,8 +80,13 @@
           お問い合わせ内容
           <textarea id="contact-message" rows="8" maxlength="3000" required></textarea>
         </label>
-        <p class="contact-help">個人情報、パスワード、契約番号、クレジットカード番号などの機密情報は入力しないでください。</p>
-        <button class="btn btn-primary" type="submit">メールを作成する</button>
+        <label class="contact-honeypot" aria-hidden="true">
+          Website
+          <input type="text" id="contact-website" tabindex="-1" autocomplete="off">
+        </label>
+        <p class="contact-help">返信が必要な場合だけメールアドレスを入力してください。パスワード、契約番号、クレジットカード番号などの機密情報は入力しないでください。</p>
+        <button class="btn btn-primary" type="submit" id="contact-submit">送信する</button>
+        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
       </form>
     </section>
 
@@ -108,7 +117,7 @@
   </div>
 </footer>
 <script src="script.js"></script>
-<script src="contact-config.js"></script>
-<script src="contact.js"></script>
+<script src="firebase-config.js"></script>
+<script type="module" src="contact.js"></script>
 </body>
 </html>
