@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>広告管理 | つうしんコンパス</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="admin-header">
+  <div class="admin-container">
+    <div>
+      <p class="admin-kicker">つうしんコンパス</p>
+      <h1>アフィリエイト広告管理</h1>
+    </div>
+    <button type="button" class="btn btn-ghost" id="admin-logout" hidden>ログアウト</button>
+  </div>
+</header>
+
+<main class="admin-main">
+  <div class="admin-container">
+    <section class="admin-notice" id="firebase-missing" hidden>
+      <h2>Firebaseはまだ未設定です</h2>
+      <p><code>firebase-config.js</code> にFirebase Web App設定を入れると、この管理画面を利用できます。公開サイトは未設定の間も <code>data/affiliates.js</code> で正常に動作します。</p>
+    </section>
+
+    <section class="admin-card admin-login" id="login-panel" hidden>
+      <h2>管理者ログイン</h2>
+      <p>Firebase Authenticationの管理者アカウントでログインしてください。</p>
+      <form id="login-form">
+        <label>メールアドレス<input type="email" id="login-email" autocomplete="username" required></label>
+        <label>パスワード<input type="password" id="login-password" autocomplete="current-password" required></label>
+        <button class="btn btn-primary" type="submit">ログイン</button>
+      </form>
+      <p class="admin-error" id="login-error" role="alert"></p>
+    </section>
+
+    <section id="admin-app" hidden>
+      <div class="admin-toolbar">
+        <div>
+          <h2>広告一覧</h2>
+          <p>有効広告は同一サービス内でpriorityが大きいものから優先されます。</p>
+        </div>
+        <button class="btn btn-primary" type="button" id="new-ad">広告を追加</button>
+      </div>
+
+      <div class="admin-stats" id="admin-stats"></div>
+      <div class="admin-list" id="ad-list"></div>
+
+      <section class="admin-card admin-editor" id="editor">
+        <div class="admin-editor-head">
+          <h2 id="editor-title">広告を追加</h2>
+          <button type="button" class="admin-close" id="editor-reset" aria-label="入力をクリア">×</button>
+        </div>
+
+        <form id="ad-form">
+          <input type="hidden" id="ad-id">
+
+          <div class="admin-form-grid">
+            <label>service_id
+              <input id="service-id" required placeholder="au-hikari">
+            </label>
+            <label>service_name
+              <input id="service-name" required placeholder="auひかり">
+            </label>
+
+            <label>category
+              <select id="category" required>
+                <option value="smartphone">smartphone</option>
+                <option value="cheap_sim">cheap_sim</option>
+                <option value="fiber">fiber</option>
+                <option value="home_wifi">home_wifi</option>
+                <option value="mobile_wifi">mobile_wifi</option>
+              </select>
+            </label>
+            <label>provider
+              <input id="provider" placeholder="KDDI">
+            </label>
+
+            <label>ASP
+              <select id="asp-name" required>
+                <option value="A8.net">A8.net</option>
+                <option value="アクセストレード">アクセストレード</option>
+                <option value="バリューコマース">バリューコマース</option>
+              </select>
+            </label>
+            <label>priority
+              <input type="number" id="priority" value="100" step="1" required>
+            </label>
+
+            <label class="admin-span-2">affiliate_url
+              <input type="url" id="affiliate-url" placeholder="https://...">
+            </label>
+            <label class="admin-span-2">official_url
+              <input type="url" id="official-url" placeholder="https://...">
+            </label>
+
+            <label>display_name
+              <input id="display-name">
+            </label>
+            <label>price
+              <input id="price" placeholder="管理用・任意">
+            </label>
+
+            <label class="admin-span-2">description
+              <textarea id="description" rows="3"></textarea>
+            </label>
+            <label class="admin-span-2">campaign
+              <textarea id="campaign" rows="3"></textarea>
+            </label>
+
+            <label>reward
+              <input id="reward" placeholder="管理者だけが閲覧">
+            </label>
+            <label>updated_at
+              <input type="date" id="updated-at" required>
+            </label>
+          </div>
+
+          <label class="admin-toggle">
+            <input type="checkbox" id="is-active">
+            <span>この広告をONにする</span>
+          </label>
+
+          <div class="admin-form-actions">
+            <button class="btn btn-primary" type="submit">保存</button>
+            <button class="btn btn-ghost" type="button" id="delete-ad" hidden>削除</button>
+          </div>
+          <p class="admin-status" id="form-status" role="status"></p>
+        </form>
+      </section>
+    </section>
+  </div>
+</main>
+
+<script src="firebase-config.js"></script>
+<script type="module" src="admin.js"></script>
+</body>
+</html>
