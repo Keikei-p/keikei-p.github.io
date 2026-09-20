@@ -42,11 +42,16 @@
     return reasons.slice(0, 3);
   }
 
-  function renderEmpty(root) {
+  function renderEmpty(root, detail) {
+    var message = detail && detail.kind === 'wifi' && detail.profile === 'M'
+      ? 'モバイルWi-Fiの個別サービスは現在準備中です。タイプ診断の結果を参考にしながら、公式情報を確認できたサービスから追加します。'
+      : 'サービス情報を登録すると、診断結果に合う候補がここへ最大3件表示されます。';
+
+    root.classList.remove('has-items');
     root.innerHTML =
       '<div class="recommend-empty">' +
         '<strong>候補サービスは現在準備中です</strong>' +
-        '<p>サービス情報を登録すると、診断結果に合う候補がここへ最大3件表示されます。</p>' +
+        '<p>' + message + '</p>' +
       '</div>';
   }
 
@@ -60,7 +65,7 @@
     var services = catalogFor(kind);
 
     if (!services.length) {
-      renderEmpty(root);
+      renderEmpty(root, detail);
       return;
     }
 
@@ -69,13 +74,14 @@
       .map(function (service) {
         return { service: service, score: getScore(service, profile, tags) };
       })
+      .filter(function (entry) { return entry.score > 0; })
       .sort(function (a, b) {
         return b.score - a.score || safeText(a.service.name).localeCompare(safeText(b.service.name), 'ja');
       })
       .slice(0, 3);
 
     if (!ranked.length) {
-      renderEmpty(root);
+      renderEmpty(root, detail);
       return;
     }
 
@@ -89,7 +95,7 @@
 
       var rank = document.createElement('span');
       rank.className = 'recommend-rank';
-      rank.textContent = '候補 ' + (index + 1);
+      rank.textContent = 'あなたの候補';
       card.appendChild(rank);
 
       var title = document.createElement('h4');
