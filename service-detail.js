@@ -89,7 +89,7 @@
   var actions =
     '<div class="service-actions">' +
       (externalUrl
-        ? '<a class="btn btn-primary" href="' + esc(externalUrl) + '" target="_blank" rel="' + (isAffiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer') + '" data-track="service-official-click">公式サイトで詳細を確認する</a>'
+        ? '<a class="btn btn-primary" href="' + esc(externalUrl) + '" target="_blank" rel="' + (isAffiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer') + '" data-track="service-official-click" data-service-id="' + esc(service.id) + '">公式サイトで詳細を確認する</a>'
         : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>') +
     '</div>' +
     (isAffiliate
