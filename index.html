@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
 </head>
 <body>
 
@@ -33,7 +34,9 @@
     </button>
 
     <nav class="site-nav">
-      <a href="#menu">診断メニュー</a>
+      <a href="#menu">診断・比較</a>
+      <a href="sim.html">SIM比較</a>
+      <a href="hikari.html">光回線比較</a>
       <a href="#about">このサイトについて</a>
     </nav>
   </div>
@@ -128,6 +131,33 @@
     </div>
   </section>
 
+
+  <section class="home-flow" aria-labelledby="flow-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="flow-title">迷ったら、この順番で進めます</h2>
+        <p>最初から全部の料金表を読むのではなく、自分の条件を整理してから比較します。</p>
+      </div>
+      <div class="home-flow-grid">
+        <article class="home-flow-card">
+          <span class="home-flow-num">1</span>
+          <h3>まず診断する</h3>
+          <p>データ量、通話、サポート、工事の可否など、自分の使い方を質問に答えながら整理します。</p>
+        </article>
+        <article class="home-flow-card">
+          <span class="home-flow-num">2</span>
+          <h3>候補を比較する</h3>
+          <p>診断結果をもとに、候補サービスの特徴・向いている人・注意点を同じ基準で比べます。</p>
+        </article>
+        <article class="home-flow-card">
+          <span class="home-flow-num">3</span>
+          <h3>公式情報を確認する</h3>
+          <p>料金やキャンペーン、提供エリアなど変わりやすい条件は、申込み前に公式サイトで最終確認します。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="trust" id="about">
     <div class="container">
       <div class="section-head">
@@ -155,12 +185,30 @@
     </div>
   </section>
 
+  <section class="home-policy" aria-labelledby="policy-title">
+    <div class="container">
+      <div class="home-policy-box">
+        <div>
+          <h2 id="policy-title">広告より、選びやすさを先に</h2>
+          <p>報酬の高さだけでおすすめを決めず、メリットだけでなく注意点も確認できる構成を目指します。料金や条件は公式情報を確認できたものから掲載します。</p>
+        </div>
+        <div class="home-policy-links">
+          <a href="advertising-policy.html">広告掲載ポリシー</a>
+          <a href="update-policy.html">情報更新方針</a>
+          <a href="affiliate.html">アフィリエイトについて</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
   <div class="container">
-    <p class="footer-name">つうしんコンパス</p>
-    <p class="footer-note">本サイトは通信サービス選びの参考情報を提供するものです。掲載内容は今後追加・変更されます。</p>
+    <div>
+      <p class="footer-name">つうしんコンパス</p>
+      <p class="footer-note">本サイトは通信サービス選びの参考情報を提供するものです。料金・条件は申込み前に公式サイトでご確認ください。</p>
+    </div>
   </div>
 </footer>
 
