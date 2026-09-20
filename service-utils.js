@@ -132,7 +132,10 @@
 
   function externalUrl(service) {
     if (!service) return '';
-    return service.affiliateUrl || service.officialUrl || '';
+    if (window.TCAffiliateManager) {
+      return window.TCAffiliateManager.resolve(service).url || '';
+    }
+    return service.officialUrl || '';
   }
 
   window.TCServiceUtils = {
