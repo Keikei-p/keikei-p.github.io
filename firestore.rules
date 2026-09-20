@@ -26,8 +26,42 @@ service cloud.firestore {
       allow create, update, delete: if isAffiliateAdmin();
     }
 
-    // 現時点では他コレクションを使用していないためデフォルト拒否。
-    // 別機能でFirestoreを使う場合は、その機能のルールを明示的に追加する。
+
+    function validContactCreate() {
+      let data = request.resource.data;
+      return data.keys().hasAll([
+          'name', 'reply_email', 'type', 'page', 'message',
+          'source_path', 'status', 'created_at'
+        ])
+        && data.keys().hasOnly([
+          'name', 'reply_email', 'type', 'page', 'message',
+          'source_path', 'status', 'created_at'
+        ])
+        && data.name is string
+        && data.name.size() > 0
+        && data.name.size() <= 100
+        && data.reply_email is string
+        && data.reply_email.size() <= 200
+        && data.type is string
+        && data.type in ['掲載情報の修正', '広告・提携について', 'サイトの不具合', 'その他']
+        && data.page is string
+        && data.page.size() <= 200
+        && data.message is string
+        && data.message.size() > 0
+        && data.message.size() <= 3000
+        && data.source_path is string
+        && data.source_path.size() <= 200
+        && data.status == 'new'
+        && data.created_at == request.time;
+    }
+
+    // 公開フォームからは新規作成のみ。内容の閲覧・更新・削除は管理者だけ。
+    match /contacts/{contactId} {
+      allow create: if validContactCreate();
+      allow read, update, delete: if isAffiliateAdmin();
+    }
+
+    // 明示した機能以外はデフォルト拒否。
     match /{document=**} {
       allow read, write: if false;
     }
