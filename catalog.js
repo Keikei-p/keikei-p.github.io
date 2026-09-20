@@ -84,7 +84,7 @@
         dl.className = 'catalog-facts';
         dl.innerHTML =
           fact('提供元', service.carrier || service.network) +
-          fact('料金', service.monthlyPrice == null ? '公式情報確認後に掲載' : service.monthlyPrice) +
+          fact('料金', service.priceLabel || (service.monthlyPrice == null ? '公式情報確認後に掲載' : String(service.monthlyPrice))) +
           fact('確認日', service.checkedAt || '未登録');
         card.appendChild(dl);
 
