@@ -63,7 +63,6 @@ window.TC_SERVICE_CATALOG = {
         "family-large": "家族回線数に応じた割引を確認できます。"
       },
       "officialUrl": "https://www.docomo.ne.jp/charge/docomo_max/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "ドコモ MAX 公式料金ページ",
@@ -133,7 +132,6 @@ window.TC_SERVICE_CATALOG = {
         "support-needed": "ドコモの店舗で相談しやすい選択肢です。"
       },
       "officialUrl": "https://www.docomo.ne.jp/charge/docomo_mini/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "ドコモ mini 公式料金ページ",
@@ -203,7 +201,6 @@ window.TC_SERVICE_CATALOG = {
         "support-not-needed": "オンライン手続きで問題ない人に向きます。"
       },
       "officialUrl": "https://ahamo.com/plan/index.html",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "ahamo 料金・データ量",
@@ -270,7 +267,6 @@ window.TC_SERVICE_CATALOG = {
         "family-large": "家族・固定回線との割引条件を確認できます。"
       },
       "officialUrl": "https://www.au.com/mobile/charge/smartphone/plan/auvaluelink/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "auバリューリンクプラン 公式料金ページ",
@@ -342,7 +338,6 @@ window.TC_SERVICE_CATALOG = {
         "support-needed": "店舗相談も残したい人の候補になります。"
       },
       "officialUrl": "https://www.uqwimax.jp/mobile/plan/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "UQ mobile 料金プラン",
@@ -417,7 +412,6 @@ window.TC_SERVICE_CATALOG = {
         "single-user": "自分の利用量に合わせて一回線を柔軟に管理しやすいです。"
       },
       "officialUrl": "https://povo.jp/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "povo2.0 サービス詳細",
@@ -491,7 +485,6 @@ window.TC_SERVICE_CATALOG = {
         "family-large": "家族・固定回線とのセット割があります。"
       },
       "officialUrl": "https://www.softbank.jp/mobile/price_plan/data/teigaku-museigen/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "テイガク無制限 公式料金ページ",
@@ -562,7 +555,6 @@ window.TC_SERVICE_CATALOG = {
         "family-large": "家族割や固定回線とのセット割を検討できます。"
       },
       "officialUrl": "https://www.ymobile.jp/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "Y!mobile 公式サイト",
@@ -635,7 +627,6 @@ window.TC_SERVICE_CATALOG = {
         "support-not-needed": "オンラインで自分で手続きできる人に向きます。"
       },
       "officialUrl": "https://www.linemo.jp/plan/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "LINEMO 料金プラン",
@@ -706,7 +697,6 @@ window.TC_SERVICE_CATALOG = {
         "call-long": "Rakuten Linkの無料通話対象なら長電話の通話料を抑えられます。"
       },
       "officialUrl": "https://network.mobile.rakuten.co.jp/fee/saikyo-plan/detail/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "Rakuten最強プラン詳細",
@@ -772,7 +762,6 @@ window.TC_SERVICE_CATALOG = {
         "H": "固定回線の速度・安定性を重視する回答と相性があります。"
       },
       "officialUrl": "https://www.docomo.ne.jp/internet/hikari/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "ドコモ光 料金例（OCN インターネット）",
@@ -836,7 +825,6 @@ window.TC_SERVICE_CATALOG = {
         "H": "自宅で長く安定した固定回線を使いたい回答と相性があります。"
       },
       "officialUrl": "https://www.au.com/internet/auhikari_1g/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "auひかり ホーム1ギガ 料金",
@@ -899,7 +887,6 @@ window.TC_SERVICE_CATALOG = {
         "H": "自宅で安定した固定回線を使いたい回答と相性があります。"
       },
       "officialUrl": "https://www.softbank.jp/internet/sbhikari/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "SoftBank 光 料金",
@@ -963,7 +950,6 @@ window.TC_SERVICE_CATALOG = {
         "H": "ゲーム・大容量通信など速度と固定回線の安定性を重視する回答と相性があります。"
       },
       "officialUrl": "https://www.nuro.jp/hikari/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "NURO 光 2026年9月料金改定",
@@ -1028,7 +1014,6 @@ window.TC_SERVICE_CATALOG = {
         "R": "工事を避けながら自宅用Wi-Fiを使いたい回答と相性があります。"
       },
       "officialUrl": "https://www.docomo.ne.jp/home_5g/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "home 5G 公式ページ",
@@ -1091,7 +1076,6 @@ window.TC_SERVICE_CATALOG = {
         "R": "工事不要の自宅Wi-Fiを重視する回答と相性があります。"
       },
       "officialUrl": "https://www.softbank.jp/internet/air/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "SoftBank Air 料金",
@@ -1154,7 +1138,6 @@ window.TC_SERVICE_CATALOG = {
         "R": "工事なしで自宅用Wi-Fiを始めたい回答と相性があります。"
       },
       "officialUrl": "https://network.mobile.rakuten.co.jp/internet/turbo/",
-      "affiliateUrl": "",
       "sourceUrls": [
         {
           "label": "Rakuten Turbo 料金プラン",
