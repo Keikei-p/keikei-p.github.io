@@ -83,6 +83,7 @@
 
   var externalUrl = u.externalUrl(service);
   var facts = u.quickFacts(service);
+  var fresh = u.freshness(service, 90);
   var isAffiliate = Boolean(service.affiliateUrl);
 
   var actions =
@@ -123,7 +124,7 @@
     '<section class="service-hero">' +
       '<div class="service-hero-top">' +
         '<span class="service-category">' + esc(service.category || '通信サービス') + '</span>' +
-        (service.checkedAt ? '<span class="service-verified">確認日 ' + esc(service.checkedAt) + '</span>' : '') +
+        '<span class="service-verified service-verified-' + esc(fresh.state) + '">' + esc(fresh.label) + '</span>' +
       '</div>' +
       '<h1>' + esc(service.name) + '</h1>' +
       '<p class="service-summary">' + esc(service.summary || 'サービス内容を確認中です。') + '</p>' +
