@@ -129,6 +129,11 @@ button {
   margin-inline: auto;
 }
 
+.compare-container {
+  width: min(100% - 40px, 980px);
+  margin-inline: auto;
+}
+
 
 /* ==========================================================================
    Header
@@ -221,11 +226,13 @@ button {
   transition: transform 0.2s ease;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav a.is-current {
   color: var(--teal);
 }
 
-.site-nav a:hover::after {
+.site-nav a:hover::after,
+.site-nav a.is-current::after {
   transform: scaleX(1);
 }
 
@@ -1120,7 +1127,8 @@ button {
 @media (max-width: 600px) {
 
   .container,
-  .container-narrow {
+  .container-narrow,
+  .compare-container {
     width: min(100% - 28px, var(--container));
   }
 
