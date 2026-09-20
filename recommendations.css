@@ -1,20 +1,11 @@
 /* 診断結果のサービス候補カード */
-.recommend-section {
-  margin-top: 34px;
-}
-.recommend-section h3 {
-  margin-bottom: 8px;
-  font-size: 20px;
-}
-.recommend-lead {
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-.recommend-grid {
-  display: grid;
-  gap: 14px;
-}
+.recommend-section { margin-top: 34px; }
+.recommend-section h3 { margin-bottom: 8px; font-size: 20px; }
+.recommend-lead { margin-bottom: 16px; font-size: 14px; }
+.recommend-grid { display: grid; gap: 14px; }
 .recommend-card {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
@@ -23,6 +14,7 @@
 }
 .recommend-rank {
   display: inline-flex;
+  align-self: flex-start;
   margin-bottom: 8px;
   padding: 4px 10px;
   border-radius: 999px;
@@ -31,32 +23,72 @@
   font-size: 12px;
   font-weight: 800;
 }
-.recommend-card h4 {
-  font-size: 19px;
+.recommend-card h4 { font-size: 19px; }
+.recommend-price {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--coral-light);
 }
-.recommend-summary {
-  margin-top: 8px;
-  font-size: 14px;
+.recommend-price span {
+  display: block;
+  color: var(--ink-light);
+  font-size: 10px;
+}
+.recommend-price strong {
+  display: block;
+  margin-top: 1px;
+  color: var(--coral-dark);
+  font-size: 15px;
+}
+.recommend-summary { margin-top: 10px; font-size: 13px; }
+.recommend-facts {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.recommend-facts span {
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+.recommend-reason-title {
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
 }
 .recommend-reasons {
-  margin: 12px 0 0;
+  margin: 6px 0 0;
   padding-left: 1.4em;
   color: var(--ink-soft);
-  font-size: 13px;
+  font-size: 12px;
 }
-.recommend-reasons li + li {
-  margin-top: 4px;
+.recommend-reasons li + li { margin-top: 4px; }
+.recommend-caution {
+  margin-top: 12px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  background: var(--amber-light);
+  color: var(--ink-soft);
+  font-size: 11px;
 }
+.recommend-caution strong { color: var(--ink); }
 .recommend-actions {
   display: flex;
   gap: 10px;
-  margin-top: 16px;
+  margin-top: auto;
+  padding-top: 16px;
   flex-wrap: wrap;
 }
 .recommend-actions .btn {
   min-height: 44px;
-  padding: 9px 18px;
-  font-size: 13px;
+  padding: 9px 15px;
+  font-size: 12px;
 }
 .recommend-empty {
   padding: 20px;
@@ -64,16 +96,12 @@
   border-radius: var(--radius-m);
   background: var(--surface);
 }
-.recommend-empty strong {
-  display: block;
-  color: var(--ink);
+.recommend-empty strong { display: block; color: var(--ink); }
+.recommend-empty p { margin-top: 6px; font-size: 13px; }
+@media (min-width: 860px) {
+  .recommend-grid.has-items { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-.recommend-empty p {
-  margin-top: 6px;
-  font-size: 13px;
-}
-@media (min-width: 760px) {
-  .recommend-grid.has-items {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+@media (max-width: 600px) {
+  .recommend-actions { flex-direction: column; }
+  .recommend-actions .btn { width: 100%; }
 }
