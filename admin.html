@@ -59,8 +59,10 @@
           <input type="hidden" id="ad-id">
 
           <div class="admin-form-grid">
-            <label>service_id
-              <input id="service-id" required placeholder="au-hikari">
+            <label>サービス
+              <input id="service-id" list="service-options" required placeholder="au-hikari" autocomplete="off">
+              <datalist id="service-options"></datalist>
+              <small>候補から選ぶと、サービス名・提供元・カテゴリ・公式URLを自動入力します。</small>
             </label>
             <label>service_name
               <input id="service-name" required placeholder="auひかり">
@@ -140,6 +142,7 @@
   </div>
 </main>
 
+<script src="data/services.js"></script>
 <script src="firebase-config.js"></script>
 <script type="module" src="admin.js"></script>
 </body>
