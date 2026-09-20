@@ -141,3 +141,63 @@
   opacity: .65;
   cursor: wait;
 }
+
+/* SEO / 見直しガイド */
+.seo-breadcrumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 22px;
+  color: var(--ink-light);
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.seo-breadcrumb a { color: var(--teal-dark); }
+.seo-kicker {
+  margin-bottom: 10px;
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+.seo-toc {
+  display: grid;
+  gap: 8px;
+  margin: 22px 0 8px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface-soft);
+}
+.seo-toc strong { margin-bottom: 2px; }
+.seo-toc a { color: var(--teal-dark); font-size: 14px; }
+.seo-cta {
+  margin-top: 28px;
+  padding: 30px;
+  border-radius: var(--radius-m);
+  background: var(--teal-light);
+  text-align: center;
+}
+.seo-cta h2 { font-size: 23px; }
+.seo-cta p { max-width: 620px; margin: 10px auto 18px; }
+.seo-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.seo-related-card {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  text-decoration: none;
+}
+.seo-related-card strong { color: var(--teal-dark); }
+.seo-related-card span { color: var(--ink-soft); font-size: 12px; line-height: 1.7; }
+@media (max-width: 700px) {
+  .seo-related-grid { grid-template-columns: 1fr; }
+  .seo-cta { padding: 24px 18px; }
+}
