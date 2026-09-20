@@ -1,5 +1,6 @@
 /* つうしんコンパス - Wi-Fi診断
- * 光回線(H) / ホームルーター(R) / モバイルWi-Fi(M) の傾向を7問で判定する。
+ * 光回線(H) / ホームルーター(R) / モバイルWi-Fi(M) の傾向を8問で判定する。
+ * スマホ回線はWi-Fiタイプの点数には影響させず、光回線候補のセット割相性にだけ使う。
  */
 (function () {
   'use strict';
@@ -118,6 +119,18 @@
       ]
     },
     {
+      id: 'mobile-carrier',
+      text: 'いま使っているスマホ回線はどれですか？',
+      hint: '光回線になった場合、スマホとのセット割を確認するために使います。',
+      options: [
+        { label: 'ドコモ', tag: 'docomo-set', p: [0, 0, 0], w: {} },
+        { label: 'au / UQ mobile', tag: 'au-uq-set', p: [0, 0, 0], w: {} },
+        { label: 'SoftBank / Y!mobile', tag: 'softbank-set', p: [0, 0, 0], w: {} },
+        { label: '楽天モバイル', tag: 'rakuten-mobile', p: [0, 0, 0], w: {} },
+        { label: 'その他 / わからない', tag: 'carrier-other', p: [0, 0, 0], w: {} }
+      ]
+    },
+    {
       id: 'priority',
       text: 'いちばん重視したいことは何ですか？',
       options: [
@@ -206,7 +219,8 @@
       questionId: question.id,
       label: option.label,
       p: option.p,
-      w: option.w || {}
+      w: option.w || {},
+      tag: option.tag || ''
     });
 
     Array.prototype.forEach.call(els.optionList.querySelectorAll('.wifi-option'), function (button) {
@@ -258,6 +272,12 @@
 
     reasons.sort(function (a, b) { return b.point - a.point; });
     return reasons.slice(0, 3).map(function (item) { return item.text; });
+  }
+
+  function collectTags() {
+    return answers.map(function (answer) {
+      return answer.tag || '';
+    }).filter(Boolean);
   }
 
   function list(items, className) {
@@ -315,7 +335,7 @@
       detail: {
         kind: 'wifi',
         profile: KEYS[top],
-        tags: [],
+        tags: collectTags(),
         answers: answers.slice()
       }
     }));
