@@ -24,6 +24,10 @@
 - advertising-policy.html: 広告掲載ポリシー
 - affiliate.html: アフィリエイトについて
 - update-policy.html: 情報更新方針
+- guide.html / guide.css: 初心者向け通信ガイド
+- 404.html: 存在しないURLへアクセスしたときの案内ページ
+- home.css / journey.css: トップページと悩み別導線
+- catalog.js / catalog.css: 比較ページの実サービス一覧
 
 ## 情報登録ルール
 
@@ -48,3 +52,5 @@ affiliateUrl は案件が確定するまで空欄にします。
 診断ロジックとサービスデータを分け、将来的に通信以外の比較ジャンルにも応用しやすい構成を目指します。
 
 診断結果は CustomEvent `tc:diagnosis-result` を通して共通の候補表示へ渡します。サービスデータが0件でも診断ページは壊れず、準備中表示になります。
+
+トップページは「悩みから選ぶ → 診断 → 比較 → 詳細 → 公式確認」の順に進める構造です。初心者ガイドは大量の記事を作る前の基礎ページとして、MNP・SIM/eSIM・Wi-Fiの種類・データ使用量を整理します。
