@@ -1,0 +1,127 @@
+/* 比較ページの実サービス一覧 */
+.catalog-section {
+  margin-top: 48px;
+}
+.catalog-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.catalog-head-copy {
+  max-width: 620px;
+}
+.catalog-head h2 {
+  padding-left: 12px;
+  border-left: 5px solid var(--teal);
+  font-size: 1.35rem;
+}
+.catalog-head p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.catalog-status {
+  flex: none;
+  color: var(--ink-light);
+  font-size: 12px;
+}
+.catalog-grid {
+  display: grid;
+  gap: 14px;
+}
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.catalog-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.catalog-card h3 {
+  font-size: 19px;
+}
+.catalog-badge {
+  flex: none;
+  display: inline-flex;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-size: 11px;
+  font-weight: 800;
+}
+.catalog-summary {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.catalog-facts {
+  display: grid;
+  gap: 7px;
+  margin: 14px 0 0;
+}
+.catalog-fact {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+}
+.catalog-fact dt {
+  min-width: 74px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.catalog-fact dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.catalog-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+  flex-wrap: wrap;
+}
+.catalog-actions .btn {
+  min-height: 44px;
+  padding: 9px 17px;
+  font-size: 13px;
+}
+.catalog-empty {
+  padding: 24px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  text-align: center;
+}
+.catalog-empty strong {
+  display: block;
+  color: var(--ink);
+}
+.catalog-empty p {
+  margin-top: 7px;
+  font-size: 13px;
+}
+@media (min-width: 760px) {
+  .catalog-grid.has-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .catalog-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .catalog-actions {
+    flex-direction: column;
+  }
+  .catalog-actions .btn {
+    width: 100%;
+  }
+}
