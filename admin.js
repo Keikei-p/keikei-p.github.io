@@ -29,6 +29,8 @@ if (!config || !config.projectId) {
   const formStatus = document.getElementById('form-status');
   const deleteButton = document.getElementById('delete-ad');
   const editorTitle = document.getElementById('editor-title');
+  const contactList = document.getElementById('contact-list');
+  const contactStats = document.getElementById('contact-stats');
 
   const fields = {
     id: document.getElementById('ad-id'),
@@ -51,7 +53,9 @@ if (!config || !config.projectId) {
   };
 
   let ads = [];
+  let contacts = [];
   let unsubscribe = null;
+  let unsubscribeContacts = null;
 
   const serviceCatalog = window.TC_SERVICE_CATALOG || {};
   const serviceEntries = []
@@ -294,6 +298,136 @@ if (!config || !config.projectId) {
     });
   }
 
+  function contactTime(value) {
+    if (!value) return '送信直後';
+    try {
+      const date = typeof value.toDate === 'function' ? value.toDate() : new Date(value);
+      return new Intl.DateTimeFormat('ja-JP', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(date);
+    } catch (_) {
+      return '日時不明';
+    }
+  }
+
+  function renderContacts() {
+    if (!contactList || !contactStats) return;
+
+    const unread = contacts.filter(item => item.data.status === 'new').length;
+    contactStats.innerHTML =
+      '<span class="admin-stat">受信 ' + contacts.length + '件</span>' +
+      '<span class="admin-stat">未確認 ' + unread + '件</span>';
+
+    contactList.innerHTML = '';
+
+    if (!contacts.length) {
+      contactList.innerHTML = '<div class="admin-card">お問い合わせはまだありません。</div>';
+      return;
+    }
+
+    contacts.forEach(item => {
+      const data = item.data || {};
+      const card = document.createElement('article');
+      card.className = 'admin-contact-card' + (data.status === 'new' ? ' is-new' : '');
+
+      const head = document.createElement('div');
+      head.className = 'admin-contact-head';
+
+      const title = document.createElement('div');
+      const strong = document.createElement('strong');
+      strong.textContent = data.type || 'お問い合わせ';
+      const meta = document.createElement('span');
+      meta.textContent = contactTime(data.created_at) + ' / ' + (data.name || '名前なし');
+      title.append(strong, meta);
+
+      const state = document.createElement('span');
+      state.className = 'admin-state ' + (data.status === 'new' ? 'is-on' : 'is-off');
+      state.textContent = data.status === 'new' ? '未確認' : '確認済み';
+      head.append(title, state);
+
+      const body = document.createElement('div');
+      body.className = 'admin-contact-body';
+
+      if (data.reply_email) {
+        const reply = document.createElement('p');
+        const label = document.createElement('strong');
+        label.textContent = '返信先: ';
+        const link = document.createElement('a');
+        link.href = 'mailto:' + data.reply_email;
+        link.textContent = data.reply_email;
+        reply.append(label, link);
+        body.appendChild(reply);
+      }
+
+      if (data.page) {
+        const page = document.createElement('p');
+        page.textContent = '該当ページ・サービス: ' + data.page;
+        body.appendChild(page);
+      }
+
+      const message = document.createElement('p');
+      message.className = 'admin-contact-message';
+      message.textContent = data.message || '';
+      body.appendChild(message);
+
+      const actions = document.createElement('div');
+      actions.className = 'admin-row-actions';
+
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.textContent = data.status === 'new' ? '確認済みにする' : '未確認に戻す';
+      toggle.addEventListener('click', async () => {
+        await dbModule.updateDoc(dbModule.doc(db, 'contacts', item.id), {
+          status: data.status === 'new' ? 'read' : 'new'
+        });
+      });
+
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = '削除';
+      remove.addEventListener('click', async () => {
+        if (!window.confirm('このお問い合わせを削除しますか？')) return;
+        await dbModule.deleteDoc(dbModule.doc(db, 'contacts', item.id));
+      });
+
+      actions.append(toggle, remove);
+      card.append(head, body, actions);
+      contactList.appendChild(card);
+    });
+  }
+
+  function startContactsListener() {
+    if (!contactList) return;
+    if (unsubscribeContacts) unsubscribeContacts();
+
+    unsubscribeContacts = dbModule.onSnapshot(
+      dbModule.collection(db, 'contacts'),
+      snapshot => {
+        contacts = snapshot.docs
+          .map(doc => ({ id: doc.id, data: doc.data() }))
+          .sort((a, b) => {
+            const at = a.data.created_at && typeof a.data.created_at.toMillis === 'function'
+              ? a.data.created_at.toMillis()
+              : 0;
+            const bt = b.data.created_at && typeof b.data.created_at.toMillis === 'function'
+              ? b.data.created_at.toMillis()
+              : 0;
+            return bt - at;
+          });
+        renderContacts();
+      },
+      error => {
+        contactList.innerHTML = '<div class="admin-card admin-error">お問い合わせを取得できません: ' +
+          String(error.message || error) +
+          '</div>';
+      }
+    );
+  }
+
   function startAdsListener() {
     if (unsubscribe) unsubscribe();
 
@@ -400,6 +534,10 @@ if (!config || !config.projectId) {
         unsubscribe();
         unsubscribe = null;
       }
+      if (unsubscribeContacts) {
+        unsubscribeContacts();
+        unsubscribeContacts = null;
+      }
       loginPanel.hidden = false;
       appPanel.hidden = true;
       logoutButton.hidden = true;
@@ -420,5 +558,6 @@ if (!config || !config.projectId) {
     logoutButton.hidden = false;
     resetForm();
     startAdsListener();
+    startContactsListener();
   });
 }
