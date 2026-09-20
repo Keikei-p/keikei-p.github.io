@@ -9,6 +9,10 @@
  *
  * ASP審査中のため、下記は構造確認用の仮レコードです。
  * affiliate_url は空、is_active は false のままです。
+ *
+ * 注意:
+ * この静的ファイルはブラウザから見えるため、実際のrewardなど
+ * 外部へ公開したくない内部情報はFirebase導入後にaffiliate_adsで管理してください。
  */
 window.TC_AFFILIATE_MASTER = {
   updated_at: "2026-09-20",
