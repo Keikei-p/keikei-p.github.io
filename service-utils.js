@@ -133,7 +133,8 @@
   function externalUrl(service) {
     if (!service) return '';
     if (window.TCAffiliateManager) {
-      return window.TCAffiliateManager.resolve(service).url || '';
+      var resolved = window.TCAffiliateManager.resolve(service);
+      return resolved.url || resolved.official_url || '';
     }
     return service.officialUrl || '';
   }
