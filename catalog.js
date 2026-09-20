@@ -122,12 +122,11 @@
           card.appendChild(caution);
         }
 
-        if (service.checkedAt) {
-          var checked = document.createElement('p');
-          checked.className = 'catalog-checked';
-          checked.textContent = '情報確認日：' + service.checkedAt;
-          card.appendChild(checked);
-        }
+        var freshness = u.freshness(service, 90);
+        var checked = document.createElement('p');
+        checked.className = 'catalog-checked is-' + freshness.state;
+        checked.textContent = freshness.label;
+        card.appendChild(checked);
 
         var actions = document.createElement('div');
         actions.className = 'catalog-actions';
