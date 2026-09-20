@@ -1,0 +1,92 @@
+/* サービス詳細ページ */
+.service-shell {
+  padding: 56px 0 88px;
+}
+.service-shell .container {
+  max-width: 880px;
+}
+.service-back {
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+.service-back a {
+  color: var(--teal-dark);
+}
+.service-hero {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.service-category {
+  display: inline-flex;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 800;
+}
+.service-hero h1 {
+  margin-top: 10px;
+  font-size: clamp(28px, 5vw, 40px);
+}
+.service-summary {
+  margin-top: 12px;
+}
+.service-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.service-block {
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+}
+.service-block h2 {
+  margin-bottom: 12px;
+  font-size: 21px;
+}
+.service-block ul {
+  margin: 0;
+  padding-left: 1.4em;
+  color: var(--ink-soft);
+}
+.service-block li + li {
+  margin-top: 7px;
+}
+.service-meta {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.service-meta div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.service-meta dt {
+  font-weight: 800;
+  color: var(--teal-dark);
+}
+.service-meta dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.service-empty {
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .service-shell { padding: 38px 0 64px; }
+  .service-hero, .service-block { padding: 20px; }
+  .service-actions { flex-direction: column; }
+  .service-actions .btn { width: 100%; }
+  .service-meta div { grid-template-columns: 1fr; gap: 2px; }
+}
