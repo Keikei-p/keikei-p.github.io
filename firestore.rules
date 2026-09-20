@@ -15,7 +15,7 @@ service cloud.firestore {
     // 公開サイトが読むためのサニタイズ済み広告データ。
     // admin.js は有効かつURLがある広告だけここへ同期する。
     match /affiliate_public/{adId} {
-      allow read: if true;
+      allow read: if resource.data.is_active == true;
       allow create, update, delete: if isAffiliateAdmin();
     }
 
