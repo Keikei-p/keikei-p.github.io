@@ -37,6 +37,7 @@ if (!config || !config.projectId) {
     category: document.getElementById('category'),
     provider: document.getElementById('provider'),
     affiliate_url: document.getElementById('affiliate-url'),
+    affiliate_code: document.getElementById('affiliate-code'),
     official_url: document.getElementById('official-url'),
     display_name: document.getElementById('display-name'),
     description: document.getElementById('description'),
@@ -63,6 +64,8 @@ if (!config || !config.projectId) {
       category: fields.category.value,
       provider: fields.provider.value.trim(),
       affiliate_url: fields.affiliate_url.value.trim(),
+      affiliate_code: fields.affiliate_code.value.trim(),
+      render_mode: fields.affiliate_code.value.trim() ? 'code' : 'url',
       official_url: fields.official_url.value.trim(),
       display_name: fields.display_name.value.trim(),
       description: fields.description.value.trim(),
@@ -83,6 +86,8 @@ if (!config || !config.projectId) {
       category: data.category,
       provider: data.provider,
       affiliate_url: data.affiliate_url,
+      affiliate_code: data.affiliate_code || '',
+      render_mode: data.render_mode || (data.affiliate_code ? 'code' : 'url'),
       official_url: data.official_url,
       display_name: data.display_name,
       description: data.description,
@@ -95,10 +100,55 @@ if (!config || !config.projectId) {
     };
   }
 
+  function hasAffiliateTarget(data) {
+    return Boolean(data && (String(data.affiliate_code || '').trim() || String(data.affiliate_url || '').trim()));
+  }
+
+  function validateAffiliateCode(code) {
+    const raw = String(code || '').trim();
+    if (!raw) return { ok: true };
+
+    if (/\\</.test(raw) || /\[[^\]]*https?:\/\//i.test(raw)) {
+      return { ok: false, message: '広告コードがMarkdown形式に変換されています。ASPの「広告コードをコピー」から元のHTMLを貼り直してください。' };
+    }
+
+    const template = document.createElement('template');
+    template.innerHTML = raw;
+
+    const allowedTags = new Set(['A', 'IMG']);
+    const allowedAttrs = {
+      A: new Set(['href', 'rel', 'target', 'title', 'referrerpolicy']),
+      IMG: new Set(['src', 'alt', 'width', 'height', 'border', 'loading', 'referrerpolicy'])
+    };
+
+    const elements = Array.from(template.content.querySelectorAll('*'));
+    if (!elements.length || !template.content.querySelector('a[href]')) {
+      return { ok: false, message: '広告コード内に有効なリンクが見つかりません。ASPが発行した広告コードをそのまま貼ってください。' };
+    }
+
+    for (const element of elements) {
+      if (!allowedTags.has(element.tagName)) {
+        return { ok: false, message: '安全のため、広告コードはリンクと画像だけを許可しています。script等を含むコードは登録できません。' };
+      }
+
+      for (const attr of Array.from(element.attributes)) {
+        const name = attr.name.toLowerCase();
+        if (name.startsWith('on') || !allowedAttrs[element.tagName].has(name)) {
+          return { ok: false, message: '広告コードに許可していない属性が含まれています: ' + attr.name };
+        }
+        if ((name === 'href' || name === 'src') && !/^https?:\/\//i.test(attr.value)) {
+          return { ok: false, message: '広告コードのURLは http/https のみ登録できます。' };
+        }
+      }
+    }
+
+    return { ok: true };
+  }
+
   async function syncPublic(docId, data) {
     const publicRef = dbModule.doc(db, 'affiliate_public', docId);
 
-    if (data.is_active && data.affiliate_url) {
+    if (data.is_active && hasAffiliateTarget(data)) {
       await dbModule.setDoc(publicRef, publicRecord(data));
     } else {
       await dbModule.deleteDoc(publicRef).catch(() => {});
@@ -132,7 +182,7 @@ if (!config || !config.projectId) {
   }
 
   function render() {
-    const activeCount = ads.filter(item => item.data.is_active && item.data.affiliate_url).length;
+    const activeCount = ads.filter(item => item.data.is_active && hasAffiliateTarget(item.data)).length;
     const services = new Set(ads.map(item => item.data.service_id).filter(Boolean));
 
     stats.innerHTML =
@@ -161,13 +211,14 @@ if (!config || !config.projectId) {
       title.append(strong, meta);
 
       const asp = document.createElement('div');
-      asp.textContent = data.asp_name || 'ASP未設定';
+      const format = data.affiliate_code ? 'コード' : (data.affiliate_url ? 'URL' : '未設定');
+      asp.textContent = (data.asp_name || 'ASP未設定') + ' / ' + format;
 
       const priority = document.createElement('div');
       priority.innerHTML = '<small>priority</small><strong>' + Number(data.priority || 0) + '</strong>';
 
       const state = document.createElement('span');
-      const isOn = data.is_active === true && Boolean(data.affiliate_url);
+      const isOn = data.is_active === true && hasAffiliateTarget(data);
       state.className = 'admin-state ' + (isOn ? 'is-on' : 'is-off');
       state.textContent = isOn ? 'ON' : 'OFF';
 
@@ -248,6 +299,13 @@ if (!config || !config.projectId) {
 
     try {
       const data = readForm();
+      const codeCheck = validateAffiliateCode(data.affiliate_code);
+      if (!codeCheck.ok) {
+        throw new Error(codeCheck.message);
+      }
+      if (data.is_active && !hasAffiliateTarget(data)) {
+        throw new Error('広告をONにする場合は、affiliate_url または広告コードのどちらかを入力してください。');
+      }
       const existingId = fields.id.value.trim();
       const privateRef = existingId
         ? dbModule.doc(db, 'affiliate_ads', existingId)
