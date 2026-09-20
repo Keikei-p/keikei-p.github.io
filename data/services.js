@@ -755,6 +755,7 @@ window.TC_SERVICE_CATALOG = {
       ],
       "fit": {
         "H": 6,
+        "docomo-set": 5,
         "R": 0,
         "M": 0
       },
@@ -818,6 +819,7 @@ window.TC_SERVICE_CATALOG = {
       ],
       "fit": {
         "H": 6,
+        "au-uq-set": 5,
         "R": 0,
         "M": 0
       },
@@ -880,6 +882,7 @@ window.TC_SERVICE_CATALOG = {
       ],
       "fit": {
         "H": 6,
+        "softbank-set": 5,
         "R": 0,
         "M": 0
       },
@@ -1007,6 +1010,7 @@ window.TC_SERVICE_CATALOG = {
       ],
       "fit": {
         "H": 6,
+        "au-uq-set": 5,
         "R": 0,
         "M": 0
       },
