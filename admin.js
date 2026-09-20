@@ -56,10 +56,6 @@ if (!config || !config.projectId) {
     return new Date().toISOString().slice(0, 10);
   }
 
-  function isAdminToken(tokenResult) {
-    return tokenResult && tokenResult.claims && tokenResult.claims.admin === true;
-  }
-
   function readForm() {
     return {
       service_id: fields.service_id.value.trim(),
@@ -302,8 +298,8 @@ if (!config || !config.projectId) {
       return;
     }
 
-    const tokenResult = await user.getIdTokenResult(true);
-    if (!isAdminToken(tokenResult)) {
+    const adminDoc = await dbModule.getDoc(dbModule.doc(db, 'admins', user.uid));
+    if (!adminDoc.exists()) {
       loginPanel.hidden = false;
       appPanel.hidden = true;
       logoutButton.hidden = false;
