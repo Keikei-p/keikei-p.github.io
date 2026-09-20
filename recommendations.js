@@ -102,12 +102,6 @@
       title.textContent = service.name;
       card.appendChild(title);
 
-      var price = document.createElement('p');
-      price.className = 'recommend-price';
-      price.innerHTML = '<span>料金目安</span><strong></strong>';
-      price.querySelector('strong').textContent = u.priceLabel(service);
-      card.appendChild(price);
-
       var summary = document.createElement('p');
       summary.className = 'recommend-summary';
       summary.textContent = service.summary || 'サービスの詳細情報を確認できます。';
@@ -163,7 +157,7 @@
         officialLink.href = externalUrl;
         officialLink.target = '_blank';
         officialLink.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
-        officialLink.textContent = '公式サイトで確認する';
+        officialLink.textContent = '最新の料金・特典を確認する';
         officialLink.setAttribute('data-track', 'diagnosis-official-click');
         officialLink.setAttribute('data-service-id', service.id);
         actions.appendChild(officialLink);
