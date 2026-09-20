@@ -367,7 +367,7 @@ window.TC_SERVICE_CATALOG = {
       "serviceType": "online",
       "carrier": "KDDI",
       "network": "au",
-      "summary": "基本料0円をベースに、必要なデータや通話をトッピングで追加するオンライン専用サービスです。",
+      "summary": "基本料金を抑え、必要なデータや通話をトッピングで追加するオンライン専用サービスです。",
       "priceLabel": "最新料金・特典は公式サイトで確認",
       "dataLabel": "必要な容量・期間を都度購入",
       "callLabel": "通話オプションあり",
@@ -411,7 +411,7 @@ window.TC_SERVICE_CATALOG = {
         "single-user": 2
       },
       "matchReasons": {
-        "cost": "基本料0円から必要な分だけ買う仕組みで、使い方を細かく調整できます。",
+        "cost": "必要な分だけ追加する仕組みで、使い方を細かく調整できます。",
         "light-data": "データ使用量が少ない月は小容量トッピングを選べます。",
         "support-not-needed": "アプリで自分で契約管理できる人に向きます。",
         "single-user": "自分の利用量に合わせて一回線を柔軟に管理しやすいです。"
