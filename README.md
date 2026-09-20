@@ -15,6 +15,8 @@
 - hikari.html: 光回線比較
 - compare.js / compare.css: 比較ページ共通機能
 - data/services.js: 今後のサービス情報を一元管理するマスター
+- recommendations.js / recommendations.css: 診断結果に最大3件のサービス候補を表示
+- service.html / service-detail.js / service.css: サービス詳細ページの共通テンプレート
 - operator.html: 運営者情報
 - privacy.html: プライバシーポリシー
 - terms.html: 利用規約
@@ -44,3 +46,5 @@ affiliateUrl は案件が確定するまで空欄にします。
 
 既存構造を壊さずMVPから小さく改善します。
 診断ロジックとサービスデータを分け、将来的に通信以外の比較ジャンルにも応用しやすい構成を目指します。
+
+診断結果は CustomEvent `tc:diagnosis-result` を通して共通の候補表示へ渡します。サービスデータが0件でも診断ページは壊れず、準備中表示になります。
