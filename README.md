@@ -190,3 +190,35 @@ AdSense承認後は `display-ads-config.js` に `ca-pub-...` と広告ユニッ�
 - 将来メール通知を追加する場合、受信用アドレスはCloud Functions等のサーバー側非公開設定で管理する
 
 公開フォームを有効にするには、更新済みの `firestore.rules` をFirebase Consoleへデプロイする。
+
+
+## Firebase Hosting 公開
+
+Firebaseプロジェクト `tushincompas` の無料Hostingを利用する。
+
+公開先:
+- `https://tushincompas.web.app`
+- `https://tushincompas.firebaseapp.com`
+
+Hosting設定:
+- `firebase.json`: リポジトリ直下のHTML/CSS/JSを公開
+- `.firebaserc`: `tushincompas` を既定プロジェクトとして指定
+- README、Firestoreルール、Firebase設定手順など運用ファイルはHosting対象外
+
+### Cloud Shellから初回公開
+
+```bash
+git clone https://github.com/Keikei-p/thushin-compas.git
+cd thushin-compas
+firebase deploy --only hosting --project tushincompas
+```
+
+### 2回目以降
+
+```bash
+cd thushin-compas
+git pull
+firebase deploy --only hosting --project tushincompas
+```
+
+公開後は `https://tushincompas.web.app` を確認する。
