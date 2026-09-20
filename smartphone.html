@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="recommendations.css">
 </head>
 <body>
 
@@ -34,7 +35,9 @@
 
     <nav class="site-nav">
       <a href="index.html#menu">診断メニュー</a>
-      <a href="index.html#about">このサイトについて</a>
+      <a href="sim.html">SIM比較</a>
+      <a href="wifi.html">Wi-Fi診断</a>
+      <a href="hikari.html">光回線比較</a>
     </nav>
   </div>
 </header>
@@ -48,29 +51,24 @@
         <p>7つの質問に答えるだけで、あなたに合った通信サービスの傾向がわかります。</p>
       </div>
 
-      <!-- 質問画面 -->
       <div class="diag-quiz" id="quiz" aria-live="polite">
-
         <div class="diag-progress">
           <p class="diag-progress-label">
             質問 <span id="q-current">1</span> / <span id="q-total">7</span>
           </p>
-          <div class="progress-track">
+          <div class="progress-track" role="progressbar" aria-label="診断の進み具合" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" id="progress-track">
             <div class="progress-fill" id="progress-fill"></div>
           </div>
         </div>
 
-        <h2 class="diag-question" id="question-title">質問を読み込み中です</h2>
-
+        <h2 class="diag-question" id="question-title" tabindex="-1">質問を読み込み中です</h2>
         <div class="option-list" id="option-list"></div>
-
         <button type="button" class="back-link" id="back-btn" hidden>ひとつ前の質問に戻る</button>
       </div>
 
-      <!-- 結果画面 -->
       <div class="diag-result" id="result" hidden>
         <p class="result-lead">あなたに合う通信サービスを診断しました</p>
-        <h2 class="result-type" id="result-type">診断結果</h2>
+        <h2 class="result-type" id="result-type" tabindex="-1">診断結果</h2>
         <p class="result-desc" id="result-desc"></p>
 
         <div class="result-points">
@@ -78,8 +76,20 @@
           <ul id="result-tags"></ul>
         </div>
 
+        <section class="recommend-section" aria-labelledby="recommend-title">
+          <h3 id="recommend-title">あなたに合いやすいサービス候補</h3>
+          <p class="recommend-lead">回答内容との相性から候補を最大3件表示します。最終判断の前に、必ず公式サイトで最新条件をご確認ください。</p>
+          <div class="recommend-grid" id="service-recommendations">
+            <div class="recommend-empty">
+              <strong>候補サービスを準備しています</strong>
+              <p>診断完了後に候補が表示されます。</p>
+            </div>
+          </div>
+        </section>
+
         <div class="result-actions">
           <button type="button" class="btn btn-primary" id="retry-btn">もう一度診断する</button>
+          <a class="btn btn-ghost" href="sim.html">SIM比較を見る</a>
           <a class="btn btn-ghost" href="index.html">トップページに戻る</a>
         </div>
       </div>
@@ -90,12 +100,16 @@
 
 <footer class="site-footer">
   <div class="container">
-    <p class="footer-name">つうしんコンパス</p>
-    <p class="footer-note">診断結果は一般的な傾向を示すものであり、特定のサービスを保証するものではありません。</p>
+    <div>
+      <p class="footer-name">つうしんコンパス</p>
+      <p class="footer-note">診断結果は一般的な傾向を示すものであり、特定のサービスを保証するものではありません。</p>
+    </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
+<script src="data/services.js"></script>
+<script src="recommendations.js"></script>
 <script src="smartphone-diagnosis.js"></script>
 </body>
 </html>
