@@ -227,3 +227,62 @@ code {
     flex-wrap: wrap;
   }
 }
+
+
+.admin-contact-section {
+  margin-bottom: 34px;
+}
+.admin-divider {
+  margin: 34px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.admin-contact-list {
+  display: grid;
+  gap: 12px;
+}
+.admin-contact-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.admin-contact-card.is-new {
+  border-left: 5px solid var(--mint);
+}
+.admin-contact-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+.admin-contact-head strong,
+.admin-contact-head span {
+  display: block;
+}
+.admin-contact-head span {
+  margin-top: 4px;
+  color: var(--ink-light);
+  font-size: 11px;
+}
+.admin-contact-body {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+.admin-contact-body a {
+  color: var(--teal-dark);
+  word-break: break-all;
+}
+.admin-contact-message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .admin-contact-head {
+    flex-direction: column;
+  }
+}
