@@ -180,10 +180,13 @@ AdSense承認後は `display-ads-config.js` に `ca-pub-...` と広告ユニッ�
 
 ## お問い合わせ運用
 
-- `contact.html`: 公開用お問い合わせページ
-- `contact-config.js`: 受信用メールアドレスの一元設定
-- `contact.js`: 入力内容から利用者のメールアプリを起動する
-- パスワード、契約番号、カード番号等の機密情報を送らない注意書きを表示
-- 受信用メールアドレスは `contact-config.js` の `email` だけを変更すればよい
+- `contact.html`: 公開用お問い合わせフォーム
+- `contact.js`: Firebase Firestoreの `contacts` コレクションへ直接保存
+- 公開フォームからは作成のみ許可し、問い合わせ内容の読取・更新・削除は管理者だけ
+- 管理画面 `admin.html` で問い合わせ一覧、未確認/確認済み、返信先、削除を管理
+- 運営者の受信用メールアドレスは公開コードに保存しない
+- 返信先メールアドレスは利用者が任意入力した場合のみ保存
+- honeypotと文字数制限、Firestore Security Rulesで最低限のスパム・不正入力対策を行う
+- 将来メール通知を追加する場合、受信用アドレスはCloud Functions等のサーバー側非公開設定で管理する
 
-公開前に、受信可能な専用メールアドレスを設定する。
+公開フォームを有効にするには、更新済みの `firestore.rules` をFirebase Consoleへデプロイする。
