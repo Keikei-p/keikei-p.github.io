@@ -1,0 +1,99 @@
+/* トップページ追加スタイル */
+.home-flow {
+  padding: 78px 0;
+  background: var(--bg);
+}
+.home-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 34px auto 0;
+}
+.home-flow-card {
+  position: relative;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.home-flow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+.home-flow-card h3 {
+  font-size: 18px;
+}
+.home-flow-card p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.home-policy {
+  padding: 70px 0;
+  background: var(--surface);
+}
+.home-policy-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
+  gap: 32px;
+  align-items: center;
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background: var(--surface-soft);
+}
+.home-policy-box h2 {
+  font-size: clamp(23px, 4vw, 31px);
+}
+.home-policy-box p {
+  margin-top: 10px;
+}
+.home-policy-links {
+  display: grid;
+  gap: 10px;
+}
+.home-policy-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.home-policy-links a::after {
+  content: "→";
+  color: var(--teal);
+}
+@media (max-width: 800px) {
+  .home-flow-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-policy-box {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .home-flow,
+  .home-policy {
+    padding: 54px 0;
+  }
+  .home-flow-card,
+  .home-policy-box {
+    padding: 22px;
+  }
+}
