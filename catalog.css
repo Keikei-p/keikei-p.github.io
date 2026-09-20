@@ -1,7 +1,5 @@
 /* 比較ページの実サービス一覧 */
-.catalog-section {
-  margin-top: 48px;
-}
+.catalog-section { margin-top: 48px; }
 .catalog-head {
   display: flex;
   align-items: end;
@@ -9,31 +7,19 @@
   gap: 18px;
   margin-bottom: 16px;
 }
-.catalog-head-copy {
-  max-width: 620px;
-}
+.catalog-head-copy { max-width: 680px; }
 .catalog-head h2 {
   padding-left: 12px;
   border-left: 5px solid var(--teal);
   font-size: 1.35rem;
 }
-.catalog-head p {
-  margin-top: 8px;
-  font-size: 14px;
-}
-.catalog-status {
-  flex: none;
-  color: var(--ink-light);
-  font-size: 12px;
-}
-.catalog-grid {
-  display: grid;
-  gap: 14px;
-}
+.catalog-head p { margin-top: 8px; font-size: 14px; }
+.catalog-status { flex: none; color: var(--ink-light); font-size: 12px; }
+.catalog-grid { display: grid; gap: 16px; }
 .catalog-card {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 22px;
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
   background: var(--surface);
@@ -45,9 +31,8 @@
   justify-content: space-between;
   gap: 12px;
 }
-.catalog-card h3 {
-  font-size: 19px;
-}
+.catalog-card h3 { font-size: 20px; }
+.catalog-carrier { margin-top: 2px; color: var(--ink-light); font-size: 12px; }
 .catalog-badge {
   flex: none;
   display: inline-flex;
@@ -58,28 +43,61 @@
   font-size: 11px;
   font-weight: 800;
 }
-.catalog-summary {
-  margin-top: 8px;
-  font-size: 14px;
+.catalog-price {
+  margin-top: 14px;
+  padding: 13px 14px;
+  border-radius: 12px;
+  background: var(--coral-light);
 }
-.catalog-facts {
-  display: grid;
-  gap: 7px;
-  margin: 14px 0 0;
+.catalog-price span {
+  display: block;
+  color: var(--ink-light);
+  font-size: 11px;
+  font-weight: 700;
 }
-.catalog-fact {
+.catalog-price strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--coral-dark);
+  font-size: 17px;
+}
+.catalog-summary { margin-top: 12px; font-size: 14px; }
+.catalog-chips {
   display: flex;
-  gap: 8px;
-  font-size: 13px;
+  gap: 7px;
+  margin-top: 13px;
+  flex-wrap: wrap;
 }
-.catalog-fact dt {
-  min-width: 74px;
-  font-weight: 800;
-  color: var(--ink);
-}
-.catalog-fact dd {
-  margin: 0;
+.catalog-chip {
+  display: inline-flex;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
   color: var(--ink-soft);
+  font-size: 11px;
+}
+.catalog-fit,
+.catalog-caution {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.catalog-fit {
+  background: var(--mint-light);
+  color: var(--ink-soft);
+}
+.catalog-caution {
+  background: var(--amber-light);
+  color: var(--ink-soft);
+}
+.catalog-fit strong,
+.catalog-caution strong { color: var(--ink); }
+.catalog-checked {
+  margin-top: 12px;
+  color: var(--ink-light);
+  font-size: 11px;
 }
 .catalog-actions {
   display: flex;
@@ -100,28 +118,13 @@
   background: var(--surface);
   text-align: center;
 }
-.catalog-empty strong {
-  display: block;
-  color: var(--ink);
-}
-.catalog-empty p {
-  margin-top: 7px;
-  font-size: 13px;
-}
-@media (min-width: 760px) {
-  .catalog-grid.has-items {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.catalog-empty strong { display: block; color: var(--ink); }
+.catalog-empty p { margin-top: 7px; font-size: 13px; }
+@media (min-width: 820px) {
+  .catalog-grid.has-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
-  .catalog-head {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .catalog-actions {
-    flex-direction: column;
-  }
-  .catalog-actions .btn {
-    width: 100%;
-  }
+  .catalog-head { align-items: flex-start; flex-direction: column; }
+  .catalog-actions { flex-direction: column; }
+  .catalog-actions .btn { width: 100%; }
 }
