@@ -2,6 +2,9 @@
 (function () {
   'use strict';
 
+  var u = window.TCServiceUtils;
+  if (!u) return;
+
   function catalogFor(kind) {
     var catalog = window.TC_SERVICE_CATALOG || {};
     return Array.isArray(catalog[kind]) ? catalog[kind] : [];
@@ -10,11 +13,9 @@
   function getScore(service, profile, tags) {
     var fit = service.fit || {};
     var score = Number(fit[profile] || 0);
-
     (tags || []).forEach(function (tag) {
       score += Number(fit[tag] || 0);
     });
-
     return score;
   }
 
@@ -26,9 +27,7 @@
     var reasons = [];
     var reasonMap = service.matchReasons || {};
 
-    if (reasonMap[profile]) {
-      reasons.push(reasonMap[profile]);
-    }
+    if (reasonMap[profile]) reasons.push(reasonMap[profile]);
 
     (tags || []).forEach(function (tag) {
       if (reasonMap[tag] && reasons.indexOf(reasonMap[tag]) === -1) {
@@ -68,10 +67,7 @@
     var ranked = services
       .filter(function (service) { return service && service.id && service.name; })
       .map(function (service) {
-        return {
-          service: service,
-          score: getScore(service, profile, tags)
-        };
+        return { service: service, score: getScore(service, profile, tags) };
       })
       .sort(function (a, b) {
         return b.score - a.score || safeText(a.service.name).localeCompare(safeText(b.service.name), 'ja');
@@ -94,20 +90,39 @@
       var rank = document.createElement('span');
       rank.className = 'recommend-rank';
       rank.textContent = '候補 ' + (index + 1);
+      card.appendChild(rank);
 
       var title = document.createElement('h4');
       title.textContent = service.name;
+      card.appendChild(title);
+
+      var price = document.createElement('p');
+      price.className = 'recommend-price';
+      price.innerHTML = '<span>料金目安</span><strong></strong>';
+      price.querySelector('strong').textContent = u.priceLabel(service);
+      card.appendChild(price);
 
       var summary = document.createElement('p');
       summary.className = 'recommend-summary';
       summary.textContent = service.summary || 'サービスの詳細情報を確認できます。';
-
-      card.appendChild(rank);
-      card.appendChild(title);
       card.appendChild(summary);
+
+      var facts = document.createElement('div');
+      facts.className = 'recommend-facts';
+      u.quickFacts(service).slice(0, 3).forEach(function (fact) {
+        var item = document.createElement('span');
+        item.textContent = fact.label + '：' + fact.value;
+        facts.appendChild(item);
+      });
+      if (facts.children.length) card.appendChild(facts);
 
       var reasons = createReasonList(service, profile, tags);
       if (reasons.length) {
+        var reasonTitle = document.createElement('p');
+        reasonTitle.className = 'recommend-reason-title';
+        reasonTitle.textContent = 'この候補になった理由';
+        card.appendChild(reasonTitle);
+
         var list = document.createElement('ul');
         list.className = 'recommend-reasons';
         reasons.forEach(function (reason) {
@@ -118,23 +133,32 @@
         card.appendChild(list);
       }
 
+      if (Array.isArray(service.cautions) && service.cautions.length) {
+        var caution = document.createElement('p');
+        caution.className = 'recommend-caution';
+        caution.innerHTML = '<strong>確認したい点：</strong>';
+        caution.appendChild(document.createTextNode(service.cautions[0]));
+        card.appendChild(caution);
+      }
+
       var actions = document.createElement('div');
       actions.className = 'recommend-actions';
 
       var detailLink = document.createElement('a');
       detailLink.className = 'btn btn-ghost';
       detailLink.href = 'service.html?id=' + encodeURIComponent(service.id);
-      detailLink.textContent = '詳しく見る';
+      detailLink.textContent = '理由と注意点を見る';
       actions.appendChild(detailLink);
 
-      var externalUrl = service.affiliateUrl || service.officialUrl;
+      var externalUrl = u.externalUrl(service);
       if (externalUrl) {
         var officialLink = document.createElement('a');
         officialLink.className = 'btn btn-primary';
         officialLink.href = externalUrl;
         officialLink.target = '_blank';
-        officialLink.rel = 'sponsored noopener noreferrer';
+        officialLink.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
         officialLink.textContent = '公式サイトで確認する';
+        officialLink.setAttribute('data-track', 'diagnosis-official-click');
         actions.appendChild(officialLink);
       }
 
