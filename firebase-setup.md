@@ -33,14 +33,13 @@ OFFにすると公開コレクションから削除されます。
 
 ## 管理者認証
 
-Firestore RulesはFirebase AuthenticationユーザーのIDトークンに
+Firestore RulesはFirebase AuthenticationユーザーのUIDが
 
-`admin: true`
+`admins/{uid}`
 
-というカスタムクレームがあることを要求します。
+というFirestoreドキュメントとして登録されていることを要求します。
 
-クライアント画面からadmin権限を付与する機能は作りません。
-Firebase Admin SDKなど、信頼できる管理環境から付与してください。
+初期管理者はFirebase Consoleから作成します。一般ユーザー側からadminsコレクションを書き換えることはできません。
 
 ## 初期設定
 
@@ -49,8 +48,9 @@ Firebase Admin SDKなど、信頼できる管理環境から付与してくだ�
 3. Firestoreを作成
 4. `firestore.rules` を確認してデプロイ
 5. `firebase-config.js` にWeb App configを設定
-6. 管理者ユーザーへ `admin: true` カスタムクレームを付与
-7. `admin.html` からログイン
+6. Authenticationで管理者ユーザーを作成
+7. そのユーザーのUIDと同じIDで `admins/{uid}` ドキュメントをFirebase Consoleから作成
+8. `admin.html` からログイン
 
 ## 公開サイト側
 
