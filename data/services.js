@@ -964,6 +964,74 @@ window.TC_SERVICE_CATALOG = {
       "updatedAt": "2026-09-20"
     },
     {
+      "id": "biglobe-hikari",
+      "name": "BIGLOBE光",
+      "category": "hikari",
+      "serviceType": "光回線",
+      "carrier": "BIGLOBE",
+      "network": "NTT系光回線",
+      "summary": "1ギガ・10ギガを選べる光コラボ。au・UQ mobileとのセット割条件も確認できる固定回線です。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線・実質データ容量を気にしにくい",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "auスマートバリュー / UQ mobile 自宅セット割の対象条件あり",
+      "areaLabel": "NTT東西の提供エリア・建物設備を確認",
+      "constructionLabel": "新規は工事が必要。転用・事業者変更は工事不要の場合あり",
+      "speedLabel": "1ギガ / 10ギガ",
+      "contractLabel": "プランにより契約期間・解除条件が異なる",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "1ギガと10ギガから選べる",
+        "フレッツ光・他社光コラボからは工事不要で切り替えられる場合がある",
+        "au・UQ mobileの対象プランではセット割を確認できる"
+      ],
+      "suitableFor": [
+        "光コラボで固定回線を使いたい人",
+        "auまたはUQ mobileを使っていてセット割条件を確認したい人",
+        "フレッツ光や他社光コラボからの乗り換えを検討している人"
+      ],
+      "notSuitableFor": [
+        "回線工事を避けたい新規契約の人",
+        "住所や建物が提供エリア・設備条件を満たさない人"
+      ],
+      "cautions": [
+        "10ギガは提供エリアが限られ、対応ルーターが必要です。",
+        "auスマートバリュー・UQ mobile 自宅セット割はBIGLOBE光電話などの適用条件があります。",
+        "工事費・違約金・キャンペーン条件は申込時期や契約内容で変わるため、申込前に最新条件を確認してください。"
+      ],
+      "fit": {
+        "H": 6,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "対応範囲の広い光コラボを比較したい回答と相性があります。"
+      },
+      "officialUrl": "https://join.biglobe.ne.jp/ftth/hikari/",
+      "sourceUrls": [
+        {
+          "label": "BIGLOBE光 公式ページ",
+          "url": "https://join.biglobe.ne.jp/ftth/hikari/"
+        },
+        {
+          "label": "BIGLOBE光 料金・工事・契約条件",
+          "url": "https://join.biglobe.ne.jp/ftth/hikari/price/"
+        },
+        {
+          "label": "BIGLOBE光 10ギガ",
+          "url": "https://join.biglobe.ne.jp/ftth/hikari/10g.html"
+        }
+      ],
+      "checkedAt": "2026-09-20",
+      "updatedAt": "2026-09-20"
+    },
+    {
       "id": "docomo-home5g",
       "name": "docomo home 5G",
       "category": "home-router",
