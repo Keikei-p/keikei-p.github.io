@@ -36,7 +36,7 @@
 料金・キャンペーン・アフィリエイト報酬は推測で入力しません。
 公式情報を確認できたものから data/services.js に追加します。
 
-affiliateUrl は案件が確定するまで空欄にします。
+アフィリエイト広告はサービスマスターへ直接書かず、Firebase管理画面または `data/affiliates.js` で管理します。
 
 ## 公開前に必ず行うこと
 
@@ -106,8 +106,10 @@ affiliateUrl は案件が確定するまで空欄にします。
 - `firebase-setup.md`: Firebase導入手順
 
 同じservice_idに複数ASPを登録できる。
-`is_active=true` かつaffiliate_urlが設定された広告の中から、`priority` が大きいものを優先する。
-有効な広告がない場合はサービスマスターの公式URLへ自動フォールバックする。
+`is_active=true` で `affiliate_url` または `affiliate_code` が設定された広告の中から、`priority` が大きいものを優先する。
+A8.netなどで広告コードが発行される案件は `affiliate_code` を優先し、発行コードを改変せず表示する。
+URL型広告は従来どおりCTAボタンへ反映する。
+有効な広告がない場合、または広告コードが安全性チェックを通らない場合は、サービスマスターの公式URLへ自動フォールバックする。
 
 ### 対応ASP
 
@@ -129,12 +131,15 @@ affiliateUrl は案件が確定するまで空欄にします。
 </a>
 ```
 
-`affiliate-manager.js` が自動的に現在有効な広告URLへ差し替える。
+`affiliate-manager.js` が自動的に現在有効な広告へ切り替える。
+URL型広告ならリンク先を差し替え、広告コード型ならASP発行コードをその位置へ表示する。
 広告がなければ `data-official-url` へ戻る。
 
 ### Firebase導入後
 
 管理者は `admin.html` だけを操作する。
+基本運用は「サービスを選ぶ → ASPを選ぶ → 広告URLまたは広告コードを貼る → ON → 保存」。
+サービスを選ぶと、サービス名・提供元・カテゴリ・公式URLは自動入力される。
 管理画面の保存時に
 
 - `affiliate_ads`: rewardを含む管理者専用データ
