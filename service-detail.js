@@ -188,7 +188,10 @@
         '<h2>料金・特典はここでは固定しません</h2>' +
         '<p>通信サービスの料金やキャンペーンは変わりやすいため、このサイトでは細かな金額を固定表示しません。候補を絞ったあと、公式サイトや提携先で最新の料金・特典・適用条件を確認してください。</p>' +
       '</section>' +
-      renderSources(service);
+      renderSources(service) +
+      (!isAffiliatePresentation
+        ? '<aside class="display-ad-slot service-display-ad" data-display-ad="serviceFallback" aria-label="広告" hidden></aside>'
+        : '');
 
     if (useAffiliateCode) {
       var slot = document.getElementById('service-affiliate-code-slot');
@@ -210,6 +213,10 @@
         fallbackLink.setAttribute('data-link-source', 'official');
         slot.replaceWith(fallbackLink);
       }
+    }
+
+    if (window.TCDisplayAds && window.TCDisplayAds.render) {
+      window.TCDisplayAds.render(root);
     }
   }
 
