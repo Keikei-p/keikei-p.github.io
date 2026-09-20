@@ -12,7 +12,10 @@
 
   function matchesCategory(service, raw) {
     if (!raw) return true;
-    var allowed = raw.split(',').map(function (x) { return x.trim().toLowerCase(); }).filter(Boolean);
+    var allowed = raw.split(',').map(function (x) {
+      return x.trim().toLowerCase();
+    }).filter(Boolean);
+
     if (!allowed.length) return true;
 
     var values = []
@@ -20,10 +23,26 @@
       .concat(service.serviceType || [])
       .map(function (x) { return String(x).toLowerCase(); });
 
-    return values.some(function (value) { return allowed.indexOf(value) >= 0; });
+    return values.some(function (value) {
+      return allowed.indexOf(value) >= 0;
+    });
   }
 
-  roots.forEach(function (root) {
+  function resolveLink(service) {
+    if (window.TCAffiliateManager) {
+      return window.TCAffiliateManager.resolve(service);
+    }
+
+    return {
+      url: service.officialUrl || '',
+      is_affiliate: false,
+      asp_name: '',
+      ad_id: '',
+      source: 'official'
+    };
+  }
+
+  function renderRoot(root) {
     var kind = root.getAttribute('data-catalog-kind');
     var categories = root.getAttribute('data-catalog-category') || '';
     var catalog = window.TC_SERVICE_CATALOG || {};
@@ -35,6 +54,8 @@
     if (status) {
       status.textContent = items.length ? items.length + '件掲載' : 'サービス情報準備中';
     }
+
+    root.classList.remove('has-items');
 
     if (!items.length) {
       root.innerHTML =
@@ -78,7 +99,6 @@
         badge.className = 'catalog-badge';
         badge.textContent = textValue(service.category, '通信サービス');
         top.appendChild(badge);
-
         card.appendChild(top);
 
         var summary = document.createElement('p');
@@ -127,21 +147,33 @@
         detail.textContent = '詳しく見る';
         actions.appendChild(detail);
 
-        var external = u.externalUrl(service);
-        if (external) {
-          var official = document.createElement('a');
-          official.className = 'btn btn-primary';
-          official.href = external;
-          official.target = '_blank';
-          official.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
-          official.textContent = '最新の料金・特典を確認する';
-          official.setAttribute('data-track', 'catalog-official-click');
-          official.setAttribute('data-service-id', service.id);
-          actions.appendChild(official);
+        var resolved = resolveLink(service);
+        if (resolved.url) {
+          var external = document.createElement('a');
+          external.className = 'btn btn-primary';
+          external.href = resolved.url;
+          external.target = '_blank';
+          external.rel = resolved.is_affiliate
+            ? 'sponsored noopener noreferrer'
+            : 'noopener noreferrer';
+          external.textContent = '最新の料金・特典を確認する';
+          external.setAttribute('data-track', 'catalog-official-click');
+          external.setAttribute('data-service-id', service.id);
+          external.setAttribute('data-link-source', resolved.source || 'official');
+          if (resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
+          if (resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
+          actions.appendChild(external);
         }
 
         card.appendChild(actions);
         root.appendChild(card);
       });
-  });
+  }
+
+  function renderAll() {
+    roots.forEach(renderRoot);
+  }
+
+  renderAll();
+  document.addEventListener('tc:affiliate-ready', renderAll);
 })();
