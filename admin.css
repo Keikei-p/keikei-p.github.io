@@ -1,0 +1,217 @@
+:root {
+  --admin-max: 1120px;
+}
+body {
+  background: var(--bg);
+}
+.admin-container {
+  width: min(100% - 32px, var(--admin-max));
+  margin-inline: auto;
+}
+.admin-header {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.admin-header .admin-container,
+.admin-toolbar,
+.admin-editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.admin-kicker {
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 800;
+}
+.admin-header h1 {
+  margin-top: 2px;
+  font-size: clamp(23px, 4vw, 31px);
+}
+.admin-main {
+  padding: 32px 0 72px;
+}
+.admin-card,
+.admin-notice {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.admin-notice {
+  border-left: 5px solid var(--amber);
+}
+.admin-notice p,
+.admin-toolbar p {
+  margin-top: 6px;
+  font-size: 13px;
+}
+.admin-login {
+  max-width: 520px;
+  margin: 40px auto;
+}
+.admin-login form {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+.admin-login label,
+.admin-form-grid label {
+  display: grid;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+.admin-login input,
+.admin-form-grid input,
+.admin-form-grid select,
+.admin-form-grid textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+}
+.admin-form-grid textarea {
+  resize: vertical;
+}
+.admin-error {
+  margin-top: 12px;
+  color: #b42318;
+  font-size: 12px;
+}
+.admin-toolbar {
+  margin-bottom: 18px;
+}
+.admin-stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.admin-stat {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 800;
+}
+.admin-list {
+  display: grid;
+  gap: 10px;
+}
+.admin-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.4fr) minmax(120px, .8fr) 100px 80px auto;
+  gap: 12px;
+  align-items: center;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.admin-row-title strong,
+.admin-row-title span {
+  display: block;
+}
+.admin-row-title span,
+.admin-row small {
+  margin-top: 3px;
+  color: var(--ink-light);
+  font-size: 11px;
+}
+.admin-state {
+  display: inline-flex;
+  justify-content: center;
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.admin-state.is-on {
+  background: var(--mint-light);
+  color: #16745d;
+}
+.admin-state.is-off {
+  background: var(--surface-soft);
+  color: var(--ink-light);
+}
+.admin-row-actions {
+  display: flex;
+  gap: 6px;
+}
+.admin-row-actions button {
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 800;
+}
+.admin-editor {
+  margin-top: 26px;
+}
+.admin-close {
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+}
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.admin-span-2 {
+  grid-column: span 2;
+}
+.admin-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-weight: 800;
+}
+.admin-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.admin-status {
+  margin-top: 10px;
+  color: var(--teal-dark);
+  font-size: 12px;
+}
+code {
+  word-break: break-all;
+}
+@media (max-width: 760px) {
+  .admin-header .admin-container,
+  .admin-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .admin-row {
+    grid-template-columns: 1fr;
+  }
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-span-2 {
+    grid-column: auto;
+  }
+  .admin-row-actions {
+    flex-wrap: wrap;
+  }
+}
