@@ -17,6 +17,24 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle.setAttribute("aria-expanded", "false");
       });
     });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
+    });
+
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    nav.querySelectorAll("a").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      const page = href.split("#")[0];
+      if (page && page === currentPath) {
+        link.classList.add("is-current");
+        link.setAttribute("aria-current", "page");
+      }
+    });
   }
 
   // 全ページ共通の信頼性リンク。
