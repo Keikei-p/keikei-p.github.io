@@ -1,22 +1,47 @@
 // つうしんコンパス - 共通スクリプト
-// モバイル時のメニュー開閉のみを担当する軽量な処理
+// モバイルメニューと共通フッターを担当する軽量な処理
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-nav");
 
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  // メニュー内のリンクをタップしたら自動で閉じる
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
     });
-  });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // 全ページ共通の信頼性リンク。
+  // 各HTMLに同じリンクを何度も書かず、ここで一元管理する。
+  const footerContainer = document.querySelector(".site-footer .container");
+  if (footerContainer && !footerContainer.querySelector(".footer-policy-nav")) {
+    const policyNav = document.createElement("nav");
+    policyNav.className = "footer-policy-nav";
+    policyNav.setAttribute("aria-label", "サイト情報");
+
+    [
+      ["運営者情報", "operator.html"],
+      ["広告掲載ポリシー", "advertising-policy.html"],
+      ["アフィリエイトについて", "affiliate.html"],
+      ["情報更新方針", "update-policy.html"],
+      ["プライバシーポリシー", "privacy.html"],
+      ["利用規約", "terms.html"],
+      ["お問い合わせ", "contact.html"]
+    ].forEach(([label, href]) => {
+      const link = document.createElement("a");
+      link.href = href;
+      link.textContent = label;
+      policyNav.appendChild(link);
+    });
+
+    footerContainer.appendChild(policyNav);
+  }
 });
