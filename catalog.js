@@ -148,21 +148,32 @@
         actions.appendChild(detail);
 
         var resolved = resolveLink(service);
-        if (resolved.url) {
-          var external = document.createElement('a');
-          external.className = 'btn btn-primary';
-          external.href = resolved.url;
-          external.target = '_blank';
-          external.rel = resolved.is_affiliate
-            ? 'sponsored noopener noreferrer'
-            : 'noopener noreferrer';
-          external.textContent = '最新の料金・特典を確認する';
-          external.setAttribute('data-track', 'catalog-official-click');
-          external.setAttribute('data-service-id', service.id);
-          external.setAttribute('data-link-source', resolved.source || 'official');
-          if (resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
-          if (resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
-          actions.appendChild(external);
+        var manager = window.TCAffiliateManager;
+        var codePlacement = resolved.affiliate_code && manager && manager.createCodePlacement
+          ? manager.createCodePlacement(resolved, { compact: true, track: 'catalog-official-click' })
+          : null;
+
+        if (codePlacement) {
+          actions.appendChild(codePlacement);
+        } else {
+          var targetUrl = resolved.url || resolved.official_url || '';
+          if (targetUrl) {
+            var external = document.createElement('a');
+            var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
+            external.className = 'btn btn-primary';
+            external.href = targetUrl;
+            external.target = '_blank';
+            external.rel = isAffiliateLink
+              ? 'sponsored noopener noreferrer'
+              : 'noopener noreferrer';
+            external.textContent = '最新の料金・特典を確認する';
+            external.setAttribute('data-track', 'catalog-official-click');
+            external.setAttribute('data-service-id', service.id);
+            external.setAttribute('data-link-source', isAffiliateLink ? 'affiliate' : 'official');
+            if (isAffiliateLink && resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
+            if (isAffiliateLink && resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
+            actions.appendChild(external);
+          }
         }
 
         card.appendChild(actions);
