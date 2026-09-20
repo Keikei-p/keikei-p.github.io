@@ -3,6 +3,7 @@
   'use strict';
 
   var u = window.TCServiceUtils;
+  var lastDetail = null;
   if (!u) return;
 
   function catalogFor(kind) {
@@ -13,9 +14,11 @@
   function getScore(service, profile, tags) {
     var fit = service.fit || {};
     var score = Number(fit[profile] || 0);
+
     (tags || []).forEach(function (tag) {
       score += Number(fit[tag] || 0);
     });
+
     return score;
   }
 
@@ -40,6 +43,20 @@
     }
 
     return reasons.slice(0, 3);
+  }
+
+  function resolveLink(service) {
+    if (window.TCAffiliateManager) {
+      return window.TCAffiliateManager.resolve(service);
+    }
+
+    return {
+      url: service.officialUrl || '',
+      is_affiliate: false,
+      asp_name: '',
+      ad_id: '',
+      source: 'official'
+    };
   }
 
   function renderEmpty(root, detail) {
@@ -70,13 +87,21 @@
     }
 
     var ranked = services
-      .filter(function (service) { return service && service.id && service.name; })
-      .map(function (service) {
-        return { service: service, score: getScore(service, profile, tags) };
+      .filter(function (service) {
+        return service && service.id && service.name;
       })
-      .filter(function (entry) { return entry.score > 0; })
+      .map(function (service) {
+        return {
+          service: service,
+          score: getScore(service, profile, tags)
+        };
+      })
+      .filter(function (entry) {
+        return entry.score > 0;
+      })
       .sort(function (a, b) {
-        return b.score - a.score || safeText(a.service.name).localeCompare(safeText(b.service.name), 'ja');
+        return b.score - a.score ||
+          safeText(a.service.name).localeCompare(safeText(b.service.name), 'ja');
       })
       .slice(0, 3);
 
@@ -88,7 +113,7 @@
     root.classList.add('has-items');
     root.innerHTML = '';
 
-    ranked.forEach(function (entry, index) {
+    ranked.forEach(function (entry) {
       var service = entry.service;
       var card = document.createElement('article');
       card.className = 'recommend-card';
@@ -150,17 +175,22 @@
       detailLink.textContent = '理由と注意点を見る';
       actions.appendChild(detailLink);
 
-      var externalUrl = u.externalUrl(service);
-      if (externalUrl) {
-        var officialLink = document.createElement('a');
-        officialLink.className = 'btn btn-primary';
-        officialLink.href = externalUrl;
-        officialLink.target = '_blank';
-        officialLink.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
-        officialLink.textContent = '最新の料金・特典を確認する';
-        officialLink.setAttribute('data-track', 'diagnosis-official-click');
-        officialLink.setAttribute('data-service-id', service.id);
-        actions.appendChild(officialLink);
+      var resolved = resolveLink(service);
+      if (resolved.url) {
+        var external = document.createElement('a');
+        external.className = 'btn btn-primary';
+        external.href = resolved.url;
+        external.target = '_blank';
+        external.rel = resolved.is_affiliate
+          ? 'sponsored noopener noreferrer'
+          : 'noopener noreferrer';
+        external.textContent = '最新の料金・特典を確認する';
+        external.setAttribute('data-track', 'diagnosis-official-click');
+        external.setAttribute('data-service-id', service.id);
+        external.setAttribute('data-link-source', resolved.source || 'official');
+        if (resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
+        if (resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
+        actions.appendChild(external);
       }
 
       card.appendChild(actions);
@@ -169,6 +199,11 @@
   }
 
   document.addEventListener('tc:diagnosis-result', function (event) {
-    render(event.detail || {});
+    lastDetail = event.detail || {};
+    render(lastDetail);
+  });
+
+  document.addEventListener('tc:affiliate-ready', function () {
+    if (lastDetail) render(lastDetail);
   });
 })();
