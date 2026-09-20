@@ -16,7 +16,12 @@
     var app = appModule.initializeApp(config);
     var db = dbModule.getFirestore(app);
 
-    return dbModule.getDocs(dbModule.collection(db, 'affiliate_public')).then(function (snapshot) {
+    var publicQuery = dbModule.query(
+      dbModule.collection(db, 'affiliate_public'),
+      dbModule.where('is_active', '==', true)
+    );
+
+    return dbModule.getDocs(publicQuery).then(function (snapshot) {
       var remoteAds = [];
       snapshot.forEach(function (doc) {
         var data = doc.data() || {};
