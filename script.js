@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".site-nav");
 
   if (toggle && nav) {
+    if (!nav.querySelector('a[href="guide.html"]')) {
+      const guideLink = document.createElement("a");
+      guideLink.href = "guide.html";
+      guideLink.textContent = "初心者ガイド";
+      nav.appendChild(guideLink);
+    }
+
     toggle.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(isOpen));
