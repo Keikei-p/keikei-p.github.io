@@ -88,11 +88,21 @@
     document.title = service.name + ' | つうしんコンパス';
 
     var resolved = resolveLink(service);
+    var affiliateManager = window.TCAffiliateManager;
+    var useAffiliateCode = Boolean(
+      resolved.affiliate_code &&
+      affiliateManager &&
+      affiliateManager.isSafeAffiliateCode &&
+      affiliateManager.isSafeAffiliateCode(resolved.affiliate_code)
+    );
+    var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
+    var isAffiliatePresentation = useAffiliateCode || isAffiliateLink;
+    var targetUrl = useAffiliateCode ? '' : (resolved.url || resolved.official_url || '');
     var facts = u.quickFacts(service);
     var fresh = u.freshness(service, 365);
 
     var linkAttrs = '';
-    if (resolved.is_affiliate) {
+    if (isAffiliateLink) {
       linkAttrs += ' rel="sponsored noopener noreferrer"';
     } else {
       linkAttrs += ' rel="noopener noreferrer"';
@@ -109,12 +119,14 @@
 
     var actions =
       '<div class="service-actions">' +
-        (resolved.url
-          ? '<a class="btn btn-primary" href="' + esc(resolved.url) + '" target="_blank"' + linkAttrs + '>最新の料金・特典を確認する</a>'
-          : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>') +
+        (useAffiliateCode
+          ? '<div id="service-affiliate-code-slot"></div>'
+          : (targetUrl
+            ? '<a class="btn btn-primary" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>最新の料金・特典を確認する</a>'
+            : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>')) +
       '</div>' +
-      (resolved.is_affiliate
-        ? '<p class="service-ad-note">このリンクにはアフィリエイト広告を含みます。診断候補は広告報酬ではなく、回答内容との相性をもとに表示しています。</p>'
+      (isAffiliatePresentation
+        ? '<p class="service-ad-note">この表示にはアフィリエイト広告を含みます。診断候補は広告報酬ではなく、回答内容との相性をもとに表示しています。</p>'
         : '');
 
     var quickFacts =
@@ -143,7 +155,7 @@
       ['情報更新日', service.updatedAt || '未登録']
     ];
 
-    var campaignBlock = resolved.is_affiliate && resolved.campaign
+    var campaignBlock = isAffiliatePresentation && resolved.campaign
       ? '<section class="service-block service-positive">' +
           '<h2>提携先で確認できる特典情報</h2>' +
           '<p>' + esc(resolved.campaign) + '</p>' +
@@ -177,6 +189,28 @@
         '<p>通信サービスの料金やキャンペーンは変わりやすいため、このサイトでは細かな金額を固定表示しません。候補を絞ったあと、公式サイトや提携先で最新の料金・特典・適用条件を確認してください。</p>' +
       '</section>' +
       renderSources(service);
+
+    if (useAffiliateCode) {
+      var slot = document.getElementById('service-affiliate-code-slot');
+      var placement = affiliateManager.createCodePlacement(resolved, {
+        compact: false,
+        track: 'service-official-click'
+      });
+      if (slot && placement) {
+        slot.replaceWith(placement);
+      } else if (slot && resolved.official_url) {
+        var fallbackLink = document.createElement('a');
+        fallbackLink.className = 'btn btn-primary';
+        fallbackLink.href = resolved.official_url;
+        fallbackLink.target = '_blank';
+        fallbackLink.rel = 'noopener noreferrer';
+        fallbackLink.textContent = '最新の料金・特典を確認する';
+        fallbackLink.setAttribute('data-track', 'service-official-click');
+        fallbackLink.setAttribute('data-service-id', service.id);
+        fallbackLink.setAttribute('data-link-source', 'official');
+        slot.replaceWith(fallbackLink);
+      }
+    }
   }
 
   render();
