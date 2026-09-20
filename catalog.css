@@ -99,6 +99,8 @@
   color: var(--ink-light);
   font-size: 11px;
 }
+.catalog-checked.is-fresh { color: #16745d; }
+.catalog-checked.is-stale { color: #8b5a13; font-weight: 700; }
 .catalog-actions {
   display: flex;
   gap: 10px;
