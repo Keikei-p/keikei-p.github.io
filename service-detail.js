@@ -109,11 +109,11 @@
     }
     linkAttrs += ' data-track="service-official-click"';
     linkAttrs += ' data-service-id="' + esc(service.id) + '"';
-    linkAttrs += ' data-link-source="' + esc(resolved.source || 'official') + '"';
-    if (resolved.asp_name) {
+    linkAttrs += ' data-link-source="' + (isAffiliateLink ? 'affiliate' : 'official') + '"';
+    if (isAffiliateLink && resolved.asp_name) {
       linkAttrs += ' data-asp-name="' + esc(resolved.asp_name) + '"';
     }
-    if (resolved.ad_id) {
+    if (isAffiliateLink && resolved.ad_id) {
       linkAttrs += ' data-ad-id="' + esc(resolved.ad_id) + '"';
     }
 
