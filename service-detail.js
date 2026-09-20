@@ -29,26 +29,6 @@
       '</ul></section>';
   }
 
-  function renderPlanTable(plans) {
-    if (!Array.isArray(plans) || !plans.length) return '';
-
-    return '<section class="service-block"><h2>料金プラン</h2>' +
-      '<div class="service-table-scroll" tabindex="0" role="region" aria-label="料金プラン表（横にスクロールできます）">' +
-      '<table class="service-plan-table"><thead><tr>' +
-      '<th>プラン</th><th>料金</th><th>データ・容量</th><th>通話</th><th>補足</th>' +
-      '</tr></thead><tbody>' +
-      plans.map(function (plan) {
-        return '<tr>' +
-          '<th scope="row">' + esc(plan.name || 'プラン') + '</th>' +
-          '<td>' + esc(plan.price || '確認中') + '</td>' +
-          '<td>' + esc(plan.data || '確認中') + '</td>' +
-          '<td>' + esc(plan.calls || '確認中') + '</td>' +
-          '<td>' + esc(plan.note || '') + '</td>' +
-        '</tr>';
-      }).join('') +
-      '</tbody></table></div></section>';
-  }
-
   function renderSources(service) {
     var sources = u.sourceItems(service);
     if (!sources.length) {
@@ -83,13 +63,13 @@
 
   var externalUrl = u.externalUrl(service);
   var facts = u.quickFacts(service);
-  var fresh = u.freshness(service, 90);
+  var fresh = u.freshness(service, 365);
   var isAffiliate = Boolean(service.affiliateUrl);
 
   var actions =
     '<div class="service-actions">' +
       (externalUrl
-        ? '<a class="btn btn-primary" href="' + esc(externalUrl) + '" target="_blank" rel="' + (isAffiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer') + '" data-track="service-official-click" data-service-id="' + esc(service.id) + '">公式サイトで詳細を確認する</a>'
+        ? '<a class="btn btn-primary" href="' + esc(externalUrl) + '" target="_blank" rel="' + (isAffiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer') + '" data-track="service-official-click" data-service-id="' + esc(service.id) + '">最新の料金・特典を確認する</a>'
         : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>') +
     '</div>' +
     (isAffiliate
@@ -98,7 +78,6 @@
 
   var quickFacts =
     '<div class="service-quick-grid">' +
-      '<div class="service-quick service-quick-price"><span>料金目安</span><strong>' + esc(u.priceLabel(service)) + '</strong></div>' +
       facts.slice(0, 6).map(function (fact) {
         return '<div class="service-quick"><span>' + esc(fact.label) + '</span><strong>' + esc(fact.value) + '</strong></div>';
       }).join('') +
@@ -139,10 +118,9 @@
     '</dl></section>' +
     addList('向いている人', service.suitableFor, 'service-positive') +
     addList('向いていない可能性がある人', service.notSuitableFor, 'service-neutral') +
-    renderPlanTable(service.plans) +
     addList('契約前の注意点', service.cautions, 'service-caution') +
-    '<section class="service-block service-final-check"><h2>申込み前の最終確認</h2>' +
-      '<p>料金・キャンペーン・割引条件・提供エリア・解約条件などは変更されることがあります。契約前には、必ず公式サイトで最新情報をご確認ください。</p>' +
+    '<section class="service-block service-final-check"><h2>料金・特典はここでは固定しません</h2>' +
+      '<p>通信サービスの料金やキャンペーンは変わりやすいため、このサイトでは細かな金額を固定表示しません。候補を絞ったあと、公式サイトや提携先で最新の料金・特典・適用条件を確認してください。</p>' +
     '</section>' +
     renderSources(service);
 })();
