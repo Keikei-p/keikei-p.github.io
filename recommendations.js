@@ -159,6 +159,7 @@
         officialLink.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
         officialLink.textContent = '公式サイトで確認する';
         officialLink.setAttribute('data-track', 'diagnosis-official-click');
+        officialLink.setAttribute('data-service-id', service.id);
         actions.appendChild(officialLink);
       }
 
