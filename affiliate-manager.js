@@ -15,6 +15,19 @@
     return Number.isFinite(n) ? n : 0;
   }
 
+  function canonicalServiceId(value) {
+    var raw = text(value);
+    var key = raw.toLowerCase().replace(/[\s_]/g, '-');
+    var aliases = {
+      'biglobe': 'biglobe-hikari',
+      'biglobe-hikari': 'biglobe-hikari',
+      'biglobe光': 'biglobe-hikari',
+      'ビッグローブ': 'biglobe-hikari',
+      'ビッグローブ光': 'biglobe-hikari'
+    };
+    return aliases[key] || raw;
+  }
+
   function normalizeAd(ad) {
     if (!ad || !text(ad.service_id)) return null;
 
@@ -23,7 +36,7 @@
 
     return {
       id: text(ad.id) || [text(ad.service_id), text(ad.asp_name), String(normalizePriority(ad.priority))].join('-'),
-      service_id: text(ad.service_id),
+      service_id: canonicalServiceId(ad.service_id),
       service_name: text(ad.service_name),
       category: text(ad.category),
       provider: text(ad.provider),
@@ -52,6 +65,7 @@
   }
 
   function findService(serviceId) {
+    serviceId = canonicalServiceId(serviceId);
     var catalog = window.TC_SERVICE_CATALOG || {};
     var all = []
       .concat(Array.isArray(catalog.smartphone) ? catalog.smartphone : [])
@@ -89,8 +103,8 @@
       : (serviceOrId || null);
 
     var serviceId = typeof serviceOrId === 'string'
-      ? serviceOrId
-      : (service && service.id) || '';
+      ? canonicalServiceId(serviceOrId)
+      : canonicalServiceId((service && service.id) || '');
 
     var ad = serviceId ? getPreferredAd(serviceId) : null;
     var officialUrl = (ad && ad.official_url) ||
