@@ -1370,3 +1370,66 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   Decision support notes
+   ========================================================================== */
+.switch-note {
+  margin: -14px 0 28px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.switch-note h2 {
+  font-size: 18px;
+}
+.switch-note p {
+  margin-top: 7px;
+  font-size: 13px;
+}
+.switch-note-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 14px;
+}
+.switch-note-item {
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: var(--surface-soft);
+}
+.switch-note-item strong {
+  display: block;
+  color: var(--teal-dark);
+  font-size: 12px;
+}
+.switch-note-item span {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+.saving-mini {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.saving-mini span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--coral-light);
+  color: var(--coral-dark);
+  font-size: 11px;
+  font-weight: 800;
+}
+.switch-note-foot {
+  margin-top: 10px !important;
+  color: var(--ink-light) !important;
+  font-size: 11px !important;
+}
+@media (max-width: 600px) {
+  .switch-note-grid { grid-template-columns: 1fr; }
+}
