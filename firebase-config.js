@@ -1,11 +1,14 @@
-/* Firebaseを利用する場合だけ設定してください。
- * 現在は未設定なので、公開サイトは data/affiliates.js を使用します。
+/* つうしんコンパス - Firebase Web App設定
  *
- * Firebase Web Appを作成後、Firebase Consoleに表示されるconfigを
- * TC_FIREBASE_CONFIGへ設定します。
- *
- * 注意:
- * Web API KeyはFirebase Web SDKで公開される前提の識別子です。
- * 管理権限はAPI KeyではなくFirebase Authentication + Firestore Rulesで保護します。
+ * この設定値はFirebase Web SDKから利用される公開前提のWeb App設定です。
+ * 管理権限はFirestore Security RulesとFirebase Authenticationで保護します。
  */
-window.TC_FIREBASE_CONFIG = null;
+window.TC_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBOqr46ROBYqACMp1mIDogFJ0xYTfSIgAg",
+  authDomain: "tushincompas.firebaseapp.com",
+  projectId: "tushincompas",
+  storageBucket: "tushincompas.firebasestorage.app",
+  messagingSenderId: "934406330569",
+  appId: "1:934406330569:web:39ae5b260c42f6fa641518",
+  measurementId: "G-LB1MTZ0HVP"
+};
