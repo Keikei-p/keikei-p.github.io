@@ -4,7 +4,14 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function isAffiliateAdmin() {
       return request.auth != null
-        && request.auth.token.admin == true;
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // 管理者UIDを登録するコレクション。
+    // Firebase Consoleから admins/{uid} を作成して初期管理者を登録する。
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
     }
 
     // 報酬額など内部情報を含む管理者専用コレクション。
