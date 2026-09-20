@@ -81,16 +81,6 @@
 
         card.appendChild(top);
 
-        var price = document.createElement('div');
-        price.className = 'catalog-price';
-        var priceLabel = document.createElement('span');
-        priceLabel.textContent = '料金目安';
-        var priceValue = document.createElement('strong');
-        priceValue.textContent = u.priceLabel(service);
-        price.appendChild(priceLabel);
-        price.appendChild(priceValue);
-        card.appendChild(price);
-
         var summary = document.createElement('p');
         summary.className = 'catalog-summary';
         summary.textContent = service.summary || '特徴・条件を確認中です。';
@@ -122,7 +112,7 @@
           card.appendChild(caution);
         }
 
-        var freshness = u.freshness(service, 90);
+        var freshness = u.freshness(service, 365);
         var checked = document.createElement('p');
         checked.className = 'catalog-checked is-' + freshness.state;
         checked.textContent = freshness.label;
@@ -144,7 +134,7 @@
           official.href = external;
           official.target = '_blank';
           official.rel = service.affiliateUrl ? 'sponsored noopener noreferrer' : 'noopener noreferrer';
-          official.textContent = '公式サイトで確認する';
+          official.textContent = '最新の料金・特典を確認する';
           official.setAttribute('data-track', 'catalog-official-click');
           official.setAttribute('data-service-id', service.id);
           actions.appendChild(official);
