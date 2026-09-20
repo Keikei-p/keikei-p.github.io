@@ -53,6 +53,52 @@ if (!config || !config.projectId) {
   let ads = [];
   let unsubscribe = null;
 
+  const serviceCatalog = window.TC_SERVICE_CATALOG || {};
+  const serviceEntries = []
+    .concat((Array.isArray(serviceCatalog.smartphone) ? serviceCatalog.smartphone : []).map(service => ({ kind: 'smartphone', service })))
+    .concat((Array.isArray(serviceCatalog.wifi) ? serviceCatalog.wifi : []).map(service => ({ kind: 'wifi', service })));
+
+  function adminCategory(entry) {
+    if (!entry) return 'smartphone';
+    const service = entry.service || {};
+    if (entry.kind === 'wifi') {
+      if (service.category === 'hikari' || String(service.serviceType || '').includes('光')) return 'fiber';
+      if (service.category === 'home-router' || String(service.serviceType || '').includes('ホーム')) return 'home_wifi';
+      return 'mobile_wifi';
+    }
+    if (['online', 'subbrand', 'mvno'].includes(String(service.serviceType || '').toLowerCase())) {
+      return 'cheap_sim';
+    }
+    return 'smartphone';
+  }
+
+  function populateServiceOptions() {
+    const datalist = document.getElementById('service-options');
+    if (!datalist) return;
+    datalist.innerHTML = '';
+    serviceEntries.forEach(entry => {
+      const option = document.createElement('option');
+      option.value = entry.service.id;
+      option.label = entry.service.name;
+      datalist.appendChild(option);
+    });
+  }
+
+  function syncServiceFields() {
+    const id = fields.service_id.value.trim();
+    const entry = serviceEntries.find(item => item.service && item.service.id === id);
+    if (!entry) return;
+
+    const service = entry.service;
+    fields.service_name.value = service.name || '';
+    fields.provider.value = service.carrier || service.network || '';
+    fields.category.value = adminCategory(entry);
+    fields.official_url.value = service.officialUrl || '';
+    if (!fields.display_name.value.trim()) {
+      fields.display_name.value = service.name || '';
+    }
+  }
+
   function today() {
     return new Date().toISOString().slice(0, 10);
   }
@@ -285,6 +331,10 @@ if (!config || !config.projectId) {
       loginError.textContent = 'ログインできませんでした。メールアドレス・パスワードをご確認ください。';
     }
   });
+
+  populateServiceOptions();
+  fields.service_id.addEventListener('change', syncServiceFields);
+  fields.service_id.addEventListener('blur', syncServiceFields);
 
   logoutButton.addEventListener('click', () => authModule.signOut(auth));
   document.getElementById('new-ad').addEventListener('click', () => {
