@@ -85,3 +85,41 @@
   .content-table th { padding-bottom: 4px; border-bottom: 0; }
   .content-table td { padding-top: 4px; }
 }
+
+
+.contact-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+.contact-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink);
+  font-weight: 800;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.contact-help {
+  color: var(--ink-light);
+  font-size: 12px;
+}
+.contact-form .btn {
+  justify-self: start;
+}
+@media (max-width: 600px) {
+  .contact-form .btn { width: 100%; }
+}
