@@ -137,6 +137,9 @@
         : 'noopener noreferrer';
       link.removeAttribute('aria-disabled');
       link.setAttribute('data-link-source', resolved.source);
+      if (!link.getAttribute('data-track')) {
+        link.setAttribute('data-track', 'affiliate-cta-click');
+      }
 
       if (resolved.asp_name) {
         link.setAttribute('data-asp-name', resolved.asp_name);
