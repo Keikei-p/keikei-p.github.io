@@ -1458,3 +1458,9 @@ button {
 .affiliate-code-placement.is-compact img {
   max-width: min(100%, 420px);
 }
+
+.catalog-actions > .affiliate-code-placement,
+.recommend-actions > .affiliate-code-placement,
+.service-actions > .affiliate-code-placement {
+  flex: 1 0 100%;
+}
