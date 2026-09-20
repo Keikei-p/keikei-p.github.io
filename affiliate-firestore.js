@@ -8,8 +8,8 @@
   if (!config || !config.projectId || !manager) return;
 
   Promise.all([
-    import('https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js'),
-    import('https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js')
+    import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),
+    import('https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js')
   ]).then(function (modules) {
     var appModule = modules[0];
     var dbModule = modules[1];
