@@ -89,3 +89,70 @@ affiliateUrl は案件が確定するまで空欄にします。
 - 節約額は「月1,000円差なら年12,000円」のような計算例だけを使用
 - 最新料金・キャンペーン・キャッシュバックは公式サイト / 提携先で確認
 - Wi-Fiは特典だけでなく、解約費・工事・端末残債を含む総額で見直す
+
+
+## アフィリエイト広告の一元管理
+
+広告URLは各HTML・診断JS・比較JSへ直接書かない。
+
+### 現在の構成
+
+- `data/affiliates.js`: Firebase未設定時の静的広告マスター
+- `affiliate-manager.js`: service_idから有効広告を選択
+- `firebase-config.js`: Firebase Web App設定
+- `affiliate-firestore.js`: Firestoreの公開広告を読み込むアダプター
+- `admin.html / admin.js / admin.css`: Firebase Authentication対応の管理画面
+- `firestore.rules`: 管理者書き込み制御
+- `firebase-setup.md`: Firebase導入手順
+
+同じservice_idに複数ASPを登録できる。
+`is_active=true` かつaffiliate_urlが設定された広告の中から、`priority` が大きいものを優先する。
+有効な広告がない場合はサービスマスターの公式URLへ自動フォールバックする。
+
+### 対応ASP
+
+- A8.net
+- アクセストレード
+- バリューコマース
+
+### 記事や新規CTAから使う方法
+
+記事側にASP URLを書かず、service_idだけ指定する。
+
+```html
+<a
+  class="btn btn-primary"
+  data-affiliate-service="au-hikari"
+  data-official-url="https://www.au.com/internet/auhikari_1g/"
+>
+  最新の料金・特典を確認する
+</a>
+```
+
+`affiliate-manager.js` が自動的に現在有効な広告URLへ差し替える。
+広告がなければ `data-official-url` へ戻る。
+
+### Firebase導入後
+
+管理者は `admin.html` だけを操作する。
+管理画面の保存時に
+
+- `affiliate_ads`: rewardを含む管理者専用データ
+- `affiliate_public`: 公開サイト用のサニタイズ済みデータ
+
+へ同期する。
+
+一般ユーザーは `affiliate_ads` を読めない。
+`affiliate_public` は有効広告だけ公開する。
+
+### 将来の計測
+
+CTAには以下の属性が付くため、後からクリック計測へ接続できる。
+
+- `data-track`
+- `data-service-id`
+- `data-link-source`
+- `data-asp-name`
+- `data-ad-id`
+
+これを利用してCTR、ASP別クリック、CVR連携へ拡張する。
