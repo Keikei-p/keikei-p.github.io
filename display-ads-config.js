@@ -6,7 +6,7 @@
 window.TC_DISPLAY_ADS = {
   enabled: false,
   provider: "adsense",
-  client: "",
+  client: "ca-pub-5933995419737242",
   slots: {
     content: "",
     serviceFallback: ""
