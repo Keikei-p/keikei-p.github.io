@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>広告管理 | つうしんコンパス</title>
+<title>サイト運用管理 | つうしんコンパス</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="admin.css">
 </head>
@@ -13,7 +13,7 @@
   <div class="admin-container">
     <div>
       <p class="admin-kicker">つうしんコンパス</p>
-      <h1>アフィリエイト広告管理</h1>
+      <h1>サイト運用管理</h1>
     </div>
     <button type="button" class="btn btn-ghost" id="admin-logout" hidden>ログアウト</button>
   </div>
@@ -38,6 +38,19 @@
     </section>
 
     <section id="admin-app" hidden>
+      <section class="admin-contact-section" aria-labelledby="contact-admin-title">
+        <div class="admin-toolbar">
+          <div>
+            <h2 id="contact-admin-title">お問い合わせ</h2>
+            <p>サイトから送信された内容です。返信先は利用者が入力した場合のみ表示されます。</p>
+          </div>
+        </div>
+        <div class="admin-stats" id="contact-stats"></div>
+        <div class="admin-contact-list" id="contact-list"></div>
+      </section>
+
+      <hr class="admin-divider">
+
       <div class="admin-toolbar">
         <div>
           <h2>広告一覧</h2>
