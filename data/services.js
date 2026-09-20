@@ -294,7 +294,7 @@ window.TC_SERVICE_CATALOG = {
       ],
       fit: {
         cost: 3, balance: 5, quality: 4,
-        "mid-data": 3, "high-data": 4, "call-often": 2,
+        "mid-data": 3, "high-data": 5, "call-often": 2,
         "support-needed": 2, "family-large": 2
       },
       matchReasons: {
