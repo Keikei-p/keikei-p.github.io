@@ -1464,3 +1464,36 @@ button {
 .service-actions > .affiliate-code-placement {
   flex: 1 0 100%;
 }
+
+
+/* ディスプレイ広告（AdSense等） */
+.display-ad-wrap {
+  padding-block: 24px;
+}
+.display-ad-slot {
+  width: 100%;
+  max-width: 980px;
+  min-height: 120px;
+  margin: 30px auto;
+  padding: 12px 0;
+  overflow: hidden;
+  text-align: center;
+}
+.display-ad-slot[hidden] {
+  display: none !important;
+}
+.display-ad-label {
+  margin-bottom: 6px;
+  color: var(--ink-light);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+.service-display-ad {
+  margin-top: 30px;
+}
+@media (max-width: 600px) {
+  .display-ad-slot {
+    min-height: 100px;
+    margin-block: 22px;
+  }
+}
