@@ -39,7 +39,7 @@
         '登録住所など利用場所に条件があるサービスがあります',
         'オンラインゲームなど遅延に敏感な用途は相性確認が必要です'
       ],
-      next: { href: 'index.html#menu', label: 'ほかの比較を見る' }
+      next: { href: 'home-router.html', label: 'ホームルーター比較を見る' }
     },
     {
       name: 'モバイルWi-Fi',
@@ -55,7 +55,7 @@
         '建物内や利用エリアで通信状況が変わります',
         '家族での同時利用や大容量通信では不足する場合があります'
       ],
-      next: { href: 'index.html#menu', label: 'ほかの比較を見る' }
+      next: { href: 'mobile-wifi.html', label: 'モバイルWi-Fiの選び方を見る' }
     }
   ];
 
