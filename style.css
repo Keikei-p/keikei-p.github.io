@@ -139,11 +139,14 @@ button {
    Header
    ========================================================================== */
 
-.site-header {
-  position: relative;
+ .site-header {
+  position: sticky;
+  top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.94);
   border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .site-header .container {
@@ -189,9 +192,9 @@ button {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 20px;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -1496,4 +1499,15 @@ button {
     min-height: 100px;
     margin-block: 22px;
   }
+}
+
+.site-footer .footer-policy-nav{
+  width:100%;
+  justify-content:flex-end;
+  padding-top:16px;
+  margin-top:4px;
+  border-top:1px solid var(--line);
+}
+@media (max-width: 600px){
+  .site-footer .footer-policy-nav{justify-content:center;}
 }
