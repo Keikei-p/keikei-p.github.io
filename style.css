@@ -1502,11 +1502,9 @@ button {
 }
 
 .site-footer .footer-policy-nav{
-  width:100%;
+  flex:1;
   justify-content:flex-end;
-  padding-top:16px;
-  margin-top:4px;
-  border-top:1px solid var(--line);
+  row-gap:10px;
 }
 @media (max-width: 600px){
   .site-footer .footer-policy-nav{justify-content:center;}
