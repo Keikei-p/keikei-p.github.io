@@ -12,8 +12,8 @@
   --wf-tint: #eef5f8;
 }
 
-.diag-question:focus,
-.result-type:focus { outline: none; }
+.diag-question:focus:not(:focus-visible),
+.result-type:focus:not(:focus-visible) { outline: none; }
 
 .diag-result { scroll-margin-top: 80px; }
 
