@@ -49,29 +49,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 全ページ共通の信頼性リンク。
-  // 各HTMLに同じリンクを何度も書かず、ここで一元管理する。
+  // 全ページ共通のフッターナビ。既存リンクは重複させず不足分だけ追加する。
   const footerContainer = document.querySelector(".site-footer .container");
-  if (footerContainer && !footerContainer.querySelector(".footer-policy-nav")) {
-    const policyNav = document.createElement("nav");
-    policyNav.className = "footer-policy-nav";
-    policyNav.setAttribute("aria-label", "サイト情報");
+  if (footerContainer) {
+    let policyNav = footerContainer.querySelector(".footer-policy-nav") || footerContainer.querySelector("nav");
+    if (!policyNav) {
+      policyNav = document.createElement("nav");
+      policyNav.setAttribute("aria-label", "サイト情報");
+      footerContainer.appendChild(policyNav);
+    }
+    policyNav.classList.add("footer-policy-nav");
 
     [
+      ["サービス一覧", "services.html"],
+      ["ガイド", "guides.html"],
       ["運営者情報", "operator.html"],
       ["広告掲載ポリシー", "advertising-policy.html"],
       ["アフィリエイトについて", "affiliate.html"],
       ["情報更新方針", "update-policy.html"],
-      ["プライバシーポリシー", "privacy.html"],
+      ["プライバシー", "privacy.html"],
       ["利用規約", "terms.html"],
       ["お問い合わせ", "contact.html"]
     ].forEach(([label, href]) => {
-      const link = document.createElement("a");
-      link.href = href;
-      link.textContent = label;
-      policyNav.appendChild(link);
+      if (!policyNav.querySelector('a[href="' + href + '"]')) {
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        policyNav.appendChild(link);
+      }
     });
-
-    footerContainer.appendChild(policyNav);
   }
 });
