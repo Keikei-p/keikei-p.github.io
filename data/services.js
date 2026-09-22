@@ -4,7 +4,7 @@
  * 最新料金・特典は公式サイト / 提携先で確認してもらう。
  */
 window.TC_SERVICE_CATALOG = {
-  "updatedAt": "2026-09-20",
+  "updatedAt": "2026-09-23",
   "smartphone": [
     {
       "id": "docomo-max",
@@ -709,6 +709,343 @@ window.TC_SERVICE_CATALOG = {
       ],
       "checkedAt": "2026-09-20",
       "updatedAt": "2026-09-20"
+    },
+    {
+      "id": "iijmio",
+      "name": "IIJmio ギガプラン",
+      "category": "MVNO",
+      "serviceType": "mvno",
+      "carrier": "IIJ",
+      "network": "ドコモ / au",
+      "summary": "小容量から大容量まで細かく選べるMVNO。音声SIM・eSIM・データSIMを用途に合わせて選びやすいサービスです。",
+      "priceLabel": "最新料金・キャンペーンは公式サイトで確認",
+      "dataLabel": "2GB〜55GB",
+      "callLabel": "5分・10分・かけ放題の通話定額あり",
+      "supportLabel": "オンライン中心",
+      "discountLabel": "複数回線の家族割引・IIJmioひかりとのセット条件あり",
+      "storeSupport": false,
+      "esim": true,
+      "familyDiscount": true,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "2GBから55GBまで容量を細かく選べる",
+        "音声SIM・音声eSIM・データeSIMなど選択肢が多い",
+        "データシェア・データプレゼントに対応"
+      ],
+      "suitableFor": [
+        "毎月のデータ使用量に合う容量を細かく選びたい人",
+        "eSIMやデータSIMも含めて柔軟に使いたい人",
+        "オンラインで手続きを進められる人"
+      ],
+      "notSuitableFor": [
+        "店舗で最初から最後までサポートしてほしい人",
+        "大手キャリアの店舗サービスを重視する人"
+      ],
+      "cautions": [
+        "料金・キャンペーン・初期費用は申込時期によって変わるため最新条件を確認してください。",
+        "利用回線・SIM種別によって対応機能や手数料が異なります。"
+      ],
+      "fit": {
+        "cost": 5,
+        "balance": 4,
+        "quality": 2,
+        "light-data": 5,
+        "mid-data": 5,
+        "high-data": 4,
+        "heavy-data": 2,
+        "support-not-needed": 4,
+        "single-user": 3,
+        "family-large": 2
+      },
+      "matchReasons": {
+        "cost": "小容量から選べるMVNOで、料金を抑えたい回答と相性があります。",
+        "light-data": "2GBなど小容量から選べます。",
+        "mid-data": "10〜15GB帯を含め容量を細かく選べます。",
+        "high-data": "25GB以上のプランも選べます。",
+        "support-not-needed": "オンライン中心の手続きを自分で進められる人に向きます。"
+      },
+      "officialUrl": "https://www.iijmio.jp/gigaplan/",
+      "sourceUrls": [
+        {
+          "label": "IIJmio ギガプラン",
+          "url": "https://www.iijmio.jp/gigaplan/"
+        },
+        {
+          "label": "IIJmio 料金表",
+          "url": "https://www.iijmio.jp/hdc/spec/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "mineo",
+      "name": "mineo",
+      "category": "MVNO",
+      "serviceType": "mvno",
+      "carrier": "オプテージ",
+      "network": "ドコモ / au / SoftBank",
+      "summary": "データ容量で選ぶマイピタと、最大通信速度で選ぶマイそくを用意するMVNO。使い方に合わせて選び方を変えられます。",
+      "priceLabel": "最新料金・キャンペーンは公式サイトで確認",
+      "dataLabel": "マイピタ 3GB / 7GB / 15GB / 30GB / 50GB など",
+      "callLabel": "通話オプションあり",
+      "supportLabel": "オンライン・店舗",
+      "discountLabel": "複数回線・家族向けの割引条件あり",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": true,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "容量で選ぶマイピタと速度で選ぶマイそくがある",
+        "ドコモ・au・SoftBankの3回線から選べる",
+        "余ったデータ容量の繰り越しなどに対応"
+      ],
+      "suitableFor": [
+        "データ容量だけでなく通信速度基準でもプランを選びたい人",
+        "複数キャリア回線から選びたい人",
+        "コミュニティや独自サービスも含めて使いたい人"
+      ],
+      "notSuitableFor": [
+        "昼の通信速度を最優先し、マイそくの制限条件が合わない人",
+        "大手キャリアと同等の店舗網を求める人"
+      ],
+      "cautions": [
+        "マイそくは平日昼の時間帯などに速度制限条件があります。",
+        "コースや回線によって利用条件が異なるため申込み前に公式情報を確認してください。"
+      ],
+      "fit": {
+        "cost": 5,
+        "balance": 4,
+        "quality": 2,
+        "light-data": 4,
+        "mid-data": 4,
+        "high-data": 4,
+        "heavy-data": 2,
+        "support-not-needed": 3,
+        "single-user": 3
+      },
+      "matchReasons": {
+        "cost": "MVNOとして料金を抑えたい回答と相性があります。",
+        "balance": "容量型と速度型から使い方に合わせて選べます。",
+        "light-data": "3GBなど小容量から選べます。",
+        "high-data": "30GB・50GBなどの容量も選べます。"
+      },
+      "officialUrl": "https://mineo.jp/price/",
+      "sourceUrls": [
+        {
+          "label": "mineo 料金・サービス",
+          "url": "https://mineo.jp/price/"
+        },
+        {
+          "label": "mineo マイそく",
+          "url": "https://mineo.jp/price/mysoku/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "nuro-mobile",
+      "name": "NUROモバイル",
+      "category": "MVNO",
+      "serviceType": "mvno",
+      "carrier": "ソニーネットワークコミュニケーションズ",
+      "network": "ドコモ / au / SoftBank",
+      "summary": "3GBから55GBまで複数の容量帯を用意するMVNO。小容量のバリュープラスと中〜大容量のNEOプランなどから選べます。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "3GB / 5GB / 10GB / 15GB / 35GB / 55GB など",
+      "callLabel": "5分・10分・かけ放題の通話定額あり",
+      "supportLabel": "オンライン中心",
+      "discountLabel": "プランごとの特典条件を確認",
+      "storeSupport": false,
+      "esim": true,
+      "familyDiscount": false,
+      "setDiscount": null,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "小容量から55GBまで複数の容量帯がある",
+        "NEOプランでは対象SNSのデータフリー機能がある",
+        "音声・データ+SMS・データ専用から選べる"
+      ],
+      "suitableFor": [
+        "3〜15GB程度の小〜中容量を使う人",
+        "35GB・55GBの中〜大容量を検討したい人",
+        "オンライン中心で料金を抑えたい人"
+      ],
+      "notSuitableFor": [
+        "店舗での対面サポートを重視する人",
+        "完全なデータ無制限を求める人"
+      ],
+      "cautions": [
+        "データフリー機能には対象外となる通信や機能があります。",
+        "SIM種別・回線・プランによって利用条件や手数料が異なります。"
+      ],
+      "fit": {
+        "cost": 5,
+        "balance": 4,
+        "quality": 2,
+        "light-data": 5,
+        "mid-data": 5,
+        "high-data": 4,
+        "heavy-data": 2,
+        "support-not-needed": 4,
+        "single-user": 3
+      },
+      "matchReasons": {
+        "cost": "小容量から選べるMVNOで料金重視の回答と相性があります。",
+        "light-data": "3GB・5GBなど小容量帯を選べます。",
+        "mid-data": "10GB・15GBなど中容量帯があります。",
+        "high-data": "35GB・55GBのNEOプランも比較できます。"
+      },
+      "officialUrl": "https://mobile.nuro.jp/plan/",
+      "sourceUrls": [
+        {
+          "label": "NUROモバイル 料金・プラン",
+          "url": "https://mobile.nuro.jp/plan/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "biglobe-mobile",
+      "name": "BIGLOBEモバイル",
+      "category": "MVNO",
+      "serviceType": "mvno",
+      "carrier": "BIGLOBE",
+      "network": "ドコモ / au",
+      "summary": "小容量プランを中心に、対象動画・音楽サービスの通信量を抑えやすいエンタメフリー・オプションを組み合わせられるMVNOです。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "1GB / 3GB / 6GB など",
+      "callLabel": "通話オプションあり",
+      "supportLabel": "オンライン・一部店舗",
+      "discountLabel": "複数回線・固定回線との割引条件あり",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": true,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "1GB・3GB・6GBの小容量帯を選べる",
+        "余ったデータ容量を翌月へ繰り越せる",
+        "対象サービス向けのエンタメフリー・オプションがある"
+      ],
+      "suitableFor": [
+        "毎月のデータ使用量が少なめの人",
+        "対象の動画・音楽サービスをよく使う人",
+        "BIGLOBEの固定回線と合わせて条件を確認したい人"
+      ],
+      "notSuitableFor": [
+        "スマホ回線だけで毎月大容量通信をする人",
+        "完全なデータ無制限を求める人"
+      ],
+      "cautions": [
+        "エンタメフリー・オプションには対象外となる機能や通信があります。",
+        "2026年8月に料金改定が行われているため、申込み前に最新料金を確認してください。"
+      ],
+      "fit": {
+        "cost": 4,
+        "balance": 3,
+        "quality": 2,
+        "light-data": 5,
+        "mid-data": 2,
+        "high-data": 0,
+        "support-not-needed": 3,
+        "single-user": 3
+      },
+      "matchReasons": {
+        "cost": "小容量中心で通信費を抑えたい回答と相性があります。",
+        "light-data": "1GB・3GB・6GBの小容量帯を選べます。",
+        "single-user": "一人で小容量中心に使う場合の候補になります。"
+      },
+      "officialUrl": "https://join.biglobe.ne.jp/mobile/",
+      "sourceUrls": [
+        {
+          "label": "BIGLOBEモバイル 公式",
+          "url": "https://join.biglobe.ne.jp/mobile/"
+        },
+        {
+          "label": "BIGLOBEモバイル 料金プラン",
+          "url": "https://join.biglobe.ne.jp/mobile/plan/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "nihontsushin-sim",
+      "name": "日本通信SIM",
+      "category": "MVNO",
+      "serviceType": "mvno",
+      "carrier": "日本通信",
+      "network": "ドコモ",
+      "summary": "1GB・20GB・50GBなどシンプルな容量帯を用意するMVNO。20GB・50GBでは無料通話の選択肢もあります。",
+      "priceLabel": "最新料金・条件は公式サイトで確認",
+      "dataLabel": "1GB / 20GB / 50GB",
+      "callLabel": "5分かけ放題・月70分無料通話など",
+      "supportLabel": "オンライン中心",
+      "discountLabel": "複雑なセット割前提ではない",
+      "storeSupport": false,
+      "esim": null,
+      "familyDiscount": false,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "1GB・20GB・50GBの分かりやすい容量帯",
+        "20GB・50GBでは通話5分かけ放題または月70分無料通話を選べる",
+        "複雑なセット割に依存しない構成"
+      ],
+      "suitableFor": [
+        "小容量を低コストで使いたい人",
+        "20GB前後と短い通話をまとめて使いたい人",
+        "シンプルな料金体系を重視する人"
+      ],
+      "notSuitableFor": [
+        "店舗サポートを重視する人",
+        "家族割や固定回線セット割を活用したい人"
+      ],
+      "cautions": [
+        "申込み方法や本人確認方法など最新の手続きを公式サイトで確認してください。",
+        "データ量や通話条件はプランごとに異なります。"
+      ],
+      "fit": {
+        "cost": 5,
+        "balance": 4,
+        "quality": 2,
+        "light-data": 5,
+        "mid-data": 5,
+        "high-data": 4,
+        "call-often": 4,
+        "support-not-needed": 4,
+        "single-user": 4
+      },
+      "matchReasons": {
+        "cost": "シンプルな低価格帯を重視する回答と相性があります。",
+        "light-data": "1GBの小容量プランがあります。",
+        "mid-data": "20GBプランがあり日常利用と相性があります。",
+        "high-data": "50GBプランも選べます。",
+        "call-often": "20GB・50GBでは無料通話の選択肢があります。"
+      },
+      "officialUrl": "https://www.nihontsushin.com/service/",
+      "sourceUrls": [
+        {
+          "label": "日本通信SIM 料金・プラン",
+          "url": "https://www.nihontsushin.com/service/index.html"
+        },
+        {
+          "label": "日本通信SIM 申込みプラン一覧",
+          "url": "https://www.nihontsushin.com/entry/index.html"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
     }
   ],
   "wifi": [
@@ -1222,6 +1559,204 @@ window.TC_SERVICE_CATALOG = {
       ],
       "checkedAt": "2026-09-20",
       "updatedAt": "2026-09-20"
+    },
+    {
+      "id": "uq-wimax-mobile",
+      "name": "UQ WiMAX（モバイルルーター）",
+      "category": "mobile-wifi",
+      "serviceType": "モバイルWi-Fi",
+      "carrier": "UQコミュニケーションズ",
+      "network": "WiMAX +5G",
+      "summary": "工事なしで持ち運べるWiMAX +5Gのモバイルルーター。自宅と外出先の両方で使いたい人向けの候補です。",
+      "priceLabel": "最新料金・端末代・特典は公式サイトで確認",
+      "dataLabel": "ギガ放題プラスS",
+      "callLabel": "",
+      "supportLabel": "オンライン・店舗",
+      "discountLabel": "au・UQ mobileとのセット条件を確認",
+      "areaLabel": "WiMAX +5G / au 5G・4G LTEの対応エリア確認が必要",
+      "constructionLabel": "工事不要",
+      "speedLabel": "5G対応（端末・エリアによる）",
+      "contractLabel": "契約期間条件なしの料金プランあり",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "モバイルルーターを持ち運んで使える",
+        "回線工事が不要",
+        "ギガ放題プラスSでモバイルルーターを選べる"
+      ],
+      "suitableFor": [
+        "自宅と外出先の両方でWi-Fiを使いたい人",
+        "工事なしでモバイルWi-Fiを始めたい人",
+        "WiMAX +5Gの提供エリア内で使う人"
+      ],
+      "notSuitableFor": [
+        "固定回線の低遅延・安定性を最優先する人",
+        "利用場所が対応エリア外の人"
+      ],
+      "cautions": [
+        "一定期間内に大量のデータ通信を利用した場合、混雑時間帯に速度制限される場合があります。",
+        "月額料金のほか端末代や登録料などがかかる場合があります。",
+        "実際の通信品質はエリア・建物・混雑状況で変わります。"
+      ],
+      "fit": {
+        "H": 0,
+        "R": 2,
+        "M": 7
+      },
+      "matchReasons": {
+        "M": "持ち運びや工事不要を重視する回答と相性があります。"
+      },
+      "officialUrl": "https://shop.uqwimax.jp/shop/",
+      "sourceUrls": [
+        {
+          "label": "UQ WiMAX オンラインショップ",
+          "url": "https://shop.uqwimax.jp/shop/"
+        },
+        {
+          "label": "UQ WiMAX 契約期間条件のない料金プラン",
+          "url": "https://www.uqwimax.jp/wimax/support/qa/pages/000003309/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "softbank-pocketwifi",
+      "name": "SoftBank Pocket WiFi",
+      "category": "mobile-wifi",
+      "serviceType": "モバイルWi-Fi",
+      "carrier": "ソフトバンク",
+      "network": "SoftBank 5G/4G",
+      "summary": "SoftBankのモバイルデータ通信端末を使う持ち運び型Wi-Fi。3GB・50GBなどのデータ通信専用プランを用途に合わせて確認できます。",
+      "priceLabel": "最新料金・端末代は公式サイトで確認",
+      "dataLabel": "3GB / 50GBなど",
+      "callLabel": "",
+      "supportLabel": "オンライン・店頭",
+      "discountLabel": "データ通信専用プランの条件を確認",
+      "areaLabel": "SoftBank 5G/4Gの対応エリア確認が必要",
+      "constructionLabel": "工事不要",
+      "speedLabel": "5G対応端末あり",
+      "contractLabel": "料金プラン・端末条件を確認",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": false,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "Pocket WiFi 5G対応端末を選べる",
+        "工事なしで外出先へ持ち運べる",
+        "データ通信専用3GB・50GBプランを確認できる"
+      ],
+      "suitableFor": [
+        "SoftBank回線のモバイルWi-Fiを使いたい人",
+        "外出先でPC・タブレットを接続したい人",
+        "3GBまたは50GBなど明確な容量で使いたい人"
+      ],
+      "notSuitableFor": [
+        "完全なデータ無制限を前提にしたい人",
+        "自宅で家族全員が大容量通信を常時使う人"
+      ],
+      "cautions": [
+        "データ容量超過後は速度制限がかかるプランがあります。",
+        "時間帯や混雑状況により速度制御される場合があります。",
+        "端末代と月額料金を分けて総額を確認してください。"
+      ],
+      "fit": {
+        "H": 0,
+        "R": 1,
+        "M": 6
+      },
+      "matchReasons": {
+        "M": "外出先への持ち運びを重視する回答と相性があります。"
+      },
+      "officialUrl": "https://www.softbank.jp/mobile/products/data-com/",
+      "sourceUrls": [
+        {
+          "label": "SoftBank モバイルデータ通信",
+          "url": "https://www.softbank.jp/mobile/products/data-com/"
+        },
+        {
+          "label": "データ通信専用50GBプラン",
+          "url": "https://www.softbank.jp/mobile/price_plan/data/50g-for-data/"
+        },
+        {
+          "label": "データ通信専用3GBプラン",
+          "url": "https://www.softbank.jp/mobile/price_plan/data/3g-for-data/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "docomo-wifi-station",
+      "name": "ドコモ Wi-Fi STATION",
+      "category": "mobile-wifi",
+      "serviceType": "モバイルWi-Fi",
+      "carrier": "NTTドコモ",
+      "network": "ドコモ 5G/4G",
+      "summary": "ドコモの5G対応モバイルルーター。5Gデータプラスでは対象のスマホ料金プランとデータ容量をシェアして使います。",
+      "priceLabel": "最新料金・端末代は公式サイトで確認",
+      "dataLabel": "ペア回線の利用可能データ量をシェア",
+      "callLabel": "",
+      "supportLabel": "店舗・オンライン",
+      "discountLabel": "対象スマホ料金プランとのペア契約が必要",
+      "areaLabel": "ドコモ5G/4Gエリア確認が必要",
+      "constructionLabel": "工事不要",
+      "speedLabel": "5G対応（端末・エリアによる）",
+      "contractLabel": "5Gデータプラスは単独契約不可",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "5G対応のWi-Fi STATIONを選べる",
+        "工事なしで持ち運べる",
+        "対象スマホ料金プランのデータ容量をシェアできる"
+      ],
+      "suitableFor": [
+        "ドコモの対象スマホ料金プランを利用している人",
+        "2台目回線としてモバイルルーターを使いたい人",
+        "ドコモショップのサポートも利用したい人"
+      ],
+      "notSuitableFor": [
+        "モバイルルーター回線を単独で契約したい人",
+        "ドコモの対象スマホ料金プランを持っていない人"
+      ],
+      "cautions": [
+        "5Gデータプラスは対象のスマホ料金プランとのペア契約が必要で、単独契約できません。",
+        "利用可能データ量はペアとなる料金プランに準じます。",
+        "実際の速度は通信環境や混雑状況で変わります。"
+      ],
+      "fit": {
+        "H": 0,
+        "R": 1,
+        "M": 5,
+        "docomo-set": 3
+      },
+      "matchReasons": {
+        "M": "モバイルルーターを持ち運びたい回答の候補になります。",
+        "docomo-set": "ドコモの対象スマホ料金プランと組み合わせる場合に確認しやすいです。"
+      },
+      "officialUrl": "https://www.docomo.ne.jp/product/sh54c/",
+      "sourceUrls": [
+        {
+          "label": "Wi-Fi STATION SH-54C",
+          "url": "https://www.docomo.ne.jp/product/sh54c/"
+        },
+        {
+          "label": "5Gデータプラス",
+          "url": "https://www.docomo.ne.jp/charge/5g-dataplus/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
     }
   ]
 };
