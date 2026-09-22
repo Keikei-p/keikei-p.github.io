@@ -30,3 +30,32 @@
 .hub-trust strong{display:block;color:var(--teal-dark);font-size:13px}
 .hub-trust span{display:block;margin-top:4px;color:var(--ink-soft);font-size:12px}
 @media(max-width:760px){.hub-grid,.hub-compare,.hub-trust{grid-template-columns:1fr}.hub-shell{padding-top:38px}.hub-section{padding:22px}.hub-card{padding:21px}}
+.directory-search{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,420px) auto;
+  gap:16px;
+  align-items:center;
+  margin-top:18px;
+  padding:20px 22px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  background:var(--surface);
+  box-shadow:var(--shadow-card);
+}
+.directory-search h2{font-size:18px}
+.directory-search p{margin-top:3px;font-size:11px}
+.directory-search-box input{
+  width:100%;
+  min-height:46px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--bg);
+  color:var(--ink);
+}
+.directory-search-box input:focus-visible{outline:3px solid rgba(21,152,189,.22);border-color:var(--teal)}
+.directory-search-status{white-space:nowrap;color:var(--teal-dark)!important;font-weight:800}
+@media(max-width:760px){
+  .directory-search{grid-template-columns:1fr;align-items:stretch}
+  .directory-search-status{white-space:normal}
+}
