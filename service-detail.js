@@ -6,7 +6,7 @@
   var u = window.TCServiceUtils;
   if (!root || !u) return;
 
-  var id = new URLSearchParams(window.location.search).get('id');
+  var id = document.body.getAttribute('data-service-id') || new URLSearchParams(window.location.search).get('id');
   var catalog = window.TC_SERVICE_CATALOG || {};
   var all = []
     .concat(Array.isArray(catalog.smartphone) ? catalog.smartphone : [])
@@ -86,7 +86,10 @@
     }
 
     document.title = service.name + ' | つうしんコンパス';
-    var serviceUrl = 'https://keikei-p.github.io/service.html?id=' + encodeURIComponent(service.id);
+    var canonicalNode = document.getElementById('service-canonical') || document.querySelector('link[rel="canonical"]');
+    var serviceUrl = document.body.getAttribute('data-service-id') && canonicalNode && canonicalNode.href
+      ? canonicalNode.href
+      : 'https://keikei-p.github.io/service.html?id=' + encodeURIComponent(service.id);
     var metaDescription = service.summary || (service.name + 'の特徴、向いている人、注意点をまとめています。');
     var canonical = document.getElementById('service-canonical');
     var metaDesc = document.getElementById('service-meta-description');
