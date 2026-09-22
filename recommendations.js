@@ -60,15 +60,22 @@
   }
 
   function renderEmpty(root, detail) {
-    var message = detail && detail.kind === 'wifi' && detail.profile === 'M'
-      ? 'モバイルWi-Fiの個別サービスは現在準備中です。タイプ診断の結果を参考にしながら、公式情報を確認できたサービスから追加します。'
-      : 'サービス情報を登録すると、診断結果に合う候補がここへ最大3件表示されます。';
+    var isMobileWifi = detail && detail.kind === 'wifi' && detail.profile === 'M';
+    var title = isMobileWifi
+      ? 'モバイルWi-Fiは条件を確認して選びましょう'
+      : 'この条件では候補を絞りきれませんでした';
+    var message = isMobileWifi
+      ? 'モバイルWi-Fiはデータ容量・エリア・速度制御・端末条件の差が大きいため、まず選び方を確認してから最新プランを比較してください。'
+      : '条件を少し変えて診断し直すか、サービス一覧から特徴と注意点を比較できます。';
+    var href = isMobileWifi ? 'mobile-wifi.html' : 'services.html';
+    var label = isMobileWifi ? 'モバイルWi-Fiの選び方を見る' : 'サービス一覧を見る';
 
     root.classList.remove('has-items');
     root.innerHTML =
       '<div class="recommend-empty">' +
-        '<strong>候補サービスは現在準備中です</strong>' +
+        '<strong>' + title + '</strong>' +
         '<p>' + message + '</p>' +
+        '<p><a class="btn btn-ghost" href="' + href + '">' + label + '</a></p>' +
       '</div>';
   }
 
