@@ -6,12 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".site-nav");
 
   if (toggle && nav) {
-    if (!nav.querySelector('a[href="guide.html"]')) {
-      const guideLink = document.createElement("a");
-      guideLink.href = "guide.html";
-      guideLink.textContent = "初心者ガイド";
-      nav.appendChild(guideLink);
-    }
+    [
+      ["サービス一覧", "services.html"],
+      ["ガイド", "guides.html"]
+    ].forEach(([label, href]) => {
+      if (!nav.querySelector('a[href="' + href + '"]')) {
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        nav.appendChild(link);
+      }
+    });
 
     toggle.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("is-open");
