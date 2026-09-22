@@ -7,10 +7,11 @@
 
   if (!config || !config.projectId || !manager) return;
 
-  Promise.all([
-    import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),
-    import('https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js')
-  ]).then(function (modules) {
+  function loadRemoteAds() {
+    Promise.all([
+      import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js')
+    ]).then(function (modules) {
     var appModule = modules[0];
     var dbModule = modules[1];
     var app = appModule.initializeApp(config);
@@ -30,7 +31,14 @@
 
       manager.replaceAll(remoteAds, 'firestore');
     });
-  }).catch(function (error) {
-    console.warn('Affiliate Firestore fallback:', error);
-  });
+    }).catch(function (error) {
+      console.warn('Affiliate Firestore fallback:', error);
+    });
+  }
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(loadRemoteAds, { timeout: 1800 });
+  } else {
+    window.setTimeout(loadRemoteAds, 600);
+  }
 })();
