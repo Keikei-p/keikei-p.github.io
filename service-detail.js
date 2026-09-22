@@ -86,6 +86,18 @@
     }
 
     document.title = service.name + ' | つうしんコンパス';
+    var serviceUrl = 'https://keikei-p.github.io/service.html?id=' + encodeURIComponent(service.id);
+    var metaDescription = service.summary || (service.name + 'の特徴、向いている人、注意点をまとめています。');
+    var canonical = document.getElementById('service-canonical');
+    var metaDesc = document.getElementById('service-meta-description');
+    var ogTitle = document.getElementById('service-og-title');
+    var ogDesc = document.getElementById('service-og-description');
+    var ogUrl = document.getElementById('service-og-url');
+    if (canonical) canonical.href = serviceUrl;
+    if (metaDesc) metaDesc.setAttribute('content', metaDescription);
+    if (ogTitle) ogTitle.setAttribute('content', service.name + ' | つうしんコンパス');
+    if (ogDesc) ogDesc.setAttribute('content', metaDescription);
+    if (ogUrl) ogUrl.setAttribute('content', serviceUrl);
 
     var resolved = resolveLink(service);
     var affiliateManager = window.TCAffiliateManager;
