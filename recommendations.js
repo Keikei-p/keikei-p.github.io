@@ -178,7 +178,7 @@
 
       var detailLink = document.createElement('a');
       detailLink.className = 'btn btn-ghost';
-      detailLink.href = 'service.html?id=' + encodeURIComponent(service.id);
+      detailLink.href = 'service-' + encodeURIComponent(service.id) + '.html';
       detailLink.textContent = '理由と注意点を見る';
       actions.appendChild(detailLink);
 
