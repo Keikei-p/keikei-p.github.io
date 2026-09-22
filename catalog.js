@@ -143,7 +143,7 @@
 
         var detail = document.createElement('a');
         detail.className = 'btn btn-ghost';
-        detail.href = 'service.html?id=' + encodeURIComponent(service.id);
+        detail.href = 'service-' + encodeURIComponent(service.id) + '.html';
         detail.textContent = '詳しく見る';
         actions.appendChild(detail);
 
