@@ -103,9 +103,20 @@
     if (ogUrl) ogUrl.setAttribute('content', serviceUrl);
 
     var resolved = resolveLink(service);
+    var affiliateManager = window.TCAffiliateManager;
     var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
-    var isAffiliatePresentation = isAffiliateLink;
-    var targetUrl = resolved.url || resolved.official_url || service.officialUrl || '';
+    var useAffiliateCode = Boolean(
+      !isAffiliateLink &&
+      resolved.affiliate_code &&
+      affiliateManager &&
+      affiliateManager.createCodePlacement &&
+      affiliateManager.isSafeAffiliateCode &&
+      affiliateManager.isSafeAffiliateCode(resolved.affiliate_code)
+    );
+    var isAffiliatePresentation = isAffiliateLink || useAffiliateCode;
+    var targetUrl = isAffiliateLink
+      ? resolved.url
+      : (useAffiliateCode ? '' : (resolved.official_url || service.officialUrl || ''));
     var facts = u.quickFacts(service);
     var fresh = u.freshness(service, 365);
 
@@ -127,9 +138,11 @@
 
     var actions =
       '<div class="service-actions">' +
-        (targetUrl
-          ? '<a class="btn btn-primary affiliate-unified-cta" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>詳細はこちら</a>'
-          : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>') +
+        (useAffiliateCode
+          ? '<div id="service-affiliate-code-slot"></div>'
+          : (targetUrl
+            ? '<a class="btn btn-primary affiliate-unified-cta" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>詳細はこちら</a>'
+            : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>')) +
       '</div>' +
       (isAffiliatePresentation
         ? '<p class="service-ad-note">この表示にはアフィリエイト広告を含みます。診断候補は広告報酬ではなく、回答内容との相性をもとに表示しています。</p>'
@@ -199,6 +212,27 @@
         ? '<aside class="display-ad-slot service-display-ad" data-display-ad="serviceFallback" aria-label="広告" hidden></aside>'
         : '');
 
+    if (useAffiliateCode) {
+      var slot = document.getElementById('service-affiliate-code-slot');
+      var placement = affiliateManager.createCodePlacement(resolved, {
+        compact: false,
+        track: 'service-official-click'
+      });
+      if (slot && placement) {
+        slot.replaceWith(placement);
+      } else if (slot) {
+        var fallbackUrl = resolved.official_url || service.officialUrl || '';
+        if (fallbackUrl) {
+          var fallbackLink = document.createElement('a');
+          fallbackLink.className = 'btn btn-primary affiliate-unified-cta';
+          fallbackLink.href = fallbackUrl;
+          fallbackLink.target = '_blank';
+          fallbackLink.rel = 'noopener noreferrer';
+          fallbackLink.textContent = '詳細はこちら';
+          slot.replaceWith(fallbackLink);
+        }
+      }
+    }
 
     if (window.TCDisplayAds && window.TCDisplayAds.render) {
       window.TCDisplayAds.render(root);
