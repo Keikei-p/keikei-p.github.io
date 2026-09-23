@@ -231,22 +231,9 @@
 
       removeGeneratedPlacement(link);
 
-      if (resolved.affiliate_code) {
-        var placement = createCodePlacement(resolved, {
-          compact: link.hasAttribute('data-affiliate-compact'),
-          track: link.getAttribute('data-track') || 'affiliate-code-click'
-        });
-
-        if (placement) {
-          placement.classList.add('affiliate-code-generated');
-          link.hidden = true;
-          link.removeAttribute('href');
-          link.insertAdjacentElement('afterend', placement);
-          return;
-        }
-      }
-
       link.hidden = false;
+      link.classList.add('btn', 'btn-primary', 'affiliate-unified-cta');
+      link.textContent = '詳細はこちら';
       var targetUrl = resolved.url || resolved.official_url;
 
       if (!targetUrl) {
