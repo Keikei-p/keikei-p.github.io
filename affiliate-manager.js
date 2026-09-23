@@ -216,8 +216,20 @@
     if (resolved.asp_name) wrapper.setAttribute('data-asp-name', resolved.asp_name);
     if (resolved.ad_id) wrapper.setAttribute('data-ad-id', resolved.ad_id);
 
-    // ASP発行コード自体は改変しない。上で安全性を確認してから、そのまま挿入する。
+    // ASP発行コード自体は安全性を確認してから挿入する。
+    // テキストリンク型は通常CTAと同じクラスだけ付与し、
+    // スマホでも他の「詳細はこちら」と同じ幅・位置で表示する。
+    // href / rel / target / 追跡用1px画像などASP発行値は変更しない。
     wrapper.innerHTML = resolved.affiliate_code;
+
+    if (buttonCompatible) {
+      var codeAnchor = wrapper.querySelector('a[href]');
+      if (codeAnchor) {
+        codeAnchor.classList.add('btn', 'btn-primary', 'affiliate-unified-cta');
+        codeAnchor.setAttribute('data-link-source', 'affiliate-code');
+      }
+    }
+
     return wrapper;
   }
 
