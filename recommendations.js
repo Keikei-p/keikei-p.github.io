@@ -183,51 +183,29 @@
       actions.appendChild(detailLink);
 
       var resolved = resolveLink(service);
-      var manager = window.TCAffiliateManager;
-      var codePlacement = resolved.affiliate_code && manager && manager.createCodePlacement
-        ? manager.createCodePlacement(resolved, { compact: true, track: 'diagnosis-official-click' })
-        : null;
-
-      if (codePlacement) {
-        actions.appendChild(codePlacement);
-      } else {
-        var targetUrl = resolved.url || resolved.official_url || '';
-        if (targetUrl) {
-          var external = document.createElement('a');
-          var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
-          external.className = 'btn btn-primary';
-          external.href = targetUrl;
-          external.target = '_blank';
-          external.rel = isAffiliateLink
-            ? 'sponsored noopener noreferrer'
-            : 'noopener noreferrer';
-          external.textContent = '詳細はこちら';
-          external.setAttribute('data-track', 'diagnosis-official-click');
-          external.setAttribute('data-service-id', service.id);
-          external.setAttribute('data-link-source', isAffiliateLink ? 'affiliate' : 'official');
-          if (isAffiliateLink && resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
-          if (isAffiliateLink && resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
-          actions.appendChild(external);
-        }
+      var targetUrl = resolved.url || resolved.official_url || service.officialUrl || '';
+      if (targetUrl) {
+        var external = document.createElement('a');
+        var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
+        external.className = 'btn btn-primary affiliate-unified-cta';
+        external.href = targetUrl;
+        external.target = '_blank';
+        external.rel = isAffiliateLink
+          ? 'sponsored noopener noreferrer'
+          : 'noopener noreferrer';
+        external.textContent = '詳細はこちら';
+        external.setAttribute('data-track', 'diagnosis-official-click');
+        external.setAttribute('data-service-id', service.id);
+        external.setAttribute('data-link-source', isAffiliateLink ? 'affiliate' : 'official');
+        if (isAffiliateLink && resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
+        if (isAffiliateLink && resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
+        actions.appendChild(external);
       }
 
       card.appendChild(actions);
       root.appendChild(card);
     });
 
-    if (detail && detail.kind === 'wifi') {
-      var sponsored = document.createElement('aside');
-      sponsored.className = 'recommend-sponsored';
-      sponsored.setAttribute('aria-label', 'PR');
-      sponsored.innerHTML =
-        '<span class="recommend-sponsored-label">PR</span>' +
-        '<a href="https://px.a8.net/svt/ejp?a8mat=4BCHZQ+WQVTM+548I+609HT" rel="nofollow sponsored noopener noreferrer" target="_blank">' +
-          '<img border="0" width="300" height="250" alt="おすすめインターネットサービスのPR" src="https://www25.a8.net/svt/bgt?aid=260923670055&wid=002&eno=01&mid=s00000023877001009000&mc=1" loading="lazy">' +
-        '</a>' +
-        '<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BCHZQ+WQVTM+548I+609HT" alt="">' +
-        '<p>見直し候補とあわせて確認できる提携サービスです。料金・提供条件・キャンペーンはリンク先で最新情報をご確認ください。</p>';
-      root.appendChild(sponsored);
-    }
   }
 
   document.addEventListener('tc:diagnosis-result', function (event) {
