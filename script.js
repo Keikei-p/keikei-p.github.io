@@ -5,10 +5,17 @@
   script.src = 'https://statics.8me.jp/a8link/a8linkmgr.js';
   script.async = true;
   script.setAttribute('data-a8-link-manager', 'true');
-  script.onload = function () {
+  function applyA8Links() {
     if (typeof window.a8linkmgr === 'function') {
       window.a8linkmgr({ config_id: 'xscDAEb8nIg719oYTD8a' });
     }
+  }
+
+  script.onload = function () {
+    applyA8Links();
+    document.addEventListener('tc:affiliate-ready', function () {
+      window.setTimeout(applyA8Links, 0);
+    });
   };
   document.head.appendChild(script);
 })();
