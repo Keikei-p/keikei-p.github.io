@@ -148,23 +148,33 @@
         actions.appendChild(detail);
 
         var resolved = resolveLink(service);
-        var targetUrl = resolved.url || resolved.official_url || service.officialUrl || '';
-        if (targetUrl) {
-          var external = document.createElement('a');
-          var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
-          external.className = 'btn btn-primary affiliate-unified-cta';
-          external.href = targetUrl;
-          external.target = '_blank';
-          external.rel = isAffiliateLink
-            ? 'sponsored noopener noreferrer'
-            : 'noopener noreferrer';
-          external.textContent = '詳細はこちら';
-          external.setAttribute('data-track', 'catalog-official-click');
-          external.setAttribute('data-service-id', service.id);
-          external.setAttribute('data-link-source', isAffiliateLink ? 'affiliate' : 'official');
-          if (isAffiliateLink && resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
-          if (isAffiliateLink && resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
-          actions.appendChild(external);
+        var manager = window.TCAffiliateManager;
+        var hasAffiliateUrl = Boolean(resolved.url && resolved.is_affiliate);
+        var codeOnlyPlacement = !hasAffiliateUrl && resolved.affiliate_code && manager && manager.createCodePlacement
+          ? manager.createCodePlacement(resolved, { compact: true, track: 'catalog-official-click' })
+          : null;
+
+        if (codeOnlyPlacement) {
+          actions.appendChild(codeOnlyPlacement);
+        } else {
+          var targetUrl = resolved.url || resolved.official_url || service.officialUrl || '';
+          if (targetUrl) {
+            var external = document.createElement('a');
+            var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
+            external.className = 'btn btn-primary affiliate-unified-cta';
+            external.href = targetUrl;
+            external.target = '_blank';
+            external.rel = isAffiliateLink
+              ? 'sponsored noopener noreferrer'
+              : 'noopener noreferrer';
+            external.textContent = '詳細はこちら';
+            external.setAttribute('data-track', 'catalog-official-click');
+            external.setAttribute('data-service-id', service.id);
+            external.setAttribute('data-link-source', isAffiliateLink ? 'affiliate' : 'official');
+            if (isAffiliateLink && resolved.asp_name) external.setAttribute('data-asp-name', resolved.asp_name);
+            if (isAffiliateLink && resolved.ad_id) external.setAttribute('data-ad-id', resolved.ad_id);
+            actions.appendChild(external);
+          }
         }
 
         card.appendChild(actions);
