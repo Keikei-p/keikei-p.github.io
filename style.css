@@ -1608,3 +1608,112 @@ pre {
     word-break: break-word;
   }
 }
+
+
+/* Mobile layout hardening v2 - 2026-09-23 */
+html {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container,
+.container-narrow,
+.compare-container,
+.site-header .container,
+.hero .container,
+.final-cta .container,
+.site-footer .container,
+.card-grid,
+.trust-grid,
+.result-actions,
+.hero-actions {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.site-header .container > *,
+.hero .container > *,
+.final-cta .container > *,
+.site-footer .container > *,
+.card-grid > *,
+.trust-grid > * {
+  min-width: 0;
+}
+
+.brand {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.brand-name {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+input,
+select,
+textarea,
+button {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+input[type="url"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+}
+
+table {
+  max-width: 100%;
+}
+
+.affiliate-code-placement,
+.affiliate-code-placement.is-button-compatible {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.affiliate-code-placement.is-button-compatible > a {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+@media (max-width: 600px) {
+  .container,
+  .container-narrow,
+  .compare-container {
+    width: calc(100% - 24px);
+    max-width: var(--container);
+  }
+
+  .hero-actions,
+  .result-actions,
+  .service-actions,
+  .catalog-actions {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .site-footer nav,
+  .site-nav {
+    max-width: 100%;
+  }
+}
