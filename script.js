@@ -1,3 +1,18 @@
+// A8リンクマネージャーを全公開ページで共通利用する
+(function () {
+  if (document.querySelector('script[data-a8-link-manager]')) return;
+  var script = document.createElement('script');
+  script.src = 'https://statics.8me.jp/a8link/a8linkmgr.js';
+  script.async = true;
+  script.setAttribute('data-a8-link-manager', 'true');
+  script.onload = function () {
+    if (typeof window.a8linkmgr === 'function') {
+      window.a8linkmgr({ config_id: 'xscDAEb8nIg719oYTD8a' });
+    }
+  };
+  document.head.appendChild(script);
+})();
+
 // つうしんコンパス - 共通スクリプト
 // モバイルメニューと共通フッターを担当する軽量な処理
 
