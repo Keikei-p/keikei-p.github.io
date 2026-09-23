@@ -214,6 +214,20 @@
       card.appendChild(actions);
       root.appendChild(card);
     });
+
+    if (detail && detail.kind === 'wifi') {
+      var sponsored = document.createElement('aside');
+      sponsored.className = 'recommend-sponsored';
+      sponsored.setAttribute('aria-label', 'PR');
+      sponsored.innerHTML =
+        '<span class="recommend-sponsored-label">PR</span>' +
+        '<a href="https://px.a8.net/svt/ejp?a8mat=4BCHZQ+WQVTM+548I+609HT" rel="nofollow sponsored noopener noreferrer" target="_blank">' +
+          '<img border="0" width="300" height="250" alt="おすすめインターネットサービスのPR" src="https://www25.a8.net/svt/bgt?aid=260923670055&wid=002&eno=01&mid=s00000023877001009000&mc=1" loading="lazy">' +
+        '</a>' +
+        '<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BCHZQ+WQVTM+548I+609HT" alt="">' +
+        '<p>見直し候補とあわせて確認できる提携サービスです。料金・提供条件・キャンペーンはリンク先で最新情報をご確認ください。</p>';
+      root.appendChild(sponsored);
+    }
   }
 
   document.addEventListener('tc:diagnosis-result', function (event) {
