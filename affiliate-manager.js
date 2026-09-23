@@ -17,15 +17,37 @@
 
   function canonicalServiceId(value) {
     var raw = text(value);
+    if (!raw) return '';
+
     var key = raw.toLowerCase().replace(/[\s_]/g, '-');
     var aliases = {
       'biglobe': 'biglobe-hikari',
       'biglobe-hikari': 'biglobe-hikari',
       'biglobe光': 'biglobe-hikari',
       'ビッグローブ': 'biglobe-hikari',
-      'ビッグローブ光': 'biglobe-hikari'
+      'ビッグローブ光': 'biglobe-hikari',
+      'fon光': 'fon-hikari',
+      'fon-hikari': 'fon-hikari',
+      'コミュファ光': 'commufa-hikari'
     };
-    return aliases[key] || raw;
+    if (aliases[key]) return aliases[key];
+
+    var catalog = window.TC_SERVICE_CATALOG || {};
+    var all = []
+      .concat(Array.isArray(catalog.smartphone) ? catalog.smartphone : [])
+      .concat(Array.isArray(catalog.wifi) ? catalog.wifi : []);
+
+    var matched = all.find(function (service) {
+      if (!service) return false;
+      var id = text(service.id);
+      var name = text(service.name);
+      return id === raw ||
+        name === raw ||
+        id.toLowerCase().replace(/[\s_]/g, '-') === key ||
+        name.toLowerCase().replace(/[\s_]/g, '-') === key;
+    });
+
+    return matched && matched.id ? matched.id : raw;
   }
 
   function normalizeAd(ad) {
@@ -114,10 +136,10 @@
 
     return {
       service_id: serviceId,
-      url: ad && !codeMode ? ad.affiliate_url : (!ad ? officialUrl : ''),
+      url: ad && text(ad.affiliate_url) ? ad.affiliate_url : (!ad ? officialUrl : ''),
       official_url: officialUrl,
       affiliate_code: ad ? ad.affiliate_code : '',
-      render_mode: ad ? (codeMode ? 'code' : 'url') : 'official',
+      render_mode: ad ? (text(ad.affiliate_url) ? 'url' : (codeMode ? 'code' : 'official')) : 'official',
       is_affiliate: Boolean(ad),
       asp_name: ad ? ad.asp_name : '',
       ad_id: ad ? ad.id : '',
