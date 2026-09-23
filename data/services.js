@@ -1757,6 +1757,638 @@ window.TC_SERVICE_CATALOG = {
       ],
       "checkedAt": "2026-09-23",
       "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "flets-east-next",
+      "name": "フレッツ 光ネクスト（NTT東日本）",
+      "category": "hikari",
+      "serviceType": "光回線（回線単体）",
+      "carrier": "NTT東日本",
+      "network": "フレッツ光",
+      "summary": "NTT東日本の最大概ね1Gbpsの光アクセスサービス。インターネット利用には、フレッツ光とは別に対応プロバイダとの契約が必要です。",
+      "priceLabel": "回線料金＋プロバイダ料金を公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "NTT東日本・プロバイダ",
+      "discountLabel": "スマホセット割前提ではない",
+      "areaLabel": "NTT東日本エリア・住所ごとに提供可否確認",
+      "constructionLabel": "新規は工事が必要な場合あり",
+      "speedLabel": "最大概ね1Gbps（プランによる）",
+      "contractLabel": "回線とプロバイダを別々に契約",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "NTT東日本が提供する光アクセス回線",
+        "対応プロバイダを自分で選べる",
+        "IPv6対応のプランあり"
+      ],
+      "suitableFor": [
+        "回線とプロバイダを分けて選びたい人",
+        "NTT東日本エリアでフレッツ光を直接契約したい人"
+      ],
+      "notSuitableFor": [
+        "回線とプロバイダの請求・窓口を完全に一本化したい人",
+        "工事を避けたい人"
+      ],
+      "cautions": [
+        "インターネット利用には対応プロバイダとの契約が別途必要です。",
+        "実際の速度は利用環境や回線混雑などで変わります。",
+        "住所・建物設備により利用できる品目が異なります。"
+      ],
+      "fit": {
+        "H": 5,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "固定回線を使い、プロバイダも自分で選びたい人の比較候補です。"
+      },
+      "officialUrl": "https://flets.com/flets-hikari/next/",
+      "sourceUrls": [
+        {
+          "label": "NTT東日本 フレッツ 光ネクスト",
+          "url": "https://flets.com/flets-hikari/next/"
+        },
+        {
+          "label": "対応プロバイダ",
+          "url": "https://flets.com/flets-hikari/next/isp/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "flets-east-cross",
+      "name": "フレッツ 光クロス（NTT東日本）",
+      "category": "hikari",
+      "serviceType": "光回線（回線単体）",
+      "carrier": "NTT東日本",
+      "network": "フレッツ光",
+      "summary": "NTT東日本の最大概ね10Gbpsの光アクセスサービス。高速通信向けで、別途対応プロバイダとの契約が必要です。",
+      "priceLabel": "回線料金＋プロバイダ料金を公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "NTT東日本・プロバイダ",
+      "discountLabel": "スマホセット割前提ではない",
+      "areaLabel": "10ギガ提供エリア・建物設備の確認が必要",
+      "constructionLabel": "工事・品目変更が必要な場合あり",
+      "speedLabel": "最大概ね10Gbps",
+      "contractLabel": "回線とプロバイダを別々に契約",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "最大概ね10Gbpsの高速光回線",
+        "大容量通信や複数端末利用の比較候補",
+        "対応プロバイダを選べる"
+      ],
+      "suitableFor": [
+        "10ギガ回線を使いたい人",
+        "ゲーム・4K動画・大容量ダウンロードを重視する人"
+      ],
+      "notSuitableFor": [
+        "10ギガ提供エリア外の人",
+        "対応ルーターやLAN環境を用意したくない人"
+      ],
+      "cautions": [
+        "10ギガは提供エリアが限られます。",
+        "インターネット利用には対応プロバイダ契約が別途必要です。",
+        "10ギガ性能を活かすには対応ルーター・LAN機器などが必要です。"
+      ],
+      "fit": {
+        "H": 6,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "高速な固定回線を重視する回答の比較候補です。"
+      },
+      "officialUrl": "https://flets.com/flets-hikari/cross/",
+      "sourceUrls": [
+        {
+          "label": "NTT東日本 フレッツ 光クロス",
+          "url": "https://flets.com/flets-hikari/cross/"
+        },
+        {
+          "label": "フレッツ光 プラン一覧",
+          "url": "https://flets.com/flets-hikari/priceplan/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "flets-west-next",
+      "name": "フレッツ 光ネクスト（NTT西日本）",
+      "category": "hikari",
+      "serviceType": "光回線（回線単体）",
+      "carrier": "NTT西日本",
+      "network": "フレッツ光",
+      "summary": "NTT西日本の最大概ね1Gbpsの光アクセスサービス。インターネット接続には別途プロバイダ契約が必要です。",
+      "priceLabel": "回線料金＋プロバイダ料金を公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "NTT西日本・プロバイダ",
+      "discountLabel": "スマホセット割前提ではない",
+      "areaLabel": "NTT西日本エリア・住所ごとに提供可否確認",
+      "constructionLabel": "新規は工事が必要な場合あり",
+      "speedLabel": "最大概ね1Gbps（プランによる）",
+      "contractLabel": "回線とプロバイダを別々に契約",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "NTT西日本が提供する光アクセス回線",
+        "対応プロバイダを自分で選べる",
+        "戸建・集合住宅向け品目あり"
+      ],
+      "suitableFor": [
+        "回線とプロバイダを分けて選びたい人",
+        "NTT西日本エリアでフレッツ光を直接契約したい人"
+      ],
+      "notSuitableFor": [
+        "回線とプロバイダを一社にまとめたい人",
+        "工事を避けたい人"
+      ],
+      "cautions": [
+        "インターネット利用には対応プロバイダとの契約が別途必要です。",
+        "実際の速度は利用環境や混雑状況などで変わります。",
+        "住所・建物設備によって利用可能な品目が異なります。"
+      ],
+      "fit": {
+        "H": 5,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "固定回線を使い、プロバイダも自分で選びたい人の比較候補です。"
+      },
+      "officialUrl": "https://flets-w.com/cp/next/",
+      "sourceUrls": [
+        {
+          "label": "NTT西日本 フレッツ 光ネクスト",
+          "url": "https://flets-w.com/cp/next/"
+        },
+        {
+          "label": "提供エリア",
+          "url": "https://flets-w.com/service/next/area/detail.html"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "flets-west-cross",
+      "name": "フレッツ 光クロス（NTT西日本）",
+      "category": "hikari",
+      "serviceType": "光回線（回線単体）",
+      "carrier": "NTT西日本",
+      "network": "フレッツ光",
+      "summary": "NTT西日本の最大概ね10Gbpsの高速光アクセスサービス。利用には別途対応プロバイダ契約が必要です。",
+      "priceLabel": "回線料金＋プロバイダ料金を公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "NTT西日本・プロバイダ",
+      "discountLabel": "スマホセット割前提ではない",
+      "areaLabel": "10ギガ提供エリア・建物設備の確認が必要",
+      "constructionLabel": "工事・品目変更が必要な場合あり",
+      "speedLabel": "最大概ね10Gbps",
+      "contractLabel": "回線とプロバイダを別々に契約",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "最大概ね10Gbps",
+        "NTT西日本のフレッツ光10ギガ",
+        "対応プロバイダを選択可能"
+      ],
+      "suitableFor": [
+        "大容量通信・複数端末利用を重視する人",
+        "NTT西日本エリアで10ギガを使いたい人"
+      ],
+      "notSuitableFor": [
+        "10ギガ提供エリア外の人",
+        "対応機器を用意したくない人"
+      ],
+      "cautions": [
+        "提供エリアは一部地域で、住所ごとの確認が必要です。",
+        "インターネット利用には別途対応プロバイダ契約が必要です。",
+        "最大通信速度は実効速度を保証するものではありません。"
+      ],
+      "fit": {
+        "H": 6,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "10ギガの高速固定回線を重視する回答の比較候補です。"
+      },
+      "officialUrl": "https://flets-w.com/service/cross/",
+      "sourceUrls": [
+        {
+          "label": "NTT西日本 フレッツ 光クロス",
+          "url": "https://flets-w.com/service/cross/"
+        },
+        {
+          "label": "10ギガ提供エリア",
+          "url": "https://flets-w.com/service/cross/area/detail.html"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "gmobb-hikari",
+      "name": "GMOとくとくBB光",
+      "category": "hikari",
+      "serviceType": "光コラボ",
+      "carrier": "GMOインターネット",
+      "network": "NTT系光回線",
+      "summary": "NTT東西のフレッツ光回線とプロバイダをまとめた光コラボ。1ギガ・10ギガを選べ、スマホのセット割に依存しないシンプルな構成です。",
+      "priceLabel": "最新料金・キャンペーンは公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "携帯セット割なし",
+      "areaLabel": "1ギガはフレッツ光エリア、10ギガはフレッツ 光クロス提供エリアに準拠",
+      "constructionLabel": "新規は工事が必要な場合あり",
+      "speedLabel": "1ギガ / 10ギガ",
+      "contractLabel": "契約期間しばりなしの案内あり",
+      "storeSupport": false,
+      "esim": null,
+      "familyDiscount": false,
+      "setDiscount": false,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "回線とプロバイダを一社にまとめられる",
+        "1ギガ・10ギガを選べる",
+        "スマホセット割に依存しない"
+      ],
+      "suitableFor": [
+        "スマホ会社に縛られず光回線を選びたい人",
+        "フレッツ光・他社光コラボから乗り換えたい人"
+      ],
+      "notSuitableFor": [
+        "店頭サポートを重視する人",
+        "スマホセット割を最優先する人"
+      ],
+      "cautions": [
+        "10ギガは提供エリアが限られます。",
+        "キャンペーン・工事費特典は時期や条件で変わります。",
+        "支払方法など申込条件を公式サイトで確認してください。"
+      ],
+      "fit": {
+        "H": 6,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "全国系の光コラボをシンプルに比較したい回答と相性があります。"
+      },
+      "officialUrl": "https://gmobb.jp/service/gmohikari/",
+      "sourceUrls": [
+        {
+          "label": "GMOとくとくBB光 公式",
+          "url": "https://gmobb.jp/service/gmohikari/"
+        },
+        {
+          "label": "1ギガと10ギガの違い",
+          "url": "https://gmobb.jp/service/gmohikari/support/faq/difference-1gb-10gb/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "nifty-hikari",
+      "name": "@nifty光",
+      "category": "hikari",
+      "serviceType": "光コラボ",
+      "carrier": "ニフティ",
+      "network": "NTT系光回線",
+      "summary": "フレッツ光回線とプロバイダをセットにした光コラボ。1ギガと10ギガを選べ、全国系の固定回線として比較できます。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "各種セット・特典条件を公式で確認",
+      "areaLabel": "1ギガは全国広域、10ギガは一部地域",
+      "constructionLabel": "新規は工事が必要な場合あり",
+      "speedLabel": "最大1Gbps / 最大10Gbps",
+      "contractLabel": "契約条件はプランごとに確認",
+      "storeSupport": false,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": null,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "フレッツ光とプロバイダを一体化",
+        "1ギガ・10ギガから選べる",
+        "IPv6接続に対応"
+      ],
+      "suitableFor": [
+        "全国系の光コラボを比較したい人",
+        "1ギガと10ギガの両方を候補にしたい人"
+      ],
+      "notSuitableFor": [
+        "工事不要の回線を希望する人",
+        "対面店舗でのサポートを最優先する人"
+      ],
+      "cautions": [
+        "10ギガは提供エリアが一部地域に限られます。",
+        "ベストエフォート型で実際の速度は利用環境などにより変わります。",
+        "キャンペーン内容は申込時期により変わります。"
+      ],
+      "fit": {
+        "H": 6,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "全国系のプロバイダ一体型光回線を比較したい回答と相性があります。"
+      },
+      "officialUrl": "https://setsuzoku.nifty.com/niftyhikari/",
+      "sourceUrls": [
+        {
+          "label": "@nifty光 公式",
+          "url": "https://setsuzoku.nifty.com/niftyhikari/"
+        },
+        {
+          "label": "@nifty光 10ギガ FAQ",
+          "url": "https://setsuzoku.nifty.com/niftyhikari/faq/index_10gb/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "sonet-hikari",
+      "name": "So-net 光",
+      "category": "hikari",
+      "serviceType": "光コラボ",
+      "carrier": "ソニーネットワークコミュニケーションズ",
+      "network": "NTT系光回線",
+      "summary": "フレッツ光回線を利用する光コラボ。1ギガはS/M/Lの3プラン、さらに10ギガも用意し、使う時間帯や通信量で選び分けられます。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "au / UQ mobileとのセット条件あり",
+      "areaLabel": "NTT東西の提供エリア・10ギガは一部地域",
+      "constructionLabel": "新規は工事が必要な場合あり",
+      "speedLabel": "1ギガ S/M/L / 10ギガ",
+      "contractLabel": "1ギガS/M/Lは契約期間・解約金なしの案内あり",
+      "storeSupport": false,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "1ギガはS/M/Lの3タイプ",
+        "10ギガも選択可能",
+        "au・UQ mobileのセット条件を確認できる"
+      ],
+      "suitableFor": [
+        "利用時間帯に合わせて1ギガプランを選びたい人",
+        "au・UQ mobileを使っている人"
+      ],
+      "notSuitableFor": [
+        "工事を避けたい人",
+        "提供エリア外の人"
+      ],
+      "cautions": [
+        "S/M/Lは帯域設計や料金が異なります。",
+        "au・UQ mobileのセット割には光電話など条件があります。",
+        "10ギガは提供エリアと対応機器の確認が必要です。"
+      ],
+      "fit": {
+        "H": 6,
+        "au-uq-set": 4,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "使い方に合わせて光回線プランを選びたい回答と相性があります。",
+        "au-uq-set": "au・UQ mobileとのセット条件を確認できます。"
+      },
+      "officialUrl": "https://www.so-net.ne.jp/access/hikari/",
+      "sourceUrls": [
+        {
+          "label": "So-net 光 公式",
+          "url": "https://www.so-net.ne.jp/access/hikari/"
+        },
+        {
+          "label": "So-net 光 S/M/L 料金",
+          "url": "https://www.so-net.ne.jp/guide/hikari_sml/price.html"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "eo-hikari",
+      "name": "eo光ネット",
+      "category": "hikari",
+      "serviceType": "地域系光回線",
+      "carrier": "オプテージ",
+      "network": "eo光",
+      "summary": "関西を中心に提供するプロバイダ一体型の地域系光回線。1ギガ・5ギガ・10ギガを用途に合わせて選べます。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "mineo・電気など各種セット条件を確認",
+      "areaLabel": "関西中心の提供エリア・住所確認が必要",
+      "constructionLabel": "開通工事が必要",
+      "speedLabel": "1ギガ / 5ギガ / 10ギガ",
+      "contractLabel": "コース・割引条件により異なる",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "1ギガ・5ギガ・10ギガを用意",
+        "プロバイダ一体型",
+        "IPv6インターネット接続を標準提供"
+      ],
+      "suitableFor": [
+        "eo光提供エリア内で高速回線を選びたい人",
+        "5ギガ・10ギガも比較したい人"
+      ],
+      "notSuitableFor": [
+        "eo光提供エリア外の人",
+        "工事不要で使いたい人"
+      ],
+      "cautions": [
+        "提供エリア・建物条件を事前に確認してください。",
+        "5ギガ・10ギガ性能を活かすには対応機器が必要です。",
+        "料金・特典は住居タイプやコースにより異なります。"
+      ],
+      "fit": {
+        "H": 4,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "提供エリア内なら地域系の高速光回線として比較できます。"
+      },
+      "officialUrl": "https://eonet.jp/",
+      "sourceUrls": [
+        {
+          "label": "eo光ネット サービス内容",
+          "url": "https://gofaq.eonet.jp/faq/show/19?category_id=27&site_domain=default"
+        },
+        {
+          "label": "eo光 1/5/10ギガ解説",
+          "url": "https://eonet.jp/column/optical-line/eo-light-1gb-slow.html"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "commufa-hikari",
+      "name": "コミュファ光",
+      "category": "hikari",
+      "serviceType": "地域系光回線",
+      "carrier": "中部テレコミュニケーション",
+      "network": "コミュファ光",
+      "summary": "愛知・岐阜・三重・静岡・長野を中心に提供する地域系光回線。独自回線を中心に、速度や安定性を重視する人の比較候補です。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "スマホ・電気などセット条件を公式で確認",
+      "areaLabel": "愛知・岐阜・三重・静岡・長野の対象地域",
+      "constructionLabel": "開通工事が必要",
+      "speedLabel": "1ギガ / 10ギガ等（エリア・タイプによる）",
+      "contractLabel": "メニュー・割引条件により異なる",
+      "storeSupport": null,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "東海・長野エリアの地域系光回線",
+        "10ギガ提供エリアあり",
+        "独自回線を中心に提供"
+      ],
+      "suitableFor": [
+        "東海・長野の提供エリア内で固定回線を探している人",
+        "速度・安定性を重視する人"
+      ],
+      "notSuitableFor": [
+        "提供エリア外の人",
+        "回線工事を避けたい人"
+      ],
+      "cautions": [
+        "提供可否は住所・建物ごとに確認が必要です。",
+        "一部地域ではアクセス回線の形態が異なります。",
+        "10ギガは対応エリアが限られます。"
+      ],
+      "fit": {
+        "H": 4,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "東海・長野の対象地域なら地域系光回線として比較できます。"
+      },
+      "officialUrl": "https://www.commufa.jp/",
+      "sourceUrls": [
+        {
+          "label": "コミュファ光 公式",
+          "url": "https://www.commufa.jp/"
+        },
+        {
+          "label": "提供エリア・10ギガ情報",
+          "url": "https://www.commufa.jp/services/information2/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "pikara-hikari",
+      "name": "ピカラ光ねっと",
+      "category": "hikari",
+      "serviceType": "地域系光回線",
+      "carrier": "STNet",
+      "network": "ピカラ光",
+      "summary": "四国で提供するプロバイダ一体型の地域系光回線。1ギガと10ギガを用意し、戸建・集合住宅で利用条件を確認できます。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話・ショップ",
+      "discountLabel": "でんき等のセット条件を公式で確認",
+      "areaLabel": "徳島・香川・愛媛・高知の対象地域",
+      "constructionLabel": "開通工事が必要",
+      "speedLabel": "1ギガ / 10ギガ",
+      "contractLabel": "プラン・割引条件により異なる",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "四国の地域系光回線",
+        "1ギガ・10ギガを提供",
+        "回線とプロバイダが一体"
+      ],
+      "suitableFor": [
+        "四国の提供エリア内で光回線を探している人",
+        "地域系回線も比較したい人"
+      ],
+      "notSuitableFor": [
+        "提供エリア外の人",
+        "工事不要で使いたい人"
+      ],
+      "cautions": [
+        "提供エリア内でも住所・建物設備により利用できない場合があります。",
+        "10ギガは1ギガより提供エリアが限られる場合があります。",
+        "最大速度は実効速度を保証するものではありません。"
+      ],
+      "fit": {
+        "H": 4,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "四国の対象地域なら地域系光回線として比較できます。"
+      },
+      "officialUrl": "https://www.pikara.jp/",
+      "sourceUrls": [
+        {
+          "label": "ピカラ公式",
+          "url": "https://www.pikara.jp/"
+        },
+        {
+          "label": "ピカラ光ねっととは",
+          "url": "https://support.pikara.jp/faq/faq_n/entry-484.html"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
     }
   ]
 };
