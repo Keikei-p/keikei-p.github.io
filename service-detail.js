@@ -137,7 +137,7 @@
         (useAffiliateCode
           ? '<div id="service-affiliate-code-slot"></div>'
           : (targetUrl
-            ? '<a class="btn btn-primary" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>最新の料金・特典を確認する</a>'
+            ? '<a class="btn btn-primary" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>詳細はこちら</a>'
             : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>')) +
       '</div>' +
       (isAffiliatePresentation
@@ -222,7 +222,7 @@
         fallbackLink.href = resolved.official_url;
         fallbackLink.target = '_blank';
         fallbackLink.rel = 'noopener noreferrer';
-        fallbackLink.textContent = '最新の料金・特典を確認する';
+        fallbackLink.textContent = '詳細はこちら';
         fallbackLink.setAttribute('data-track', 'service-official-click');
         fallbackLink.setAttribute('data-service-id', service.id);
         fallbackLink.setAttribute('data-link-source', 'official');
