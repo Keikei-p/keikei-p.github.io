@@ -2465,6 +2465,74 @@ window.TC_SERVICE_CATALOG = {
       ],
       "checkedAt": "2026-09-23",
       "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "fon-hikari",
+      "name": "Fon光",
+      "category": "hikari",
+      "serviceType": "光回線",
+      "carrier": "フォン・ジャパン",
+      "network": "高速光回線",
+      "summary": "2ギガ・10ギガを展開する高速光回線。プロバイダを別契約せず利用でき、速度を重視する人の比較候補です。",
+      "priceLabel": "最新料金・特典は公式サイトで確認",
+      "dataLabel": "固定回線",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "セット割・キャンペーンは公式条件を確認",
+      "areaLabel": "北海道・東北・関東・東海・関西・中国・九州の一部地域",
+      "constructionLabel": "開通工事が必要",
+      "speedLabel": "2ギガ / 10ギガ（ベストエフォート）",
+      "contractLabel": "現行プランは契約期間・更新条件あり",
+      "storeSupport": false,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": null,
+      "paymentMethods": [
+        "クレジットカード",
+        "口座振替"
+      ],
+      "plans": [],
+      "highlights": [
+        "2ギガ・10ギガの高速プランを展開",
+        "別のプロバイダ契約は不要",
+        "提供エリア内なら速度重視の比較候補"
+      ],
+      "suitableFor": [
+        "オンラインゲームや動画などで高速回線を重視する人",
+        "2ギガ・10ギガの光回線を比較したい人",
+        "Fon光の提供エリア内に住んでいる人"
+      ],
+      "notSuitableFor": [
+        "提供エリア外の人",
+        "回線工事を避けたい人",
+        "契約期間のあるプランを避けたい人"
+      ],
+      "cautions": [
+        "2ギガ・10ギガで提供エリアや契約条件が異なります。",
+        "最大通信速度は実際の利用速度を保証するものではありません。",
+        "工事費・解約条件・キャンペーンは申込時期によって変わるため、最新条件を確認してください。"
+      ],
+      "fit": {
+        "H": 7,
+        "R": 0,
+        "M": 0
+      },
+      "matchReasons": {
+        "H": "高速な固定回線を重視する回答と相性があります。"
+      },
+      "officialUrl": "https://fon.ne.jp/fon-hikari/",
+      "sourceUrls": [
+        {
+          "label": "Fon光 公式",
+          "url": "https://fon.ne.jp/fon-hikari/"
+        },
+        {
+          "label": "Fon光 FAQ",
+          "url": "https://fon.ne.jp/fon-hikari/faq"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
     }
   ]
 };
