@@ -1509,3 +1509,44 @@ button {
 @media (max-width: 600px){
   .site-footer .footer-policy-nav{justify-content:center;}
 }
+
+/* ASPの生成コードは改変せず、テキスト/商品リンク素材だけ見た目を通常CTAに合わせる */
+.affiliate-code-placement.is-button-compatible{
+  display:inline-flex;
+  align-items:center;
+  max-width:100%;
+}
+.affiliate-code-placement.is-button-compatible > a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:13px 25px;
+  border:2px solid transparent;
+  border-radius:999px;
+  background:var(--coral);
+  color:#fff;
+  box-shadow:0 8px 20px rgba(255,99,80,.2);
+  font-family:var(--font-body);
+  font-size:15px;
+  font-weight:800;
+  line-height:1.4;
+  text-align:center;
+  text-decoration:none;
+  transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.affiliate-code-placement.is-button-compatible > a:hover{
+  transform:translateY(-2px);
+  background:var(--coral-dark);
+  box-shadow:0 12px 25px rgba(255,99,80,.25);
+}
+.affiliate-code-placement.is-button-compatible > img{
+  display:block;
+  width:1px;
+  height:1px;
+}
+.affiliate-code-placement.is-button-compatible.is-compact > a{
+  min-height:44px;
+  padding:10px 18px;
+  font-size:13px;
+}
