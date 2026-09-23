@@ -319,3 +319,31 @@
     width: 100%;
   }
 }
+
+
+.hero-affiliate-stack {
+  display: grid;
+  gap: 10px;
+  max-width: 620px;
+  margin-top: 18px;
+}
+
+.hero-affiliate-stack .hero-affiliate-promo {
+  margin-top: 0;
+}
+
+.hero-affiliate-promo.is-placeholder {
+  opacity: .72;
+}
+
+.hero-affiliate-link.is-disabled {
+  background: var(--line);
+  color: var(--muted);
+  box-shadow: none;
+  cursor: default;
+}
+
+.hero-affiliate-link.is-disabled:hover {
+  transform: none;
+  background: var(--line);
+}
