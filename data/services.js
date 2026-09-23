@@ -2389,6 +2389,81 @@ window.TC_SERVICE_CATALOG = {
       ],
       "checkedAt": "2026-09-23",
       "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "biglobe-wimax-home",
+      "name": "BIGLOBE WiMAX +5G（ホームルーター）",
+      "category": "home-router",
+      "serviceType": "ホームルーター",
+      "carrier": "BIGLOBE",
+      "network": "WiMAX +5G / au 5G・4G LTE / WiMAX 2+",
+      "summary": "工事不要で使えるBIGLOBE WiMAX +5Gのホームルーター。Speed Wi-Fi HOME 5G L13を使い、自宅やオフィスで5G対応のWi-Fi環境を整えられます。",
+      "priceLabel": "最新料金・端末代・特典は公式サイトで確認",
+      "dataLabel": "スタンダードモードはデータ容量制限なし（大量利用時の制御条件あり）",
+      "callLabel": "",
+      "supportLabel": "オンライン・電話等",
+      "discountLabel": "auスマートバリュー / UQ mobile 自宅セット割の対象条件あり",
+      "areaLabel": "WiMAX +5G / au 5G・4G LTEの対応エリア確認が必要",
+      "constructionLabel": "工事不要",
+      "speedLabel": "下り最大4.2Gbps（L13・一部5Gエリア、ベストエフォート）",
+      "contractLabel": "料金プラン・端末代・支払方法を確認",
+      "storeSupport": false,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": true,
+      "paymentMethods": [
+        "クレジットカード",
+        "口座振替"
+      ],
+      "plans": [],
+      "highlights": [
+        "回線工事不要でコンセントに挿して利用できる",
+        "Speed Wi-Fi HOME 5G L13は無線32台・有線2台まで同時接続可能",
+        "auスマートバリュー・UQ mobile 自宅セット割の対象条件あり",
+        "スタンダードモードはデータ容量制限なし"
+      ],
+      "suitableFor": [
+        "光回線の工事をせず自宅Wi-Fiを使いたい人",
+        "auまたはUQ mobileを使っていてセット条件を確認したい人",
+        "複数のスマホ・PC・テレビを自宅で接続したい人"
+      ],
+      "notSuitableFor": [
+        "オンラインゲームなどで固定回線の低遅延・安定性を最優先する人",
+        "利用場所がWiMAX +5Gの対応エリア外の人"
+      ],
+      "cautions": [
+        "電波状況・建物・ネットワーク混雑などにより通信速度は変わります。",
+        "大量のデータ通信がある場合、混雑時間帯に速度制限される場合があります。",
+        "プラスエリアモードには別条件があり、一定容量超過後の速度制限があります。",
+        "2026年10月1日に月額料金改定予定の案内があるため、申込み前に最新料金を確認してください。"
+      ],
+      "fit": {
+        "H": 0,
+        "R": 7,
+        "M": 1,
+        "au-uq-set": 4
+      },
+      "matchReasons": {
+        "R": "工事不要で自宅用Wi-Fiを使いたい回答と相性があります。",
+        "au-uq-set": "au・UQ mobileの対象プランを使っている場合、セット割条件を確認できます。"
+      },
+      "officialUrl": "https://join.biglobe.ne.jp/mobile/wimax/5g/device/home/",
+      "sourceUrls": [
+        {
+          "label": "BIGLOBE WiMAX +5G ホームルーター",
+          "url": "https://join.biglobe.ne.jp/mobile/wimax/5g/device/home/"
+        },
+        {
+          "label": "BIGLOBE WiMAX +5G 料金プラン",
+          "url": "https://join.biglobe.ne.jp/mobile/wimax/5g/price/"
+        },
+        {
+          "label": "BIGLOBE WiMAX +5G 通信速度・速度制限",
+          "url": "https://join.biglobe.ne.jp/mobile/wimax/5g/speed/"
+        }
+      ],
+      "checkedAt": "2026-09-23",
+      "updatedAt": "2026-09-23"
     }
   ]
 };
