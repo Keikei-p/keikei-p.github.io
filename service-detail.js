@@ -138,12 +138,13 @@
 
     var actions =
       '<div class="service-actions">' +
-        (useAffiliateCode
-          ? '<div id="service-affiliate-code-slot"></div>'
-          : (targetUrl
+        (!useAffiliateCode
+          ? (targetUrl
             ? '<a class="btn btn-primary affiliate-unified-cta" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>詳細はこちら</a>'
-            : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>')) +
+            : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>')
+          : '') +
       '</div>' +
+      (useAffiliateCode ? '<div id="service-affiliate-code-slot"></div>' : '') +
       (isAffiliatePresentation
         ? '<p class="service-ad-note">この表示にはアフィリエイト広告を含みます。診断候補は広告報酬ではなく、回答内容との相性をもとに表示しています。</p>'
         : '');
