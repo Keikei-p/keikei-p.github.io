@@ -103,16 +103,9 @@
     if (ogUrl) ogUrl.setAttribute('content', serviceUrl);
 
     var resolved = resolveLink(service);
-    var affiliateManager = window.TCAffiliateManager;
-    var useAffiliateCode = Boolean(
-      resolved.affiliate_code &&
-      affiliateManager &&
-      affiliateManager.isSafeAffiliateCode &&
-      affiliateManager.isSafeAffiliateCode(resolved.affiliate_code)
-    );
     var isAffiliateLink = Boolean(resolved.url && resolved.is_affiliate);
-    var isAffiliatePresentation = useAffiliateCode || isAffiliateLink;
-    var targetUrl = useAffiliateCode ? '' : (resolved.url || resolved.official_url || '');
+    var isAffiliatePresentation = isAffiliateLink;
+    var targetUrl = resolved.url || resolved.official_url || service.officialUrl || '';
     var facts = u.quickFacts(service);
     var fresh = u.freshness(service, 365);
 
@@ -134,11 +127,9 @@
 
     var actions =
       '<div class="service-actions">' +
-        (useAffiliateCode
-          ? '<div id="service-affiliate-code-slot"></div>'
-          : (targetUrl
-            ? '<a class="btn btn-primary" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>詳細はこちら</a>'
-            : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>')) +
+        (targetUrl
+          ? '<a class="btn btn-primary affiliate-unified-cta" href="' + esc(targetUrl) + '" target="_blank"' + linkAttrs + '>詳細はこちら</a>'
+          : '<span class="btn btn-ghost" aria-disabled="true">公式リンク準備中</span>') +
       '</div>' +
       (isAffiliatePresentation
         ? '<p class="service-ad-note">この表示にはアフィリエイト広告を含みます。診断候補は広告報酬ではなく、回答内容との相性をもとに表示しています。</p>'
@@ -208,27 +199,6 @@
         ? '<aside class="display-ad-slot service-display-ad" data-display-ad="serviceFallback" aria-label="広告" hidden></aside>'
         : '');
 
-    if (useAffiliateCode) {
-      var slot = document.getElementById('service-affiliate-code-slot');
-      var placement = affiliateManager.createCodePlacement(resolved, {
-        compact: false,
-        track: 'service-official-click'
-      });
-      if (slot && placement) {
-        slot.replaceWith(placement);
-      } else if (slot && resolved.official_url) {
-        var fallbackLink = document.createElement('a');
-        fallbackLink.className = 'btn btn-primary';
-        fallbackLink.href = resolved.official_url;
-        fallbackLink.target = '_blank';
-        fallbackLink.rel = 'noopener noreferrer';
-        fallbackLink.textContent = '詳細はこちら';
-        fallbackLink.setAttribute('data-track', 'service-official-click');
-        fallbackLink.setAttribute('data-service-id', service.id);
-        fallbackLink.setAttribute('data-link-source', 'official');
-        slot.replaceWith(fallbackLink);
-      }
-    }
 
     if (window.TCDisplayAds && window.TCDisplayAds.render) {
       window.TCDisplayAds.render(root);
