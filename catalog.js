@@ -166,7 +166,7 @@
             external.rel = isAffiliateLink
               ? 'sponsored noopener noreferrer'
               : 'noopener noreferrer';
-            external.textContent = '最新の料金・特典を確認する';
+            external.textContent = '詳細はこちら';
             external.setAttribute('data-track', 'catalog-official-click');
             external.setAttribute('data-service-id', service.id);
             external.setAttribute('data-link-source', isAffiliateLink ? 'affiliate' : 'official');
