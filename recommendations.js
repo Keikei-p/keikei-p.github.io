@@ -189,9 +189,7 @@
         ? manager.createCodePlacement(resolved, { compact: true, track: 'diagnosis-official-click' })
         : null;
 
-      if (codeOnlyPlacement) {
-        actions.appendChild(codeOnlyPlacement);
-      } else {
+      if (!codeOnlyPlacement) {
         var targetUrl = resolved.url || resolved.official_url || service.officialUrl || '';
         if (targetUrl) {
           var external = document.createElement('a');
@@ -213,6 +211,9 @@
       }
 
       card.appendChild(actions);
+      if (codeOnlyPlacement) {
+        card.appendChild(codeOnlyPlacement);
+      }
       root.appendChild(card);
     });
 
