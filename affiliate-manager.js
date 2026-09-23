@@ -158,14 +158,36 @@
     });
   }
 
+  function isButtonCompatibleCode(code) {
+    var raw = text(code);
+    if (!raw || !isSafeAffiliateCode(raw)) return false;
+
+    var template = document.createElement('template');
+    template.innerHTML = raw;
+
+    var anchor = template.content.querySelector('a[href]');
+    if (!anchor || !text(anchor.textContent)) return false;
+
+    var visibleImages = Array.prototype.slice.call(template.content.querySelectorAll('img')).filter(function (img) {
+      var width = Number(img.getAttribute('width') || img.width || 0);
+      var height = Number(img.getAttribute('height') || img.height || 0);
+      return width > 1 || height > 1;
+    });
+
+    return visibleImages.length === 0;
+  }
+
   function createCodePlacement(resolved, options) {
     if (!resolved || !resolved.affiliate_code || !isSafeAffiliateCode(resolved.affiliate_code)) {
       return null;
     }
 
     var opts = options || {};
+    var buttonCompatible = isButtonCompatibleCode(resolved.affiliate_code);
     var wrapper = document.createElement('div');
-    wrapper.className = 'affiliate-code-placement' + (opts.compact ? ' is-compact' : '');
+    wrapper.className = 'affiliate-code-placement' +
+      (opts.compact ? ' is-compact' : '') +
+      (buttonCompatible ? ' is-button-compatible' : '');
     wrapper.setAttribute('data-track', opts.track || 'affiliate-code-click');
     wrapper.setAttribute('data-service-id', resolved.service_id || '');
     wrapper.setAttribute('data-link-source', 'affiliate-code');
@@ -267,6 +289,7 @@
     applyToDom: applyToDom,
     createCodePlacement: createCodePlacement,
     isSafeAffiliateCode: isSafeAffiliateCode,
+    isButtonCompatibleCode: isButtonCompatibleCode,
     getSource: function () { return source; }
   };
 
