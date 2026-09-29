@@ -64,7 +64,7 @@
       provider: text(ad.provider),
       affiliate_url: affiliateUrl,
       affiliate_code: affiliateCode,
-      render_mode: affiliateCode ? 'code' : 'url',
+      render_mode: affiliateUrl ? 'url' : (affiliateCode ? 'code' : 'official'),
       official_url: text(ad.official_url),
       display_name: text(ad.display_name),
       description: text(ad.description),
