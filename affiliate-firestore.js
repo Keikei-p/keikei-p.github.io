@@ -36,9 +36,7 @@
     });
   }
 
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(loadRemoteAds, { timeout: 1800 });
-  } else {
-    window.setTimeout(loadRemoteAds, 600);
-  }
+  // アフィリエイト先の正確さを優先し、公開広告データは即時取得する。
+  // import自体は非同期なのでHTML描画を同期ブロックしない。
+  loadRemoteAds();
 })();
