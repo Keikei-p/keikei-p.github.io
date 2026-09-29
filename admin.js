@@ -115,7 +115,9 @@ if (!config || !config.projectId) {
       provider: fields.provider.value.trim(),
       affiliate_url: fields.affiliate_url.value.trim(),
       affiliate_code: fields.affiliate_code.value.trim(),
-      render_mode: fields.affiliate_code.value.trim() ? 'code' : 'url',
+      render_mode: fields.affiliate_url.value.trim()
+        ? 'url'
+        : (fields.affiliate_code.value.trim() ? 'code' : 'official'),
       official_url: fields.official_url.value.trim(),
       display_name: fields.display_name.value.trim(),
       description: fields.description.value.trim(),
@@ -137,7 +139,9 @@ if (!config || !config.projectId) {
       provider: data.provider,
       affiliate_url: data.affiliate_url,
       affiliate_code: data.affiliate_code || '',
-      render_mode: data.render_mode || (data.affiliate_code ? 'code' : 'url'),
+      render_mode: data.affiliate_url
+        ? 'url'
+        : (data.affiliate_code ? 'code' : 'official'),
       official_url: data.official_url,
       display_name: data.display_name,
       description: data.description,
