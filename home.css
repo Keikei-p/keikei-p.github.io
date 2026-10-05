@@ -425,3 +425,13 @@
     white-space: normal;
   }
 }
+
+
+/* AdSense review: keep commercial disclosure visible without leading with ads */
+.home-ad-disclosure {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--ink-light);
+}
+.home-ad-disclosure a { text-decoration: underline; text-underline-offset: 3px; }
