@@ -4,12 +4,12 @@ const ROOT = process.cwd();
 const INDEX = `${ROOT}/index.html`;
 const DAILY = `${ROOT}/daily-news.html`;
 const MAX_ITEMS = 5;
-const LOOKBACK_HOURS = 96;
+const LOOKBACK_HOURS = 168;
 const now = new Date();
 
 const SOURCES = [
   { name: 'NTTドコモ', type: 'rss', url: 'https://www.docomo.ne.jp/info/rss/whatsnew.rdf' },
-  { name: 'KDDI', type: 'html', url: 'https://news.kddi.com/kddi/corporate/newsrelease/' },
+  { name: 'au / KDDI', type: 'html', url: 'https://www.au.com/information/notice_mobile/service.2/' },
   { name: 'ソフトバンク', type: 'html', url: 'https://www.softbank.jp/corp/news/press/sbkk/' },
   { name: '楽天モバイル', type: 'html', url: 'https://network.mobile.rakuten.co.jp/information/' }
 ];
