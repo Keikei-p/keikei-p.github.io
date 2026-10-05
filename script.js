@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (toggle && nav) {
     [
       ["サービス一覧", "services.html"],
-      ["ガイド", "guides.html"]
+      ["ガイド", "guides.html"],
+      ["今日の記事", "daily-news.html"]
     ].forEach(([label, href]) => {
       if (!nav.querySelector('a[href="' + href + '"]')) {
         const link = document.createElement("a");
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     [
       ["サービス一覧", "services.html"],
       ["ガイド", "guides.html"],
+      ["今日の記事", "daily-news.html"],
       ["運営者情報", "operator.html"],
       ["広告掲載ポリシー", "advertising-policy.html"],
       ["アフィリエイトについて", "affiliate.html"],
