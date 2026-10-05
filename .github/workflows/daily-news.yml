@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: "15 22 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/daily-news.mjs"
+      - ".github/workflows/daily-news.yml"
 
 permissions:
   contents: write
