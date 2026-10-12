@@ -1550,3 +1550,20 @@ button {
   padding:10px 18px;
   font-size:13px;
 }
+
+/* AccessTrade 468x60 banner responsive: keep its original tracking code and fit small screens */
+.affiliate-code-placement {
+  min-width: 0;
+  max-width: 100%;
+}
+.affiliate-code-placement a:has(> img[width="468"][height="60"]) {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+}
+.affiliate-code-placement img[width="468"][height="60"] {
+  display: block;
+  width: 468px;
+  max-width: 100%;
+  height: auto;
+}
