@@ -29,6 +29,15 @@
         remoteAds.push(Object.assign({ id: doc.id }, data));
       });
 
+      // GitHubで明示的に登録した有効広告は、Firestore取得後も保持する。
+      // 同じ広告IDがFirestore側にある場合は管理画面の設定を優先する。
+      var staticAds = (window.TC_AFFILIATE_MASTER && window.TC_AFFILIATE_MASTER.ads) || [];
+      var remoteIds = new Set(remoteAds.map(function (ad) { return ad.id; }));
+      staticAds.forEach(function (ad) {
+        if (ad && ad.is_active === true && ad.keep_on_remote === true && !remoteIds.has(ad.id)) {
+          remoteAds.push(ad);
+        }
+      });
       manager.replaceAll(remoteAds, 'firestore');
     });
     }).catch(function (error) {
