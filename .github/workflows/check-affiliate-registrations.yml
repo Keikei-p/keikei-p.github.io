@@ -1,0 +1,39 @@
+name: Check telecom affiliate registrations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/affiliates.js'
+      - 'data/services.js'
+      - 'admin.html'
+      - 'admin.js'
+      - 'affiliate-firestore.js'
+      - 'service-daredemo-smartphone.html'
+      - 'sitemap.xml'
+      - 'scripts/check-affiliate-registrations.mjs'
+      - '.github/workflows/check-affiliate-registrations.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          node --check data/affiliates.js
+          node --check data/services.js
+          node --check admin.js
+          node --check affiliate-firestore.js
+          node --check affiliate-manager.js
+          node --check service-detail.js
+      - name: Registration and management integrity
+        run: node scripts/check-affiliate-registrations.mjs
