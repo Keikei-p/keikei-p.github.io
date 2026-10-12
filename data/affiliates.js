@@ -16,8 +16,29 @@
  * 外部へ公開したくない内部情報はFirebase導入後にaffiliate_adsで管理してください。
  */
 window.TC_AFFILIATE_MASTER = {
-  updated_at: "2026-09-20",
+  updated_at: "2026-10-13",
   ads: [
+    {
+      id: "nuro-mobile-accesstrade-0100kfj900ozoe",
+      service_id: "nuro-mobile",
+      service_name: "NUROモバイル",
+      category: "MVNO",
+      provider: "NUROモバイル",
+      affiliate_url: "",
+      affiliate_code: "<a href=\"https://h.accesstrade.net/sp/cc?rk=0100kfj900ozoe\" rel=\"nofollow\" referrerpolicy=\"no-referrer-when-downgrade\"><img src=\"https://h.accesstrade.net/sp/rr?rk=0100kfj900ozoe\" alt=\"【キャッシュバック特典】NURO Mobile\" border=\"0\" width=\"468\" height=\"60\"></a>",
+      render_mode: "code",
+      official_url: "https://mobile.nuro.jp/plan/",
+      display_name: "NUROモバイル",
+      description: "",
+      price: "",
+      campaign: "",
+      reward: "",
+      asp_name: "アクセストレード",
+      is_active: true,
+      priority: 1000,
+      keep_on_remote: true,
+      updated_at: "2026-10-13"
+    },
     {
       id: "au-hikari-a8",
       service_id: "au-hikari",
