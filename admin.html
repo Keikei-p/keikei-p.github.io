@@ -51,6 +51,14 @@
 
       <hr class="admin-divider">
 
+      <section class="admin-card admin-import" aria-labelledby="preset-ads-title">
+        <h2 id="preset-ads-title">登録済みの広告リンク（アクセストレード）</h2>
+        <p>NUROモバイル・mineo・誰でもスマホの3件はサイト用の広告マスターに登録済みです。管理画面に表示されますが、Firebaseの管理DBへの保存は別です。</p>
+        <button type="button" class="btn btn-primary" id="import-static-ads">3件を管理DBにも登録する</button>
+        <p class="admin-status" id="static-ads-status" role="status" aria-live="polite"></p>
+        <small>既存の管理DBの広告は上書きしません。登録後の編集内容はサイトへ反映されます。</small>
+      </section>
+
       <div class="admin-toolbar">
         <div>
           <h2>広告一覧</h2>
@@ -156,6 +164,7 @@
 </main>
 
 <script src="data/services.js"></script>
+<script src="data/affiliates.js"></script>
 <script src="firebase-config.js"></script>
 <script type="module" src="admin.js"></script>
 </body>
