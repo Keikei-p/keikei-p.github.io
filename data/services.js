@@ -4,7 +4,7 @@
  * 最新料金・特典は公式サイト / 提携先で確認してもらう。
  */
 window.TC_SERVICE_CATALOG = {
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-10-13",
   "smartphone": [
     {
       "id": "docomo-max",
@@ -779,6 +779,66 @@ window.TC_SERVICE_CATALOG = {
       ],
       "checkedAt": "2026-09-23",
       "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "daredemo-smartphone",
+      "name": "誰でもスマホ",
+      "category": "MVNO",
+      "serviceType": "mvno",
+      "carrier": "株式会社アーラリンク",
+      "network": "ドコモ回線（利用条件は公式サイトで確認）",
+      "summary": "一般的な携帯電話会社での契約に不安がある方にも選択肢を提供する通信サービス。本人確認は必要で、申込条件や利用規定によって契約できない場合があります。",
+      "priceLabel": "最新の料金・事務手数料・初期費用は公式サイトで確認",
+      "dataLabel": "利用目的に合わせた複数の料金プラン（最新条件は公式で確認）",
+      "callLabel": "通話の内容・オプションは公式で確認",
+      "supportLabel": "オンライン・店舗での申込み案内あり",
+      "discountLabel": "初期費用と支払方法は申込み前に確認",
+      "storeSupport": true,
+      "esim": null,
+      "familyDiscount": null,
+      "setDiscount": null,
+      "paymentMethods": [],
+      "plans": [],
+      "highlights": [
+        "一般的な携帯電話会社とは異なる審査方針を公式サイトで案内している",
+        "クレジットカードがない場合も利用可能な申込み・支払方法を案内している",
+        "本人確認書類を用意して、Webまたは店舗で契約方法を確認できる"
+      ],
+      "suitableFor": [
+        "過去の携帯料金の未納などで、一般的な携帯会社での契約が難しい人",
+        "クレジットカード以外の支払い方法を確認したい人",
+        "本人確認書類や申込み方法を相談しながら選びたい人"
+      ],
+      "notSuitableFor": [
+        "最安料金や通信性能だけで比較したい人",
+        "本人確認なしで契約したい人",
+        "すべての申込みが必ず承認されると期待している人"
+      ],
+      "cautions": [
+        "公式は一般的な携帯会社の審査を行わないと案内していますが、利用規定などによって申込みを断られる場合があります。誰でも必ず契約できるわけではありません。",
+        "契約には本人確認が必要です。必要書類と住所条件を公式サイトで確認してください。",
+        "料金・初期費用・支払い期限・契約条件は申込み前に公式で最新情報を確認してください。"
+      ],
+      "fit": {
+        "screening-concern": 6,
+        "payment-flexible": 4
+      },
+      "matchReasons": {
+        "screening-concern": "一般的な携帯会社での審査が不安な方の選択肢として確認できます。"
+      },
+      "officialUrl": "https://www.a-sas.ne.jp/",
+      "sourceUrls": [
+        {
+          "label": "誰でもスマホ公式サイト",
+          "url": "https://www.a-sas.ne.jp/"
+        },
+        {
+          "label": "誰でもスマホ・契約に関する公式FAQ",
+          "url": "https://www.a-sas.ne.jp/faq/category/agreement"
+        }
+      ],
+      "checkedAt": "2026-10-13",
+      "updatedAt": "2026-10-13"
     },
     {
       "id": "mineo",
