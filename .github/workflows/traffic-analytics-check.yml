@@ -1,0 +1,41 @@
+name: 通信コンパス 計測コード検証
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'script.js'
+      - 'privacy.html'
+      - '.github/workflows/traffic-analytics-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check script.js
+      - name: Verify measurement and disclosure
+        run: |
+          node --input-type=module -e '
+            import fs from "node:fs";
+            import assert from "node:assert/strict";
+            const js = fs.readFileSync("script.js", "utf8");
+            const privacy = fs.readFileSync("privacy.html", "utf8");
+            const home = fs.readFileSync("index.html", "utf8");
+            assert.match(js, /TC_GA4_MEASUREMENT_ID = "G-LB1MTZ0HVP"/);
+            assert.match(js, /affiliate_click/);
+            assert.match(js, /diagnosis_entry/);
+            assert.match(js, /__tcGa4Initialized/);
+            assert.match(privacy, /Google アナリティクス（GA4）/);
+            assert.match(home, /<script src="script.js"><\\/script>/);
+            console.log("Analytics checks passed.");
+          '
