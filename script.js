@@ -1,3 +1,58 @@
+// 共通アクセス計測（公開ページのみ）
+// Google Analytics 4 の測定IDは firebase-config.js 内の measurementId と合わせる。
+// 管理画面はこのスクリプトを読み込まない。個人情報・入力回答・リンクURLは送信しない。
+(function () {
+  "use strict";
+  var TC_GA4_MEASUREMENT_ID = "G-LB1MTZ0HVP";
+  if (!TC_GA4_MEASUREMENT_ID || window.__tcGa4Initialized) return;
+  window.__tcGa4Initialized = true;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", TC_GA4_MEASUREMENT_ID, {
+    send_page_view: true,
+    allow_google_signals: false
+  });
+
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(TC_GA4_MEASUREMENT_ID);
+  document.head.appendChild(gaScript);
+
+  document.addEventListener("click", function (event) {
+    var element = event.target;
+    if (!element || !element.closest) return;
+    var link = element.closest("a[href]");
+    if (!link) return;
+
+    var codePlacement = link.closest(".affiliate-code-placement");
+    var source = link.getAttribute("data-link-source") || "";
+    var isAffiliate = source === "affiliate" || source === "affiliate-code" || Boolean(codePlacement);
+    var serviceId = link.getAttribute("data-service-id") ||
+      (codePlacement && codePlacement.getAttribute("data-service-id")) || "";
+    var aspName = link.getAttribute("data-asp-name") ||
+      (codePlacement && codePlacement.getAttribute("data-asp-name")) || "";
+
+    if (isAffiliate) {
+      window.gtag("event", "affiliate_click", {
+        service_id: serviceId.slice(0, 80),
+        asp_name: aspName.slice(0, 80)
+      });
+      return;
+    }
+
+    var target;
+    try { target = new URL(link.href, window.location.href); } catch (_) { return; }
+    if (target.origin !== window.location.origin) return;
+    if (target.pathname.endsWith("/smartphone.html") || target.pathname.endsWith("/wifi.html")) {
+      window.gtag("event", "diagnosis_entry", {
+        destination: target.pathname.split("/").pop()
+      });
+    }
+  });
+})();
+
 // つうしんコンパス - 共通スクリプト
 // モバイルメニューと共通フッターを担当する軽量な処理
 
