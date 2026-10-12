@@ -53,6 +53,11 @@ if (!config || !config.projectId) {
   };
 
   let ads = [];
+  const presetAds = ((window.TC_AFFILIATE_MASTER && window.TC_AFFILIATE_MASTER.ads) || [])
+    .filter(ad => ad && ad.keep_on_remote === true && ad.is_active === true && ad.id);
+  const presetIds = new Set(presetAds.map(ad => ad.id));
+  const importButton = document.getElementById('import-static-ads');
+  const importStatus = document.getElementById('static-ads-status');
   let contacts = [];
   let unsubscribe = null;
   let unsubscribeContacts = null;
@@ -204,6 +209,17 @@ if (!config || !config.projectId) {
 
     if (data.is_active && hasAffiliateTarget(data)) {
       await dbModule.setDoc(publicRef, publicRecord(data));
+    } else if (presetIds.has(docId)) {
+      // is_active=true keeps this public marker readable under existing Firestore rules.
+      // The absence of affiliate_url/code makes the public manager treat it as disabled.
+      // It also prevents the bundled GitHub ad from reappearing as a fallback.
+      await dbModule.setDoc(publicRef, {
+        service_id: data.service_id,
+        service_name: data.service_name || '',
+        is_active: true,
+        is_suppressed: true,
+        updated_at: today()
+      });
     } else {
       await dbModule.deleteDoc(publicRef).catch(() => {});
     }
@@ -220,7 +236,7 @@ if (!config || !config.projectId) {
     formStatus.textContent = '';
   }
 
-  function fillForm(id, data) {
+  function fillForm(id, data, isPresetOnly) {
     fields.id.value = id;
     Object.entries(data).forEach(([key, value]) => {
       if (!fields[key]) return;
@@ -230,28 +246,35 @@ if (!config || !config.projectId) {
         fields[key].value = value == null ? '' : String(value);
       }
     });
-    editorTitle.textContent = '広告を編集';
-    deleteButton.hidden = false;
+    editorTitle.textContent = isPresetOnly ? 'GitHub登録の広告を管理DBへ保存' : '広告を編集';
+    deleteButton.hidden = Boolean(isPresetOnly);
     document.getElementById('editor').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function render() {
-    const activeCount = ads.filter(item => item.data.is_active && hasAffiliateTarget(item.data)).length;
-    const services = new Set(ads.map(item => item.data.service_id).filter(Boolean));
+    const storedIds = new Set(ads.map(item => item.id));
+    const visibleAds = ads.concat(presetAds
+      .filter(ad => !storedIds.has(ad.id))
+      .map(ad => ({ id: ad.id, data: ad, presetOnly: true })))
+      .sort((a, b) => String(a.data.service_id || '').localeCompare(String(b.data.service_id || ''), 'ja')
+        || Number(b.data.priority || 0) - Number(a.data.priority || 0));
+    const activeCount = visibleAds.filter(item => item.data.is_active && hasAffiliateTarget(item.data)).length;
+    const services = new Set(visibleAds.map(item => item.data.service_id).filter(Boolean));
 
     stats.innerHTML =
-      '<span class="admin-stat">登録 ' + ads.length + '件</span>' +
+      '<span class="admin-stat">表示 ' + visibleAds.length + '件</span>' +
+      '<span class="admin-stat">管理DB ' + ads.length + '件</span>' +
       '<span class="admin-stat">有効 ' + activeCount + '件</span>' +
       '<span class="admin-stat">サービス ' + services.size + '件</span>';
 
     list.innerHTML = '';
 
-    if (!ads.length) {
+    if (!visibleAds.length) {
       list.innerHTML = '<div class="admin-card">広告データはまだありません。</div>';
       return;
     }
 
-    ads.forEach(item => {
+    visibleAds.forEach(item => {
       const data = item.data;
       const row = document.createElement('article');
       row.className = 'admin-row';
@@ -266,7 +289,8 @@ if (!config || !config.projectId) {
 
       const asp = document.createElement('div');
       const format = data.affiliate_code ? 'コード' : (data.affiliate_url ? 'URL' : '未設定');
-      asp.textContent = (data.asp_name || 'ASP未設定') + ' / ' + format;
+      asp.textContent = (data.asp_name || 'ASP未設定') + ' / ' + format +
+        (item.presetOnly ? ' / GitHub登録（管理DB未同期）' : (presetIds.has(item.id) ? ' / 管理DB登録済み' : ''));
 
       const priority = document.createElement('div');
       priority.innerHTML = '<small>priority</small><strong>' + Number(data.priority || 0) + '</strong>';
@@ -282,18 +306,27 @@ if (!config || !config.projectId) {
       const edit = document.createElement('button');
       edit.type = 'button';
       edit.textContent = '編集';
-      edit.addEventListener('click', () => fillForm(item.id, data));
+      edit.addEventListener('click', () => fillForm(item.id, data, Boolean(item.presetOnly)));
 
       const toggle = document.createElement('button');
       toggle.type = 'button';
-      toggle.textContent = data.is_active ? 'OFFにする' : 'ONにする';
+      toggle.textContent = item.presetOnly ? '管理DBへ登録' : (data.is_active ? 'OFFにする' : 'ONにする');
       toggle.addEventListener('click', async () => {
-        const next = Object.assign({}, data, {
-          is_active: !data.is_active,
-          updated_at: today()
-        });
-        await dbModule.setDoc(dbModule.doc(db, 'affiliate_ads', item.id), next, { merge: true });
-        await syncPublic(item.id, next);
+        toggle.disabled = true;
+        try {
+          const next = item.presetOnly
+            ? Object.assign({}, data)
+            : Object.assign({}, data, { is_active: !data.is_active, updated_at: today() });
+          await dbModule.setDoc(dbModule.doc(db, 'affiliate_ads', item.id), next, { merge: true });
+          await syncPublic(item.id, next);
+          if (importStatus) importStatus.textContent = item.presetOnly
+            ? data.service_name + ' を管理DBに登録しました。'
+            : data.service_name + ' の広告状態を更新しました。';
+        } catch (error) {
+          if (importStatus) importStatus.textContent = '操作に失敗しました: ' + String(error.message || error);
+        } finally {
+          toggle.disabled = false;
+        }
       });
 
       actions.append(edit, toggle);
@@ -301,6 +334,38 @@ if (!config || !config.projectId) {
       list.appendChild(row);
     });
   }
+
+  async function importPresetAds() {
+    if (!presetAds.length || !importButton) return;
+    importButton.disabled = true;
+    if (importStatus) importStatus.textContent = '3件を管理DBへ同期しています…';
+    let created = 0, existing = 0;
+    try {
+      for (const ad of presetAds) {
+        const docRef = dbModule.doc(db, 'affiliate_ads', ad.id);
+        const snapshot = await dbModule.getDoc(docRef);
+        const data = snapshot.exists() ? snapshot.data() : Object.assign({}, ad);
+        if (!snapshot.exists()) {
+          delete data.id;
+          delete data.keep_on_remote;
+          await dbModule.setDoc(docRef, data);
+          created++;
+        } else {
+          existing++;
+        }
+        await syncPublic(ad.id, data);
+      }
+      if (importStatus) importStatus.textContent =
+        '同期完了：新規 ' + created + ' 件 / 既存設定を保持 ' + existing + ' 件。';
+    } catch (error) {
+      if (importStatus) importStatus.textContent =
+        '途中で同期を停止しました。完了 ' + created + ' 件。原因: ' + String(error.message || error);
+    } finally {
+      importButton.disabled = false;
+    }
+  }
+
+  if (importButton) importButton.addEventListener('click', importPresetAds);
 
   function contactTime(value) {
     if (!value) return '送信直後';
@@ -515,16 +580,25 @@ if (!config || !config.projectId) {
     const id = fields.id.value.trim();
     if (!id) return;
 
-    if (!window.confirm('この広告を削除しますか？')) return;
+    const isPreset = presetIds.has(id);
+    if (!window.confirm(isPreset
+      ? 'この広告はGitHubにも登録されています。管理DB側で無効化しますか？'
+      : 'この広告を削除しますか？')) return;
 
-    formStatus.textContent = '削除しています…';
+    formStatus.textContent = '処理しています…';
     try {
-      await Promise.all([
-        dbModule.deleteDoc(dbModule.doc(db, 'affiliate_ads', id)),
-        dbModule.deleteDoc(dbModule.doc(db, 'affiliate_public', id)).catch(() => {})
-      ]);
+      if (isPreset) {
+        const data = Object.assign({}, readForm(), { is_active: false, updated_at: today() });
+        await dbModule.setDoc(dbModule.doc(db, 'affiliate_ads', id), data, { merge: true });
+        await syncPublic(id, data);
+      } else {
+        await Promise.all([
+          dbModule.deleteDoc(dbModule.doc(db, 'affiliate_ads', id)),
+          dbModule.deleteDoc(dbModule.doc(db, 'affiliate_public', id)).catch(() => {})
+        ]);
+      }
       resetForm();
-      formStatus.textContent = '削除しました。';
+      formStatus.textContent = isPreset ? '広告を無効化しました。' : '削除しました。';
     } catch (error) {
       formStatus.textContent = '削除できませんでした: ' + String(error.message || error);
     }
