@@ -1,0 +1,34 @@
+name: 通信コンパス 週次SEO監査
+
+on:
+  schedule:
+    - cron: "30 0 * * 1"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/seo-weekly-audit.mjs"
+      - ".github/workflows/seo-weekly-audit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: SEO・内部導線を点検
+        run: |
+          node --check scripts/seo-weekly-audit.mjs
+          node scripts/seo-weekly-audit.mjs
+      - name: 詳細レポートを保存（7日）
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-seo-report
+          path: audit/weekly-seo-report.md
+          retention-days: 7
