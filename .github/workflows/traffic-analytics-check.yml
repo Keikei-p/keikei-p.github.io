@@ -36,6 +36,6 @@ jobs:
             assert.match(js, /diagnosis_entry/);
             assert.match(js, /__tcGa4Initialized/);
             assert.match(privacy, /Google アナリティクス（GA4）/);
-            assert.match(home, /<script src="script.js"><\\/script>/);
+            assert.ok(home.includes("<script src=\"script.js\"></script>"));
             console.log("Analytics checks passed.");
           '
