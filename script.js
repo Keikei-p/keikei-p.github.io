@@ -1,9 +1,9 @@
 // 共通アクセス計測（公開ページのみ）
-// Google Analytics 4 の測定IDは firebase-config.js 内の measurementId と合わせる。
+// Google Analytics 4 の測定IDはユーザーのウェブストリームの値を使用する。Firebaseアプリ設定の measurementId とは独立。
 // 管理画面はこのスクリプトを読み込まない。個人情報・入力回答・リンクURLは送信しない。
 (function () {
   "use strict";
-  var TC_GA4_MEASUREMENT_ID = "G-LB1MTZ0HVP";
+  var TC_GA4_MEASUREMENT_ID = "G-KRM2V4W4WR";
   if (!TC_GA4_MEASUREMENT_ID || window.__tcGa4Initialized) return;
   window.__tcGa4Initialized = true;
 
