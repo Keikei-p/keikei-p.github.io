@@ -31,7 +31,7 @@ jobs:
             const js = fs.readFileSync("script.js", "utf8");
             const privacy = fs.readFileSync("privacy.html", "utf8");
             const home = fs.readFileSync("index.html", "utf8");
-            assert.match(js, /TC_GA4_MEASUREMENT_ID = "G-LB1MTZ0HVP"/);
+            assert.match(js, /TC_GA4_MEASUREMENT_ID = "G-KRM2V4W4WR"/);
             assert.match(js, /affiliate_click/);
             assert.match(js, /diagnosis_entry/);
             assert.match(js, /__tcGa4Initialized/);
