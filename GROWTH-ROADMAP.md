@@ -8,9 +8,9 @@
 
 ## 現在地
 - GitHub Pages公開、診断・比較、約69 URLのsitemap、robots.txt、公式情報日次更新を実装済み。
-- GA4測定ID: G-LB1MTZ0HVP（公開ページのscript.jsからGoogleタグをロード）
+- GA4測定ID: G-KRM2V4W4WR（公開ページのscript.jsからGoogleタグをロード）
 - 共通クリックイベント: `diagnosis_entry`（診断入口） / `affiliate_click`（広告コード・広告リンク）
-- GA4管理画面でリアルタイム計測・IDとプロパティの一致は所有者確認が必要。
+- GA4の新しいウェブストリームの測定IDを2026-10-13に設定。リアルタイムの実測データ到達は所有者側で確認が必要。
 - Google Search Console のプロパティ検証と検索パフォーマンス取得は未確認。
 
 ## KPI（数値は現在不明。初回ベースライン取得後に目標を決める）
