@@ -12,6 +12,7 @@ const ads = Array.from(context.window.TC_AFFILIATE_MASTER.ads);
 const catalog = context.window.TC_SERVICE_CATALOG;
 const services = [...catalog.smartphone, ...catalog.wifi];
 const expected = [
+  { service: 'nuro-hikari', key: '0100mle700ozoe', alt: 'NURO光', size: [728, 90] },
   { service: 'nuro-mobile', key: '0100kfj900ozoe', alt: '【キャッシュバック特典】NURO Mobile', size: [468, 60] },
   { service: 'mineo', key: '0100ii8b00ozoe', alt: 'mineo（マイネオ）', size: [320, 50] },
   { service: 'daredemo-smartphone', key: '0100pk3d00ozoe', alt: '誰でもスマホ', size: [300, 250] }
@@ -35,8 +36,12 @@ const publicJs = load('affiliate-firestore.js');
 assert.match(adminHtml, /<script src="data\/affiliates\.js"><\/script>/);
 assert.match(adminHtml, /id="import-static-ads"/);
 assert.match(adminJs, /async function importPresetAds\(\)/);
+assert.match(adminJs, /presetAds\.length \+ '件を管理DBへ同期しています/);
+assert.match(adminHtml, /id="static-ads-summary"/);
+assert.ok(load('style.css').includes('AccessTrade 728x90 NURO Hikari responsive'));
+assert.equal(ads.filter(ad => ad.keep_on_remote && ad.is_active).length, 4);
 assert.match(adminJs, /is_suppressed: true/);
 assert.match(publicJs, /!remoteIds\.has\(ad\.id\)/);
 const sitemap = load('sitemap.xml');
 assert.ok(sitemap.includes('service-daredemo-smartphone.html'));
-console.log('PASS: 3 exact AccessTrade banners, details, admin sync, safe suppression and sitemap');
+console.log('PASS: 4 exact AccessTrade banners, details, responsive image, admin sync, safe suppression and sitemap');
