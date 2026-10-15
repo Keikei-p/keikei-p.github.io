@@ -16,8 +16,29 @@
  * 外部へ公開したくない内部情報はFirebase導入後にaffiliate_adsで管理してください。
  */
 window.TC_AFFILIATE_MASTER = {
-  updated_at: "2026-10-13",
+  updated_at: "2026-10-15",
   ads: [
+    {
+      id: "nuro-hikari-accesstrade-0100mle700ozoe",
+      service_id: "nuro-hikari",
+      service_name: "NURO 光",
+      category: "fiber",
+      provider: "ソニーネットワークコミュニケーションズ",
+      affiliate_url: "",
+      affiliate_code: "<a href=\"https://h.accesstrade.net/sp/cc?rk=0100mle700ozoe\" rel=\"nofollow\" referrerpolicy=\"no-referrer-when-downgrade\"><img src=\"https://h.accesstrade.net/sp/rr?rk=0100mle700ozoe\" alt=\"NURO光\" border=\"0\" width=\"728\" height=\"90\"></a>",
+      render_mode: "code",
+      official_url: "https://www.nuro.jp/hikari/",
+      display_name: "NURO 光",
+      description: "",
+      price: "",
+      campaign: "",
+      reward: "",
+      asp_name: "アクセストレード",
+      is_active: true,
+      priority: 1000,
+      keep_on_remote: true,
+      updated_at: "2026-10-15"
+    },
     {
       id: "daredemo-smartphone-accesstrade-0100pk3d00ozoe",
       service_id: "daredemo-smartphone",
