@@ -56,8 +56,14 @@ if (!config || !config.projectId) {
   const presetAds = ((window.TC_AFFILIATE_MASTER && window.TC_AFFILIATE_MASTER.ads) || [])
     .filter(ad => ad && ad.keep_on_remote === true && ad.is_active === true && ad.id);
   const presetIds = new Set(presetAds.map(ad => ad.id));
+  const presetSummary = document.getElementById('static-ads-summary');
+  if (presetSummary) {
+    presetSummary.textContent = presetAds.map(ad => ad.display_name || ad.service_name || ad.service_id).join('・')
+      + ' の計 ' + presetAds.length + '件をGitHub広告マスターに登録済みです。管理DBへの保存は別です。';
+  }
   const importButton = document.getElementById('import-static-ads');
   const importStatus = document.getElementById('static-ads-status');
+  if (importButton) importButton.textContent = presetAds.length + '件を管理DBにも登録する';
   let contacts = [];
   let unsubscribe = null;
   let unsubscribeContacts = null;
@@ -338,7 +344,7 @@ if (!config || !config.projectId) {
   async function importPresetAds() {
     if (!presetAds.length || !importButton) return;
     importButton.disabled = true;
-    if (importStatus) importStatus.textContent = '3件を管理DBへ同期しています…';
+    if (importStatus) importStatus.textContent = presetAds.length + '件を管理DBへ同期しています…';
     let created = 0, existing = 0;
     try {
       for (const ad of presetAds) {
