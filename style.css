@@ -1567,3 +1567,16 @@ button {
   max-width: 100%;
   height: auto;
 }
+
+/* AccessTrade 728x90 NURO Hikari responsive: keep source tracking HTML unchanged. */
+.affiliate-code-placement a:has(> img[width="728"][height="90"]) {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+}
+.affiliate-code-placement img[width="728"][height="90"] {
+  display: block;
+  width: 728px;
+  max-width: 100%;
+  height: auto;
+}
