@@ -105,13 +105,35 @@ function updateIndex(items) {
   fs.writeFileSync(INDEX,html,'utf8');
 }
 
+function updateSitemap() {
+  const file = `${ROOT}/sitemap.xml`;
+  let xml = fs.readFileSync(file, 'utf8');
+  const date = isoJst(now);
+  for (const page of ['', 'daily-news.html']) {
+    const url = `https://keikei-p.github.io/${page}`;
+    const marker = `<loc>${url}</loc><lastmod>`;
+    const at = xml.indexOf(marker);
+    if (at === -1) throw new Error('sitemap URL not found: ' + url);
+    const start = at + marker.length;
+    if (!/^\d{4}-\d{2}-\d{2}<\/lastmod>/.test(xml.slice(start))) {
+      throw new Error('sitemap lastmod invalid: ' + url);
+    }
+    xml = xml.slice(0, start) + date + xml.slice(start + 10);
+  }
+  fs.writeFileSync(file, xml, 'utf8');
+}
+
 const items=[]; const failures=[];
 for (const src of SOURCES) {
   try { const text=await get(src.url); items.push(...(src.type==='rss'?parseRss(src,text):parseHtml(src,text))); }
   catch(e){ failures.push(`${src.name}: ${e.message}`); console.warn('source failed',src.name,e.message); }
 }
+if (failures.length === SOURCES.length) {
+  throw new Error('すべての公式情報源の取得に失敗したため、既存の公開内容を保持します: ' + failures.join(' / '));
+}
 const picked=unique(items).sort((a,b)=>b.date-a.date).slice(0,MAX_ITEMS);
 fs.writeFileSync(DAILY,dailyHtml(picked,failures),'utf8');
 updateIndex(picked);
+updateSitemap();
 if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`## 通信コンパス 毎日更新\n\n- 掲載: ${picked.length}件\n- 取得失敗: ${failures.length}件\n- 日付: ${jpDate(now)}\n`);
 console.log({published:picked.length, failures});
