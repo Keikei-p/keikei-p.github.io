@@ -1,10 +1,10 @@
 # 通信コンパス 自動メンテナンスレポート
 
-- 実行日時(UTC): 2026-11-01T10:26:32.040Z
+- 実行日時(UTC): 2026-11-04T10:53:53.061Z
 - 対象HTML: 71ファイル
 - 安全な自動修正: 0件
 - 変更ファイル: 0件
-- 要確認項目: 13件
+- 要確認項目: 8件
 
 ## 自動修正する内容
 
@@ -39,26 +39,6 @@
 ### privacy.html
 
 - meta descriptionが短めです（31文字）
-
-### service-au-value-link.html
-
-- meta descriptionが短めです（36文字）
-
-### service-docomo-hikari.html
-
-- meta descriptionが短めです（37文字）
-
-### service-docomo-max.html
-
-- meta descriptionが短めです（43文字）
-
-### service-povo2.html
-
-- meta descriptionが短めです（42文字）
-
-### service-softbank-teigaku-museigen.html
-
-- meta descriptionが短めです（38文字）
 
 ### service.html
 
