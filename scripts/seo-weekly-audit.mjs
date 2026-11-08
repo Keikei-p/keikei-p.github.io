@@ -77,3 +77,10 @@ fs.writeFileSync('audit/weekly-seo-report.md',result,'utf8');
 if(process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,result);
 console.log('SEO AUDIT', {files:files.length,...counts});
 for(const item of issueList.filter(x=>x.level==='error').slice(0,20)) console.log('ERROR',item.file,item.message);
+
+// A successful workflow must mean no broken local links or missing titles were found.
+// Keep warnings informational, and write the full report before failing the job.
+if (counts.error > 0) {
+  console.error(`SEO AUDIT FAILED: ${counts.error} error(s). See weekly-seo-report.md.`);
+  process.exitCode = 1;
+}
