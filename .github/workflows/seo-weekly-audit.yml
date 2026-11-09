@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "30 0 * * 1"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/seo-weekly-audit.mjs"
+      - "scripts/test-seo-weekly-audit.mjs"
+      - ".github/workflows/seo-weekly-audit.yml"
   push:
     branches: [main]
     paths:
