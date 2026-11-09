@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "scripts/seo-weekly-audit.mjs"
+      - "scripts/test-seo-weekly-audit.mjs"
       - ".github/workflows/seo-weekly-audit.yml"
 
 permissions:
@@ -25,8 +26,10 @@ jobs:
       - name: SEO・内部導線を点検
         run: |
           node --check scripts/seo-weekly-audit.mjs
+          node --test scripts/test-seo-weekly-audit.mjs
           node scripts/seo-weekly-audit.mjs
       - name: 詳細レポートを保存（7日）
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: weekly-seo-report
