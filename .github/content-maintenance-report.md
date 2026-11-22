@@ -1,10 +1,10 @@
 # 通信コンパス 自動メンテナンスレポート
 
-- 実行日時(UTC): 2026-11-18T11:39:59.728Z
+- 実行日時(UTC): 2026-11-22T11:22:07.096Z
 - 対象HTML: 71ファイル
 - 安全な自動修正: 0件
 - 変更ファイル: 0件
-- 要確認項目: 8件
+- 要確認項目: 26件
 
 ## 自動修正する内容
 
@@ -39,6 +39,78 @@
 ### privacy.html
 
 - meta descriptionが短めです（31文字）
+
+### service-ahamo.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-au-hikari.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-au-value-link.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-biglobe-hikari.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-docomo-hikari.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-docomo-home5g.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-docomo-max.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-docomo-mini.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-linemo.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-nuro-hikari.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-povo2.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-rakuten-mobile.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-rakuten-turbo.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-softbank-air.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-softbank-hikari.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-softbank-teigaku-museigen.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-uq-mobile.html
+
+- 情報確認日が63日前です: 2026-09-20
+
+### service-ymobile.html
+
+- 情報確認日が63日前です: 2026-09-20
 
 ### service.html
 
